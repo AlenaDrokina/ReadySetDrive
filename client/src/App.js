@@ -4,9 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import HomeView from "./views/HomeView";
 // import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
-// import PastFormView from "./views/PastFormView";
+import PastFormView from "./views/PastFormView";
 import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
+
+import TheMap from "./components/TheMap"
 
 import "./App.css";
 
@@ -20,6 +22,8 @@ function App() {
         <Route path="/" element={<HomeView />} />
         <Route path="profile" element={<ProfileView />} />
         <Route path="*" element={<Error404View />} />
+        <Route path="/pastForm" element={<PastFormView />} />
+        <Route path="/map" element={<TheMap />} />
       </Routes>
     </div>
   );

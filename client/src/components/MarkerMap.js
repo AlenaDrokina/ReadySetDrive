@@ -1,7 +1,7 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
-import "./MarkerMap.css";
+// import "./MarkerMap.css";
 // Global Leaflet variable; only necessary for the green marker.
 // Everything else is provided by React Leaflet
 const L = window.L;
@@ -31,7 +31,7 @@ function MarkerMap(props) {
   return (
     <MapContainer
       className="MarkerMap"
-      center={props.home}
+      // center={props.home}
       zoom={props.zoom}
       style={{ height: "500px" }} // you MUST specify map height, else it will be 0!
     >
@@ -42,11 +42,11 @@ function MarkerMap(props) {
       />
 
       {/* Draw the green "YOU ARE HERE" marker */}
-      {props.home && (
+      {/* {props.home && (
         <Marker position={props.home} icon={greenMarker}>
           <Popup>YOU ARE HERE</Popup>
         </Marker>
-      )}
+      )} */}
 
       {/* Draw a blue marker for each of the places passed as prop */}
       {props.places.map((p) => (

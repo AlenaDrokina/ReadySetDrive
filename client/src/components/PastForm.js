@@ -5,8 +5,7 @@ const BLANK_TRIP_FORM = {
     title: "",
     countries: "",
     description: "",
-    image: "",
-    address: ""
+    image: ""
 };
 
 const BLANK_STOP_FORM = {
@@ -15,14 +14,14 @@ const BLANK_STOP_FORM = {
 
 };
 
-function PastForm(){
+function PastForm(props){
     const [formData, setFormData] = useState(BLANK_TRIP_FORM);
     const [stops, setStops] = useState (BLANK_STOP_FORM)
 
     function handleSubmit(event){
         event.preventDefault();
-        //PROPS?
-        setFormData(BLANK_FORM);
+        console.log(formData);
+        setFormData(BLANK_TRIP_FORM);
     }
 
     function handleChange(event){
@@ -30,9 +29,15 @@ function PastForm(){
         setFormData (data => ({...data, [name]: value}));
     }
 
+    function handleChange2(event){
+        let { name, value } = event.target;
+        setStops(data => ({...data, [name]: value}));
+    }
+
     function handleClick(event) {
-         //props.addMarkerCb(address)    //add props to function PastForm(props)
-        //  setAddress("");  //or set BLANKSTOPFORM
+        event.preventDefault()
+        console.log(stops);    //add props to function PastForm(props)
+        setStops(BLANK_STOP_FORM);
     }
 
 
@@ -73,23 +78,41 @@ function PastForm(){
 
         <div className="form-group"> 
           <label className="w-100"> Stops </label>
+
+          {/* <div> {stops.map(e => (
+            <li key={e.stops} ></li>
+          ))}
+        </div> */}
+
+          <input
+              type="text"
+              className="form-control"
+              name="title"
+              value={stops.title}
+              onChange={handleChange2}
+            />
             <input
               type="text"
               className="form-control"
               name="address"
-              value={address}
-              onChange={handleChange}
-              required
+              value={stops.address}
+              onChange={handleChange2}
+
             />
               <button onClick={handleClick} className="btn btn-primary">Submit</button>
+
+                <div className="mapEr">
+                    <MarkerTable places={props.places} />
+                </div>
+
           </div>
 
         <div className="mb-3">
             <label className="form-label">Add Picture Here</label>
             <input 
-                //type="image"
+                type="text"
                 name="image"
-                value={formData.description}
+                value={formData.image}
                 onChange={handleChange}
                 className="form-control" 
             />
@@ -98,7 +121,7 @@ function PastForm(){
 
 
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
         </form>
 
 
