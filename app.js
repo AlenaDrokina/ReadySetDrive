@@ -20,6 +20,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/stops", stopsRouter);
-app.use("/roadTrips", roadTripsRouter);
+app.use("/roadtrips", roadtripsRouter);
 
 module.exports = app;

@@ -6,3 +6,5 @@ var router = express.Router();
 //post
 
 //delete
+
+module.exports = router;
