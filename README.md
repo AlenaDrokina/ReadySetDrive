@@ -2,5 +2,10 @@
 
 WildTrip is for the FANS about road trip
 
-heya
+# Api key from open cage
 
+https://opencagedata.com/dashboard#geocoding
+
+# Install bootstrap
+
+`npm install bootstrap@3`
