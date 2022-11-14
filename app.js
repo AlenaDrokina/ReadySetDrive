@@ -6,7 +6,8 @@ const cors = require("cors"); // add at the top
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var roadTripsRouter = require("./routes/roadTrips");
+var roadtripsRouter = require("./routes/roadtrips");
+var stopsRouter = require("./routes/stops");
 
 var app = express();
 app.use(cors()); // add after 'app' is created
