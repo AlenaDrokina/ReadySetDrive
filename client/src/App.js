@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <p>Road Triper</p>
+      <p>Road Tripper</p>
 
       <Routes>
         <Route path="/" element={<HomeView />} />
