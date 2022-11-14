@@ -1,14 +1,23 @@
-//import React, { useState } from "react";
+import React, { useState } from "react";
+import MarkerTable from "../components/MarkerTable";
 
-const BLANK_FORM = {
+const BLANK_TRIP_FORM = {
     title: "",
     countries: "",
     description: "",
-    image: ""
+    image: "",
+    address: ""
+};
+
+const BLANK_STOP_FORM = {
+    title: "",
+    address: ""
+
 };
 
 function PastForm(){
-    const [formData, setFormData] = useState(BLANK_FORM);
+    const [formData, setFormData] = useState(BLANK_TRIP_FORM);
+    const [stops, setStops] = useState (BLANK_STOP_FORM)
 
     function handleSubmit(event){
         event.preventDefault();
@@ -19,6 +28,11 @@ function PastForm(){
     function handleChange(event){
         let { name, value } = event.target;
         setFormData (data => ({...data, [name]: value}));
+    }
+
+    function handleClick(event) {
+         //props.addMarkerCb(address)    //add props to function PastForm(props)
+        //  setAddress("");  //or set BLANKSTOPFORM
     }
 
 
@@ -56,6 +70,19 @@ function PastForm(){
                 className="form-control" 
             />
         </div>
+
+        <div className="form-group"> 
+          <label className="w-100"> Stops </label>
+            <input
+              type="text"
+              className="form-control"
+              name="address"
+              value={address}
+              onChange={handleChange}
+              required
+            />
+              <button onClick={handleClick} className="btn btn-primary">Submit</button>
+          </div>
 
         <div className="mb-3">
             <label className="form-label">Add Picture Here</label>
