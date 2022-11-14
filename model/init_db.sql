@@ -19,6 +19,7 @@ CREATE TABLE `users` (
 CREATE TABLE `roadtrips` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`image_url` varchar(255) NOT NULL,
+	`title` varchar(255) NOT NULL,
     `countries` varchar(255) NOT NULL,
 	`description` varchar(255) NOT NULL,
 	`done` BOOLEAN NOT NULL,
