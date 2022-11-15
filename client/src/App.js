@@ -13,8 +13,6 @@ import HomeView from "./views/HomeView";
 // import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
 // import PastFormView from "./views/PastFormView";
-import MembersOnlyView from "./views/MembersOnlyView";
-import UsersView from "./views/UsersView";
 import PastFormView from "./views/PastFormView";
 import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
@@ -68,7 +66,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
         <Route path="/profile/*" element={<ProfileView />} />
-        <Route path="/users" element={<UsersView />} />
+
         <Route
           path="/users/:userId"
           element={
@@ -79,11 +77,7 @@ function App() {
         />
         <Route
           path="/members-only"
-          element={
-            <PrivateRoute>
-              <MembersOnlyView />
-            </PrivateRoute>
-          }
+          element={<PrivateRoute>{/* <MembersOnlyView /> */}</PrivateRoute>}
         />
         <Route
           path="/login"
