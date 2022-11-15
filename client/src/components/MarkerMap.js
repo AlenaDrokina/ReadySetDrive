@@ -1,7 +1,7 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
-// import "./MarkerMap.css";
+import "./MarkerMap.css";
 // Global Leaflet variable; only necessary for the green marker.
 // Everything else is provided by React Leaflet
 const L = window.L;
@@ -31,7 +31,7 @@ function MarkerMap(props) {
   return (
     <MapContainer
       className="MarkerMap"
-      // center={props.home}
+      center={props.home}
       zoom={props.zoom}
       style={{ height: "500px" }} // you MUST specify map height, else it will be 0!
     >
@@ -42,24 +42,24 @@ function MarkerMap(props) {
       />
 
       {/* Draw the green "YOU ARE HERE" marker */}
-      {/* {props.home && (
+      {props.home && (
         <Marker position={props.home} icon={greenMarker}>
           <Popup>YOU ARE HERE</Popup>
         </Marker>
-      )} */}
+      )}
 
       {/* Draw a blue marker for each of the places passed as prop */}
       {props.places.map((p) => (
         <Marker
-          key={p.name}
+          key={p.title}
           position={[p.latitude, p.longitude]}
           icon={rollerMArker}
         >
           <Popup>
-            {breakAddr(p.name)}{" "}
-            {/* <button type="button" onClick={(e) => props.updateMarker(p.id)}>
+            {breakAddr(p.title)}{" "}
+            <button type="button" onClick={(e) => props.updateMarker(p.id)}>
               &#x2713;
-            </button> */}
+            </button>
             <button
               type="buttonMarker"
               onClick={(e) => props.deleteMarker(p.id)}

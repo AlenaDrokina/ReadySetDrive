@@ -3,43 +3,118 @@ import MarkerTable from "../components/MarkerTable";
 
 // import "./AddressForm.css";
 
+const BLANK_TRIP_FORM = {
+  title: "",
+  countries: "",
+  description: "",
+  image: ""
+};
+
+const BLANK_ADDRESS_FORM = {
+  title: "",
+  address: ""
+};
+
 function AddressForm(props) {
-  const [address, setAddress] = useState("");
+  const [formData, setFormData] = useState(BLANK_TRIP_FORM);
+  const [address, setAddress] = useState (BLANK_ADDRESS_FORM)
 
-  function handleChange(event) {
+  function handleChange(event){
+    let { name, value } = event.target;
+    setFormData (data => ({...data, [name]: value}));
+}
+
+  function handleChange2(event){
     setAddress(event.target.value);
-  }
+}
 
-  function handleSubmit(event) {
+  function handleSubmit(event){
     event.preventDefault();
+    console.log(formData);
+    setFormData(BLANK_TRIP_FORM);
+}
+
+  function handleClick(event) {
+    event.preventDefault()
     props.addMarkerCb(address);
-    setAddress("");
-  }
+    console.log(address);
+    setAddress(BLANK_ADDRESS_FORM);
+}
+
 
   return (
     <div className="AddressForm">
       <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+              <label className="form-label">Title</label>
+              <input 
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  className="form-control" 
+              />
+
+          </div>
+          <div className="mb-3">
+              <label className="form-label">Countries Visited</label>
+              <input 
+                  type="text"
+                  name="countries"
+                  value={formData.countries}
+                  onChange={handleChange}
+                  className="form-control" 
+              />
+          </div>
+
+          <div className="mb-3">
+              <label className="form-label">Description</label>
+              <input 
+                  type="text"
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  className="form-control" 
+              />
+          </div>
+
         <div className="form-group">
-          <label className="w-100">
-            Address
+          <label className="w-100"> Stops </label>
+          <input
+              type="text"
+              className="form-control"
+              name="title"
+              value={address.title}
+              onChange={handleChange2}
+            />
             <input
               type="text"
               className="form-control"
               name="address"
-              value={address}
-              onChange={handleChange}
-              required
-            />
-          </label>
+              value={address.address}
+              onChange={handleChange2}
 
-          <button type="submit" className="btn btn-danger">
-            Submit
-          </button>
+            />
+              <button onClick={handleClick} className="btn btn-primary">Submit</button>
 
           <div className="mapEr">
             <MarkerTable places={props.places} />
           </div>
         </div>
+        <div className="mb-3">
+            <label className="form-label">Add Picture Here</label>
+            <input 
+                type="text"
+                name="image"
+                value={formData.image}
+                onChange={handleChange}
+                className="form-control" 
+            />
+        </div>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
+
+
       </form>
     </div>
   );

@@ -25,7 +25,7 @@ function App() {
         <Route path="/" element={<HomeView />} />
         <Route path="/profile" element={<ProfileView />} />
         <Route path="*" element={<Error404View />} />
-        <Route path="/pastForm" element={<PastFormView />} />
+        <Route path="/pastform" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
       </Routes>
     </div>

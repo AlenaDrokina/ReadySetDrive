@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import "./MarkerTable.css";
 
 function MarkerTable(props) {
@@ -12,13 +12,13 @@ function MarkerTable(props) {
         </tr>
       </thead>
       <tbody>
-        {props.places.map((p) => (
+        {/* {props.places.map((p) => (
           <tr key={p.name}>
             <td>{p.name}</td>
-            {/* <td>{p.formatted_address}</td>
+            <td>{p.formatted_address}</td>
             <td>{p.latLng.join("/")}</td> */}
-          </tr>
-        ))}
+          {/* </tr>
+        ))} */}
       </tbody>
     </table>
   );
