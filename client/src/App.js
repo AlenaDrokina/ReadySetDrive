@@ -15,8 +15,12 @@ import HomeView from "./views/HomeView";
 // import PastFormView from "./views/PastFormView";
 import MembersOnlyView from "./views/MembersOnlyView";
 import UsersView from "./views/UsersView";
+import PastFormView from "./views/PastFormView";
 import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
+// import Local from "./helpers/Local";
+
+import TheMap from "./components/TheMap";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -76,6 +80,8 @@ function App() {
           }
         />
         <Route path="*" element={<Error404View />} />
+        <Route path="/pastForm" element={<PastFormView />} />
+        <Route path="/map" element={<TheMap />} />
       </Routes>
     </div>
   );

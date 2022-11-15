@@ -1,9 +1,10 @@
 import React from "react";
+import PastForm from "../components/PastForm";
 
 function PastFormView() {
   return (
     <div className="PastFormView">
-      <h1>Hello world! I'm coming...</h1>
+      <PastForm > </PastForm>
     </div>
   );
 }
