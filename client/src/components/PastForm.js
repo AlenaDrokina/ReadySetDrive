@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MarkerTable from "../components/MarkerTable";
+// import MarkerTable from "../components/MarkerTable";
 
 const BLANK_TRIP_FORM = {
     title: "",
@@ -11,7 +11,6 @@ const BLANK_TRIP_FORM = {
 const BLANK_STOP_FORM = {
     title: "",
     address: ""
-
 };
 
 function PastForm(props){
@@ -102,7 +101,7 @@ function PastForm(props){
               <button onClick={handleClick} className="btn btn-primary">Submit</button>
 
                 <div className="mapEr">
-                    <MarkerTable places={props.places} />
+                    {/* <MarkerTable places={props.places} /> */}
                 </div>
 
           </div>
