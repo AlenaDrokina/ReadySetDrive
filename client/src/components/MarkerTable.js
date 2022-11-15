@@ -1,5 +1,6 @@
 import React from "react";
-import "./MarkerTable.css";
+// import "./MarkerTable.css";
+
 function MarkerTable(props) {
   return (
     <table className="MarkerTable-table">
