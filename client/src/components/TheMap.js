@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 // import { useMap } from "react-leaflet/hooks";
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 // import L from "leaflet";
 // import { LatLngExpression } from "leaflet";
-import "./TheMap.css";
+// import "./TheMap.css";
 import AddressForm from "../components/AddressForm";
 // import MarkerTable from "../components/MarkerTable";
 import MarkerMap from "../components/MarkerMap";
 import { geocode } from "../helpers/geo-opencage";
 
-const barcelona = [41.37861515964027, 2.1798093354905523];
+// const barcelona = [41.37861515964027, 2.1798093354905523];
 
-const TheMap = (props) => {
+const TheMap = () => {
   const [places, setPlaces] = useState([]);
   // let deleteMarker = props.deleteMarker;
 
@@ -101,10 +101,9 @@ const TheMap = (props) => {
         </div>
 
         <div className="col">
-          {props.home && (
+          {places && (
             <MarkerMap
               places={places}
-              home={props.home}
               zoom={13}
               deleteMarker={(id) => deleteMarker(id)}
             />
