@@ -18,6 +18,17 @@ function ProfileView() {
         console.log(error);
       });
   };
+  // const getUsers = () => {
+  //let myresponse = await
+  //   fetch("/users")
+  //     .then((response) => response.json())
+  //     .then((user) => {
+  //       setUser(user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div className="ProfileView">
@@ -25,8 +36,8 @@ function ProfileView() {
       <div className="box">
         <p>Image</p>
         {/* {user} */}
-        <p>{user[0].username}</p>
-        <p>{user[1].username}</p>
+        {/* <p>{user[0].username}</p> */}
+        {/* <p>{user[1].username}</p> */}
         {/* <img src="{user[1].image_url}" /> */}
 
         {/* <p>password</p> */}
