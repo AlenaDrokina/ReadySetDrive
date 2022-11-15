@@ -25,8 +25,8 @@ function ProfileView() {
       <div className="box">
         <p>Image</p>
         {/* {user} */}
-        <p>{user[0].username}</p>
-        <p>{user[1].username}</p>
+        {/* <p>{user[0].username}</p> */}
+        {/* <p>{user[1].username}</p> */}
         {/* <img src="{user[1].image_url}" /> */}
 
         {/* <p>password</p> */}
