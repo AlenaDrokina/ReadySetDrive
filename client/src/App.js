@@ -8,12 +8,11 @@ import PastFormView from "./views/PastFormView";
 import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
 // import Local from "./helpers/Local";
+import Api from "./helpers/Api";
 
 import TheMap from "./components/TheMap";
 
 import "./App.css";
-
-import Api from "./helpers/Api";
 
 function App() {
   // const [user, setUser] = useState(Local.getUser());

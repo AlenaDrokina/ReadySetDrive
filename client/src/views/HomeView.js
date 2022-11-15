@@ -8,8 +8,6 @@ function Homeview(props) {
       {props.roadtripData.map((element) => {
         return <RoadtripCard key={element.id} roadtripData={element} />;
       })}
-      {/* {props.roadtripData && } */}
-      {/* {console.log(props.roadtripData)} */}
     </div>
   );
 }
