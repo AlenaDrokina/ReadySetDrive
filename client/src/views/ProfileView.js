@@ -18,6 +18,17 @@ function ProfileView() {
         console.log(error);
       });
   };
+  // const getUsers = () => {
+  //let myresponse = await
+  //   fetch("/users")
+  //     .then((response) => response.json())
+  //     .then((user) => {
+  //       setUser(user);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div className="ProfileView">
