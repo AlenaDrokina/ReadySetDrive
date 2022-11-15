@@ -35,6 +35,12 @@ class Api {
     return await this._doFetch(url);
   }
 
+  // GET all roadtrips
+
+  static async getRoadtrips() {
+    return await this._doFetch("/roadtrips");
+  }
+
   /**
    * Private method for internal use only
    **/
