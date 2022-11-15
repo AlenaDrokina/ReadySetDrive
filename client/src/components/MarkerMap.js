@@ -19,9 +19,9 @@ function MarkerMap(props) {
     nameAnchor: [1, -34],
     shadowSize: [41, 41],
   });
-  let rollerMArker = new L.icon({
+  let carMarker = new L.icon({
     iconUrl:
-      "https://cdn.shopify.com/s/files/1/0273/1202/9753/products/1201-LSTK.png?v=1644090455",
+      "https://mpng.subpng.com/20180723/yxq/kisspng-computer-icons-desktop-wallpaper-clip-art-car-icon-black-5b569791f20cf8.3936918815324015539915.jpg",
 
     iconSize: [80, 80],
     iconAnchor: [12, 41],
@@ -53,7 +53,7 @@ function MarkerMap(props) {
         <Marker
           key={p.title}
           position={[p.latitude, p.longitude]}
-          icon={rollerMArker}
+          icon={carMarker}
         >
           <Popup>
             {breakAddr(p.title)}{" "}

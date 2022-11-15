@@ -95,7 +95,7 @@ function AddressForm(props) {
               onChange={handleChange2}
 
             />
-              <button onClick={handleClick} className="btn btn-primary">Submit</button>
+              <button onClick={handleClick} className="btn btn-primary">Add Stop</button>
 
           <div className="mapEr">
             <MarkerTable places={props.places} />
