@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./ProfileView.css";
-import { Routes, Route, useParams } from "react-router-dom";
-import Api from "../helpers/Api";
+// import { Routes, Route, useParams } from "react-router-dom";
+// import Api from "../helpers/Api";
 
-function ProfileView(props) {
-  const [user, setUser] = useState([]);
+function ProfileView() {
+  const [user, setUser] = useState();
   useEffect(() => {
     getUsers();
   }, []);
@@ -24,18 +24,16 @@ function ProfileView(props) {
       <h1>Profile</h1>
       <div className="box">
         <p>Image</p>
-        {/* <p>{props.user.username}</p>
-        <p>{props.user.email}</p> */}
+        {/* {user} */}
+        <p>{user[0].username}</p>
+        <p>{user[1].username}</p>
+        {/* <img src="{user[1].image_url}" /> */}
+
         {/* <p>password</p> */}
         <div className="texarea">
           <p>Personal into...</p>
           <textarea></textarea>
         </div>
-      </div>
-      <div>
-        <Routes>
-          {/* <Route path="/PastFrom" element={<PastFormView />} /> */}
-        </Routes>
       </div>
     </div>
   );

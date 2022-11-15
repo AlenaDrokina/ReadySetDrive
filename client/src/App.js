@@ -9,7 +9,7 @@ import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
 import Local from "./helpers/Local";
 
-import TheMap from "./components/TheMap"
+import TheMap from "./components/TheMap";
 
 import "./App.css";
 
@@ -21,7 +21,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/profile" element={<ProfileView />} />
+        <Route path="/profile/*" element={<ProfileView />} />
         <Route path="*" element={<Error404View />} />
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
