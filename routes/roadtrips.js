@@ -2,11 +2,38 @@ var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
 
-//get
+// GET all roadtrips
 
-//get by id
+router.get("/", async function (req, res) {
+  try {
+    let roadtrips = await db("SELECT * FROM roadtrips");
+    res.send(roadtrips.data);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
-//post
+// GET by id
+
+router.get("/:roadtrip_id", async function (req, res) {
+  let roadtrip_id = req.params.roadtrip_id;
+  try {
+    let result = await db(`SELECT * FROM  roadtrips WHERE id=${roadtrip_id}`);
+    let roadtrip = result.data;
+    if (roadtrip.length === 0) {
+      res
+        .status(404)
+        .send({ error: "There is no roadtrip with the requested id" });
+    } else {
+      res.send(roadtrip);
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
+// POST
+
 router.post("/", async function (req, res) {
   // The request's body is available in req.body
   let { image_url, title, countries, description, done, user_id } = req.body;
@@ -26,7 +53,8 @@ router.post("/", async function (req, res) {
     res.status(500).send({ error: error.message });
   }
 });
-//delete
+
+// DELETE
 
 router.delete("/:roadtrip_id", async (req, res) => {
   // URL params are available in req.params
@@ -39,9 +67,9 @@ router.delete("/:roadtrip_id", async (req, res) => {
       res.status(404).send({ error: "item not found" });
     } else {
       // delete item with id matching req params
-      await db(`DELETE FROM data WHERE id = ${roadtrip_id}`);
+      await db(`DELETE FROM roadtrips WHERE id = ${roadtrip_id}`);
       // save result to result variable
-      result = await db(`SELECT * FROM data`);
+      let result = await db(`SELECT * FROM roadtrips`);
       // send result data to client and return server status
       res.status(200).send(result.data);
     }
