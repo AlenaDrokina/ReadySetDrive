@@ -1,0 +1,12 @@
+.ProfileView {
+  text-align: center;
+}
+.box {
+  display: grid;
+  /* grid-template-columns: repeat(1fr 2fr); */
+  /* grid-column: 3;
+  grid-row: 3; */
+}
+/* .texarea {
+  text-align: left;
+} */
