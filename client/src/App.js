@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -45,14 +45,29 @@ function App() {
     // (NavBar will send user to home page)
   }
 
+  let [roadtripData, setRoadtripData] = useState([]);
+
+  useEffect(() => {
+    fetchRoadtrips();
+  }, []);
+
+  async function fetchRoadtrips() {
+    let myresponse = await Api.getRoadtrips();
+    if (myresponse.ok) {
+      setRoadtripData(myresponse.data);
+    } else {
+      console.log("Response not okay.");
+    }
+  }
+
   return (
     <div className="App">
       <Navbar user={user} logoutCb={doLogout} />
       <p>Road Triper</p>
 
       <Routes>
-        <Route path="/" element={<HomeView />} />
-        <Route path="profile" element={<ProfileView />} />
+        <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
+        <Route path="/profile/*" element={<ProfileView />} />
         <Route path="/users" element={<UsersView />} />
         <Route
           path="/users/:userId"
@@ -79,6 +94,7 @@ function App() {
             />
           }
         />
+
         <Route path="*" element={<Error404View />} />
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
