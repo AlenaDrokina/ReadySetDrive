@@ -52,14 +52,14 @@ ALTER TABLE `stops` ADD CONSTRAINT `stops_fk0` FOREIGN KEY (`roadtrip_id`) REFER
 
 -- SAMPLE DATA 
 
-INSERT INTO users(username, email, password, image_url, slogan)
+INSERT INTO `users`(username, email, password, image_url, slogan)
     VALUES ("user1", "user1@gmail.com", "123", "test.jpg", "Hello I am user1"), ("user2", "user2@gmail.com", "123", "test.jpg", "Hello I am user2");
 
-INSERT INTO roadtrips(image_url, countries, description, done, user_id) 
-    VALUES ("test.jpg", "Spain", "I did a roundtrip in Andalucia...", 1, 1), 
-    ("test.jpg", "Portugal", "I did a roundtrip from Porto to Lisbon", 1, 1), 
-    ("test.jpg", "France", "I did a roundtrip in Normandy", 1, 2), 
-    ("test.jpg", "France", "I did a roundtrip from Paris to Marseille", 1, 2); 
+INSERT INTO `roadtrips`(image_url, title, countries, description, done, user_id) 
+    VALUES ("test.jpg", "the best trip of my life", "Spain", "I did a roundtrip in Andalucia...", 1, 1), 
+    ("test.jpg", "the scariest trip of my life", "Portugal", "I did a roundtrip from Porto to Lisbon", 1, 1), 
+    ("test.jpg", "the craziest trip of my life", "France", "I did a roundtrip in Normandy", 1, 2), 
+    ("test.jpg", "the most romantic trip of my life", "France", "I did a roundtrip from Paris to Marseille", 1, 2); 
 
-INSERT INTO stops (title, address, longitude, latitude, roadtrip_id)
+INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
     VALUES ("Seville", "Av. Test", -5.984459, 37.389091, 1), ("Dos Hermanas", "Test", 37.283180, -5.922240, 1);
