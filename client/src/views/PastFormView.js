@@ -16,6 +16,7 @@ function PastFormView() {
 
   const [home, setHome] = useState(null);  // center of map
   const [places, setPlaces] = useState([]);
+  const [stops, setStops] =useState();
 
   // Set "home" when the app loads
   useEffect(() => {
@@ -37,15 +38,16 @@ function PastFormView() {
     setHome(latLng);
   }
 
-  async function addMarkerForAddress(addr) {
+  async function addMarkerForAddress(addressObj) {
     // Send a request to OpenCage to geocode 'addr'
-    let myresponse = await geocode(addr);
+    let myresponse = await geocode(addressObj.address);
     if (myresponse.ok) {
         if (myresponse.data.latLng) {
             // Create new 'place' obj
             let d = myresponse.data;
             let newPlace = { 
-              title: addr,
+              name: addressObj.title,
+              title: addressObj.address,
               latitude: d.latLng[0],
               longitude: d.latLng[1],
                 // formatted_address: d.formatted_address
@@ -59,6 +61,14 @@ function PastFormView() {
     } else {
         console.log('addMarkerForAddress(): response.error:', myresponse.error);
     }
+}
+
+//attempt to delete marker without it being added to database
+function deleteStop(id) {
+  let newStopList = [...stops];
+  let ix = newStopList.findIndex(l => l.id === id);
+  newStopList.splice(ix, 1);
+  setStops(stops => newStopList);
 }
 //FIX WITH ROUTES!!!
 // async function addMarker(place) {
@@ -85,7 +95,7 @@ function PastFormView() {
 //     method: "DELETE",
 //   };
 //   try {
-//     let response = await fetch(`/TheMap/${id}`, options);
+//     let response = await fetch(`/roadtrips/${id}`, options);
 
 //     if (response.ok) {
 //       let data = await response.json();

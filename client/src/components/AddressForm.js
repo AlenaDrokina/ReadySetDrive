@@ -25,7 +25,8 @@ function AddressForm(props) {
 }
 
   function handleChange2(event){
-    setAddress(event.target.value);
+    let { name, value } = event.target;
+    setAddress (data => ({...data, [name]: value}));
 }
 
   function handleSubmit(event){

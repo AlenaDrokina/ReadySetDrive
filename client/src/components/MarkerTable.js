@@ -6,19 +6,21 @@ function MarkerTable(props) {
     <table className="MarkerTable-table">
       <thead>
         <tr>
-          <th>Address</th>
+          <th>Stops</th>
           {/* <th>Formatted Address (from OpenCage)</th>
           <th>Latitude/Longitude</th> */}
         </tr>
       </thead>
       <tbody>
-        {/* {props.places.map((p) => (
-          <tr key={p.name}>
+        {props.places.map((p) => (
+          <tr key={p.title}>
             <td>{p.name}</td>
-            <td>{p.formatted_address}</td>
+            <td> --> </td>
+            <td>{p.title}</td>
+            {/* <td>{p.formatted_address}</td>
             <td>{p.latLng.join("/")}</td> */}
-          {/* </tr>
-        ))} */}
+          </tr>
+        ))}
       </tbody>
     </table>
   );
