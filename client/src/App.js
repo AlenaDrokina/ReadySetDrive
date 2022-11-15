@@ -39,7 +39,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
-        <Route path="/profile" element={<ProfileView />} />
+        <Route path="/profile/*" element={<ProfileView />} />
         <Route path="*" element={<Error404View />} />
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
