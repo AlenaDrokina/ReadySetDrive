@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// import "./AddressForm.css";
 
 const BLANK_TRIP_FORM = {
   title: "",
@@ -12,7 +11,7 @@ const BLANK_TRIP_FORM = {
 };
 
 
-function AddressForm(props) {
+function RoadtripForm(props) {
   const [formData, setFormData] = useState(BLANK_TRIP_FORM);
 
   function handleChange(event){
@@ -28,7 +27,8 @@ function AddressForm(props) {
 }
 
   return (
-    <div className="AddressForm"> Create Your Roadtrip!
+    <div className="RoadtripForm"> 
+      <h1>Create Your Roadtrip </h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
               <label className="form-label">Title</label>
@@ -81,4 +81,4 @@ function AddressForm(props) {
   );
 }
 
-export default AddressForm;
+export default RoadtripForm;

@@ -14,7 +14,7 @@ import { NavLink } from "react-router-dom";
 
 // import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
-import RoadTripView from "./views/RoadtripView";
+import RoadtripView from "./views/RoadtripView";
 import ProfileView from "./views/ProfileView";
 import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
@@ -102,8 +102,8 @@ function App() {
         <Route path="/stops" element={<StopsView />} />
         <Route path="/map" element={<TheMap />} />
         {/* <Route path="/PastFormView" element={<TheMap />} /> */}
-        <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
-        <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
+        {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
+        <Route path="/PastRoadTripView" element={<PastRoadTripView />} /> */}
       </Routes>
     </div>
   );

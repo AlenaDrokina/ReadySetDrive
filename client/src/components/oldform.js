@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MarkerTable from "./MarkerTable";
+import MarkerTable from "../components/MarkerTable";
 
 // import "./AddressForm.css";
 
@@ -7,6 +7,8 @@ const BLANK_TRIP_FORM = {
   title: "",
   countries: "",
   description: "",
+  stops: [],
+  newStop: {title: "", address: ""},
   image_url: "",
   done: 1,
   user_id: 1        //debug only, remove after auth is done!!
@@ -19,32 +21,46 @@ const BLANK_ADDRESS_FORM = {
 
 function AddressForm(props) {
   const [formData, setFormData] = useState(BLANK_TRIP_FORM);
-  const [address, setAddress] = useState (BLANK_ADDRESS_FORM)
+  const [address, setAddress] = useState (BLANK_ADDRESS_FORM);
 
-  function handleChange(event){
+function handleChange(event){
     let { name, value } = event.target;
     setFormData (data => ({...data, [name]: value}));
 }
 
-  function handleChange2(event){
-    let { name, value } = event.target;
-    setAddress (data => ({...data, [name]: value}));
+function handleStopChange(event) {
+    let {name, value} = event.target
+    setAddress(data => ({...data, [name]: value}));
 }
+
 
   function handleSubmit(event){
     event.preventDefault();
     props.addRoadtripCb(formData);
+    BLANK_TRIP_FORM.stops = [];
     console.log(formData);
     setFormData(BLANK_TRIP_FORM);
 }
 
-  function handleClick(event) {
-    event.preventDefault()
-    props.addMarkerCb(address);
-    console.log(address);
-    setAddress(BLANK_ADDRESS_FORM);
+
+
+function delStop(name) {
+  let ix = Number(name.slice(5));  // get index of stop to delete, why 5 from demo?
+  let newFormData = {...formData};
+  newFormData.stops.splice(ix, 1);  // delete
+  console.log("del", newFormData);
+                                            //not actually deleting from db
+  setFormData(formData => newFormData);
 }
 
+function addStop(event) {
+  let newFormData = {...formData};
+  //console.log("new", newFormData);
+  newFormData.stops.push(address);
+  props.addMarkerCb(address);                      
+  newFormData.newStop = '';  // reset 'newStop' field
+  setFormData(formData => newFormData);
+}
 
   return (
     <div className="AddressForm">
@@ -83,26 +99,42 @@ function AddressForm(props) {
           </div>
 
         <div className="form-group">
-          <label className="w-100"> Stops </label>
-          <input
-              type="text"
-              className="form-control"
-              name="title"
-              value={address.title}
-              onChange={handleChange2}
-            />
-            <input
-              type="text"
-              className="form-control"
-              name="address"
-              value={address.address}
-              onChange={handleChange2}
+          <label className="w-100"> Stops 
+          {/* {   
+              formData.stops.map((f, ix) => (
+                <div key= {ix} className="stops">
+                  <input
+                    type= "text"
+                    name={'stops-'+ix}
+                    value={formData.stops[ix].title}
+                    onChange={handleChange}
+                />
+                <button type="button" onClick={e => delStop('stops-'+ix)}>del</button>
+                </div>
+              ))
+          } */}
 
-            />
-              <button onClick={handleClick} className="btn btn-primary">Add Stop</button>
+          {/* Field to add a new stop */}
+          <div className="stops">
+              <input
+                  type="text"
+                  name="title"
+                  value={address.title}
+                  onChange={handleStopChange}
+              />
+              <input
+                  type="text"
+                  name="address"
+                  value={address.address}
+                  onChange={handleStopChange}
+              />
+
+              <button type="button" onClick={addStop}>add</button>
+          </div>
+          </label>
 
           <div className="mapEr">
-            <MarkerTable places={props.places} />
+            <MarkerTable places={props.places} delStop={name => delStop(name)}/>
           </div>
         </div>
         <div className="mb-3">

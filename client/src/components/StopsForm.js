@@ -4,12 +4,14 @@ import MarkerTable from "./MarkerTable";
 
 const BLANK_ADDRESS_FORM = {
     title: "",
-    address: ""
+    address: "",
+    roadtrip_id: 1      //debug purpose only!!!! fix with actual data
   };
 
 
 function StopsForm(props){
   const [address, setAddress] = useState (BLANK_ADDRESS_FORM)
+//const [stops, setStops] = useState (BLANK_ADDRESS_FORM)
 
   function handleChange2(event){
     let { name, value } = event.target;
@@ -19,7 +21,8 @@ function StopsForm(props){
   function handleSubmit(event) {
     event.preventDefault()
     props.addMarkerCb(address);
-    console.log(address);
+    props.addStopCb(address)
+    console.log("work", address);
     setAddress(BLANK_ADDRESS_FORM);
 }
 
