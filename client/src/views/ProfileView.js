@@ -39,37 +39,49 @@ function ProfileView() {
     <div className="ProfileView">
       <h1>Profile</h1>
       <div className="box">
-        <div className="mb-3">
-          {/* {profileData.picture && */}
-          <img scr={profileData.picture} alt={profileData.picture} />
-          <label className="form-label">Add Picture Here</label>
-          <input
-            type="text"
-            name="picture"
-            value={profileData.picture}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Add a pic of you! (url)"
-          />
-        </div>
-        {/* {user} */}
-        {/* <p>{user[0].username}</p> */}
-        {/* <p>{user[1].username}</p> */}
+        <form onSubmit={handleSubmit}>
+          {/* {user} */}
+          <div className="mb-3">
+            {/* {profileData.picture && */}
 
-        <div className="mb-3">
-          <label className="form-label">Add a little description!</label>
-          <input
-            type="text"
-            name="text"
-            value={profileData.text}
-            onChange={handleChange}
-            className="form-control"
-            // placeholder="Add a url of a pic of you!"
-          />
-        </div>
-        <button onSubmit={handleSubmit} className="btn btn-primary">
-          Submit
-        </button>
+            <label className="form-label">Add Picture Here</label>
+            <input
+              type="text"
+              name="picture"
+              value={profileData.picture}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="Add a pic of you! (url)"
+            />
+          </div>
+          {/* {user} */}
+          {/* <p>{user[0].username}</p> */}
+          {/* <p>{user[1].username}</p> */}
+
+          <div className="mb-3">
+            <label className="form-label">Add a little description!</label>
+            <input
+              type="text"
+              name="description"
+              value={profileData.description}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="I like to..."
+              // placeholder="Add a url of a pic of you!"
+            />
+          </div>
+          <button onSubmit={handleSubmit} className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className="userInfo">
+        <p>Me</p>
+        <img src={profileData.picture} alt={profileData.picture} />
+        <p>A little about me</p>
+        <p>{profileData.description}</p>
+        <br></br>
+        <p>my email</p>
       </div>
     </div>
   );
