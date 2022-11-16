@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
+const { ensureSameUser } = require("../middleware/guards");
 
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
@@ -18,7 +19,7 @@ router.get("/", async function (req, res, next) {
 
 //get
 
-router.get("/:user_id", async function (req, res, next) {
+router.get("/:userId", ensureSameUser, async function (req, res, next) {
   let { user_id } = req.params;
   let sql = "SELECT * FROM users WHERE id = " + user_id;
 

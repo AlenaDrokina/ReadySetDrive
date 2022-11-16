@@ -7,8 +7,8 @@ class Api {
 
   static async loginUser(username, password) {
     let body = { username, password };
-
-    return await this._doFetch("/Login", "POST", body);
+    console.log("tao");
+    return await this._doFetch("/auth/login", "POST", body);
   }
 
   /**
@@ -65,9 +65,12 @@ class Api {
     }
 
     // Do the fetch() and store the results in a "unified" myresponse obj
+    console.log(body);
+    console.log(options);
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
       let response = await fetch(url, options);
+      console.log(response);
       if (response.ok) {
         myresponse.ok = true;
         myresponse.data = await response.json();
