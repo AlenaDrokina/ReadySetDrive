@@ -5,6 +5,7 @@ import "./ProfileView.css";
 
 function ProfileView() {
   const [user, setUser] = useState();
+  const [profileData, setProfileData] = useState();
   useEffect(() => {
     getUsers();
   }, []);
@@ -12,37 +13,40 @@ function ProfileView() {
     fetch("/users")
       .then((response) => response.json())
       .then((user) => {
-        setUser(user);
+        setProfileData(user);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  // const getUsers = () => {
-  //let myresponse = await
-  //   fetch("/users")
-  //     .then((response) => response.json())
-  //     .then((user) => {
-  //       setUser(user);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+
+  function handleChange(event) {
+    let { name, value } = event.target;
+    setProfileData((data) => ({ ...data, [name]: value }));
+  }
 
   return (
     <div className="ProfileView">
       <h1>Profile</h1>
       <div className="box">
-        <p>Image</p>
+        <label>
+          Image
+          <input
+            type="text"
+            name="image"
+            value={profileData.image}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </label>
+
         {/* {user} */}
         {/* <p>{user[0].username}</p> */}
         {/* <p>{user[1].username}</p> */}
         {/* <img src="{user[1].image_url}" /> */}
-
         {/* <p>password</p> */}
         <div className="texarea">
-          <p>Personal into...</p>
+          <p>A little about me</p>
           <textarea></textarea>
         </div>
       </div>
