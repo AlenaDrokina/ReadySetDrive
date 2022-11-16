@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import HomeView from "./views/HomeView";
+import { NavLink } from "react-router-dom";
+
 // import FeaturedTripView from "./views/FeaturedTripView";
-// import NewRoadTripView from "./views/NewRoadTripView";
+import NewRoadTripView from "./views/NewRoadTripView";
+import PastRoadTripView from "./views/PastRoadTripView";
 import PastFormView from "./views/PastFormView";
 import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
@@ -36,7 +39,10 @@ function App() {
     <div className="App">
       <Navbar />
 
-      <p>Road Tripper</p>
+      <NavLink to="/" className="Logo">
+        {" "}
+        <p>Road Tripper</p>
+      </NavLink>
 
       <Routes>
         <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
@@ -44,8 +50,9 @@ function App() {
         <Route path="*" element={<Error404View />} />
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
-        <Route path="/PastFormView" element={<TheMap />} />
-        <Route path="/NewRoadTripView" element={<TheMap />} />
+        {/* <Route path="/PastFormView" element={<TheMap />} /> */}
+        <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
+        <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
       </Routes>
     </div>
   );
