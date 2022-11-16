@@ -3,8 +3,14 @@ import "./ProfileView.css";
 // import { Routes, Route, useParams } from "react-router-dom";
 // import Api from "../helpers/Api";
 
+const BLANK_STOP_PROFILE = {
+  picture: "",
+  description: "",
+};
+
 function ProfileView() {
   const [user, setUser] = useState();
+  const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   useEffect(() => {
     getUsers();
   }, []);
@@ -18,33 +24,64 @@ function ProfileView() {
         console.log(error);
       });
   };
-  // const getUsers = () => {
-  //let myresponse = await
-  //   fetch("/users")
-  //     .then((response) => response.json())
-  //     .then((user) => {
-  //       setUser(user);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
 
+  function handleChange(event) {
+    let { name, value } = event.target;
+    setProfileData((data) => ({ ...data, [name]: value }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    // console.log(stops); //add props to function PastForm(props)
+    setProfileData(BLANK_STOP_PROFILE);
+  }
   return (
     <div className="ProfileView">
       <h1>Profile</h1>
       <div className="box">
-        <p>Image</p>
-        {/* {user} */}
-        {/* <p>{user[0].username}</p> */}
-        {/* <p>{user[1].username}</p> */}
-        {/* <img src="{user[1].image_url}" /> */}
+        <form onSubmit={handleSubmit}>
+          {/* {user} */}
+          <div className="mb-3">
+            {/* {profileData.picture && */}
 
-        {/* <p>password</p> */}
-        <div className="texarea">
-          <p>Personal into...</p>
-          <textarea></textarea>
-        </div>
+            <label className="form-label">Add Picture Here</label>
+            <input
+              type="text"
+              name="picture"
+              value={profileData.picture}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="Add a pic of you! (url)"
+            />
+          </div>
+          {/* {user} */}
+          {/* <p>{user[0].username}</p> */}
+          {/* <p>{user[1].username}</p> */}
+
+          <div className="mb-3">
+            <label className="form-label">Add a little description!</label>
+            <input
+              type="text"
+              name="description"
+              value={profileData.description}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="I like to..."
+              // placeholder="Add a url of a pic of you!"
+            />
+          </div>
+          <button onSubmit={handleSubmit} className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className="userInfo">
+        <p>Me</p>
+        <img src={profileData.picture} alt={profileData.picture} />
+        <p>A little about me</p>
+        <p>{profileData.description}</p>
+        <br></br>
+        <p>my email</p>
       </div>
     </div>
   );
