@@ -53,7 +53,7 @@ ALTER TABLE `stops` ADD CONSTRAINT `stops_fk0` FOREIGN KEY (`roadtrip_id`) REFER
 -- SAMPLE DATA 
 
 INSERT INTO `users`(username, email, password, image_url, slogan)
-    VALUES ("user1", "user1@gmail.com", "123", "test.jpg", "Hello I am user1"), ("user2", "user2@gmail.com", "123", "test.jpg", "Hello I am user2");
+    VALUES ("user1", "user1@gmail.com", "$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W", "test.jpg", "Hello I am user1"), ("user2", "user2@gmail.com", "$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6", "test.jpg", "Hello I am user2");
 
 INSERT INTO `roadtrips`(image_url, title, countries, description, done, user_id) 
     VALUES ("https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", "The best trip of my life", "Spain", "I did a roundtrip in Andalucia...", 1, 1), 
