@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginView from "./views/LoginView";
 import HomeView from "./views/HomeView";
+import { NavLink } from "react-router-dom";
+
 // import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
 // import PastFormView from "./views/PastFormView";
@@ -63,8 +65,11 @@ function App() {
 
   return (
     <div className="App">
+      <NavLink to="/" className="Logo">
+        {" "}
+        <p>Road Tripper</p>
+      </NavLink>
       <Navbar user={user} logoutCb={doLogout} />
-      <p>Road Triper</p>
 
       <Routes>
         <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
@@ -95,6 +100,9 @@ function App() {
         <Route path="*" element={<Error404View />} />
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
+        {/* <Route path="/PastFormView" element={<TheMap />} /> */}
+        <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
+        <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
       </Routes>
     </div>
   );

@@ -4,7 +4,7 @@ import PastForm from "../components/PastForm";
 function PastFormView() {
   return (
     <div className="PastFormView">
-      <PastForm > </PastForm>
+      <PastForm />
     </div>
   );
 }
