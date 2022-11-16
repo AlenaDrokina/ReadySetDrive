@@ -8,6 +8,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var roadtripsRouter = require("./routes/roadtrips");
 var stopsRouter = require("./routes/stops");
+var authRouter = require("./routes/auth");
 
 var app = express();
 app.use(cors()); // add after 'app' is created
@@ -22,6 +23,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/stops", stopsRouter);
 app.use("/roadtrips", roadtripsRouter);
+app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
