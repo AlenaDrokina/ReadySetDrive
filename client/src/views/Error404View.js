@@ -1,6 +1,6 @@
 import React from "react";
 
-function Erro404View() {
+function Error404View() {
   return (
     <div className="Erro404View">
       <div>
@@ -38,4 +38,4 @@ function Erro404View() {
   );
 }
 
-export default Erro404View;
+export default Error404View;
