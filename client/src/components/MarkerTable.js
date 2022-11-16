@@ -4,10 +4,13 @@ import React, { useState } from "react";
 function MarkerTable(props) {
 
   return (
-    <table className="MarkerTable-table">
+    <div> 
+    <h2> Destinations </h2>
+    <table className="table">
       <thead>
         <tr>
-          <th>Stops</th>
+          <th>Stop</th>
+          <th>Location</th>
           {/* <th>Formatted Address (from OpenCage)</th>
           <th>Latitude/Longitude</th> */}
         </tr>
@@ -16,15 +19,15 @@ function MarkerTable(props) {
         {props.places.map((p, ix) => (
           <tr key={p.title}>
             <td>{p.name}</td>
-            <td> - </td>
             <td>{p.title}</td>
             {/* <td>{p.formatted_address}</td>
             <td>{p.latLng.join("/")}</td> */}
-            {/* <td> <button type="button" onClick={e => props.delStop('stops-' + ix)}>del</button> </td> */}
+            <td> <button type="button" onClick={e => props.delStop('stops-' + ix)}>delete</button> </td>
           </tr>
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

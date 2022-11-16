@@ -25,24 +25,32 @@ function StopsForm(props){
 
 
 return (
-<div className="form-group" > Stops
+<div className="StopsForm" > 
+    <h1> Add Your Stops </h1>
     <form onSubmit={handleSubmit}> 
-    <input
-        type="text"
-        className="form-control"
-        name="title"
-        value={address.title}
-        onChange={handleChange2}
-    />
-    <input
-        type="text"
-        className="form-control"
-        name="address"
-        value={address.address}
-        onChange={handleChange2}
-
-    />
-        <button className="btn btn-primary">Add Stop</button>
+        <div className="row"> 
+        <div className="col">
+            <label for="stopstitleinput" class="form-label">Stop Name</label>
+            <input
+            type="text"
+            className="form-control"
+            name="title"
+            value={address.title}
+            onChange={handleChange2}
+            />
+        </div>
+        <div className="col">
+            <label for="stopstitleinput" class="form-label">Address</label>
+            <input
+            type="text"
+            className="form-control"
+            name="address"
+            value={address.address}
+            onChange={handleChange2}
+            />
+        </div>
+        </div>
+        <button type="submit" className="btn btn-primary">Add Stop</button>
 
     <div className="mapEr">
     <MarkerTable places={props.places} />
