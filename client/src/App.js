@@ -35,6 +35,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+
       <p>Road Tripper</p>
 
       <Routes>
@@ -43,6 +44,8 @@ function App() {
         <Route path="*" element={<Error404View />} />
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
+        <Route path="/PastFormView" element={<TheMap />} />
+        <Route path="/NewRoadTripView" element={<TheMap />} />
       </Routes>
     </div>
   );

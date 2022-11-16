@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import NewRoadTripView from "./NewRoadTripView";
+import PastFormView from "./PastFormView";
+
 import "./ProfileView.css";
 // import { Routes, Route, useParams } from "react-router-dom";
 // import Api from "../helpers/Api";
@@ -74,14 +78,27 @@ function ProfileView() {
             Submit
           </button>
         </form>
-      </div>
-      <div className="userInfo">
-        <p>Me</p>
-        <img src={profileData.picture} alt={profileData.picture} />
-        <p>A little about me</p>
-        <p>{profileData.description}</p>
-        <br></br>
-        <p>my email</p>
+
+        <div className="userInfo">
+          <p>Me</p>
+          <img src={profileData.picture} alt={profileData.picture} />
+          <p>A little about me</p>
+          <p>{profileData.description}</p>
+          <br></br>
+          <p>my email</p>
+        </div>
+        <div className="Project1">
+          {/* <PastFormView /> */}
+          <h4>
+            Add a past project <NavLink to="/PastFormView">HERE</NavLink>
+          </h4>
+        </div>
+        <div className="Project2">
+          <h4>
+            Add a new project <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
+          </h4>
+          {/* <NewRoadTripView /> */}
+        </div>
       </div>
     </div>
   );
