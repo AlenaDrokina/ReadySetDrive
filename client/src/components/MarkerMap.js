@@ -33,6 +33,7 @@ function MarkerMap(props) {
       className="MarkerMap"
       center={props.home}
       zoom={props.zoom}
+      // {!props.places && zoom={3}}
       style={{ height: "500px" }} // you MUST specify map height, else it will be 0!
     >
       {/* Create the tile layer that shows the map */}
@@ -42,11 +43,11 @@ function MarkerMap(props) {
       />
 
       {/* Draw the green "YOU ARE HERE" marker */}
-      {props.home && (
-        <Marker position={props.home} icon={greenMarker}>
+      {/* {props.home && (
+        <Marker position={props.home}>
           <Popup>YOU ARE HERE</Popup>
         </Marker>
-      )}
+      )} */}
 
       {/* Draw a blue marker for each of the places passed as prop */}
       {props.places.map((p) => (
@@ -57,9 +58,9 @@ function MarkerMap(props) {
         >
           <Popup>
             {breakAddr(p.title)}{" "}
-            <button type="button" onClick={(e) => props.updateMarker(p.id)}>
+            {/* <button type="button" onClick={(e) => props.updateMarker(p.id)}>
               &#x2713;
-            </button>
+            </button> */}
             <button
               type="buttonMarker"
               onClick={(e) => props.deleteMarker(p.id)}
