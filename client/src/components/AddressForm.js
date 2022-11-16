@@ -7,7 +7,9 @@ const BLANK_TRIP_FORM = {
   title: "",
   countries: "",
   description: "",
-  image: ""
+  image_url: "",
+  done: 1,
+  user_id: 1        //debug only, remove after auth is done!!
 };
 
 const BLANK_ADDRESS_FORM = {
@@ -31,6 +33,7 @@ function AddressForm(props) {
 
   function handleSubmit(event){
     event.preventDefault();
+    props.addRoadtripCb(formData);
     console.log(formData);
     setFormData(BLANK_TRIP_FORM);
 }
@@ -106,8 +109,8 @@ function AddressForm(props) {
             <label className="form-label">Add Picture Here</label>
             <input 
                 type="text"
-                name="image"
-                value={formData.image}
+                name="image_url"
+                value={formData.image_url}
                 onChange={handleChange}
                 className="form-control" 
             />

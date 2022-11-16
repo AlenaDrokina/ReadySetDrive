@@ -36,16 +36,21 @@ router.get("/:roadtrip_id", async function (req, res) {
 
 router.post("/", async function (req, res) {
   // The request's body is available in req.body
-  let { image_url, title, countries, description, done, user_id } = req.body;
+  let { image_url, title, countries, description, done, user_id } = req.body;   //insert array for stops
   // sql syntax is tested & correct
   console.log(req.body);
   let sql = `
       INSERT INTO roadtrips (image_url, title, countries, description, done, user_id)
       VALUES ('${image_url}', '${title}', '${countries}', '${description}', ${done}, ${user_id});
+      SELECT last_insert_id()
+
       `; //1 are the fields and 2 these are the values
+
+
   //constructor of the sql
   try {
-    await db(sql); //adds item
+    let results = await db(sql); //adds item
+    //foreach stop in array, insert into stops table 
     let result = await db("SELECT * FROM roadtrips"); //get the list of items
     // let newItems = result.data;
     res.status(201).send(result.data); // send data to client

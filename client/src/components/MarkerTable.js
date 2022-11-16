@@ -15,7 +15,7 @@ function MarkerTable(props) {
         {props.places.map((p) => (
           <tr key={p.title}>
             <td>{p.name}</td>
-            <td> --> </td>
+            <td> - </td>
             <td>{p.title}</td>
             {/* <td>{p.formatted_address}</td>
             <td>{p.latLng.join("/")}</td> */}
