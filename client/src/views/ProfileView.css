@@ -3,6 +3,7 @@
 }
 .box {
   display: grid;
+  margin: 40px;
   /* grid-template-columns: repeat(1fr 2fr); */
   /* grid-column: 3;
   grid-row: 3; */
