@@ -26,7 +26,10 @@ function App() {
   const navigate = useNavigate();
 
   async function doLogin(username, password) {
+    console.log(username, password);
+    console.log("potato");
     let myresponse = await Api.loginUser(username, password);
+
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       setUser(myresponse.data.user);

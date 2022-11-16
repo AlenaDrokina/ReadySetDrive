@@ -20,6 +20,7 @@ function LoginView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log("potato");
     props.loginCb(username, password);
   }
 
