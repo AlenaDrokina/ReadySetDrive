@@ -1,13 +1,20 @@
 import React from "react";
 import RoadtripCard from "../components/RoadtripCard";
+// import "./HomeView.css";
+import SearchBar from "../components/SearchBar";
 
 function Homeview(props) {
   return (
     <div className="Homeview">
-      <h1>Hello world! I'm coming in a minute...</h1>
-      {props.roadtripData.map((element) => {
-        return <RoadtripCard key={element.id} roadtripData={element} />;
-      })}
+      <SearchBar />
+
+      <div className="container">
+        <div className="row">
+          {props.roadtripData.map((element) => {
+            return <RoadtripCard key={element.id} roadtripData={element} />;
+          })}
+        </div>
+      </div>
     </div>
   );
 }

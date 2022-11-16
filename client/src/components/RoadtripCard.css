@@ -1,0 +1,15 @@
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.circle-icon-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.circle-icon {
+    font-size: x-large;
+}
+
