@@ -4,8 +4,8 @@ import Local from "../helpers/Local";
 
 function PrivateRoute(props) {
   // Redirect to /login if anonymous user
-  let userId = Local.getUserId();
-  if (!userId) {
+  let user_id = Local.getUser_id();
+  if (!user_id) {
     return <Navigate to="/login" />;
   }
 

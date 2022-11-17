@@ -76,17 +76,14 @@ function App() {
         {/* <Route path="/profile/*" element={<ProfileView />} /> */}
 
         <Route
-          path="/profile/*"
+          path="/users/:user_id"
           element={
             <PrivateRoute>
-              <ProfileView />
+              <ProfileView user={user} />
             </PrivateRoute>
           }
         />
-        <Route
-          path="/members-only"
-          element={<PrivateRoute>{/* <MembersOnlyView /> */}</PrivateRoute>}
-        />
+
         <Route
           path="/login"
           element={
