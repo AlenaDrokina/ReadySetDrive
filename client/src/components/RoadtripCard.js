@@ -30,10 +30,6 @@ function RoadtripCard(props) {
           alt="roadtrip"
         />
         <div className="card-body">
-          <div className="title-heart-container">
-            <h5 className="card-title">{props.roadtripData.title}</h5>
-            <AiOutlineHeart className="heart-icon" />
-          </div>
           <h5 className="card-title">
             {props.roadtripData.title}{" "}
             <div className="title-heart-container">

@@ -17,20 +17,10 @@
   font-size: x-large;
 }
 
-<<<<<<< HEAD
-.title-heart-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.heart-icon {
-    font-size: x-large;
-=======
 /* .title-heart-container {
   display: flex;
   justify-content: space-between;
 } */
 .heart-icon {
   font-size: x-large;
->>>>>>> main
 }
