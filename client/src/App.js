@@ -12,7 +12,7 @@ import LoginView from "./views/LoginView";
 import HomeView from "./views/HomeView";
 import { NavLink } from "react-router-dom";
 
-// import FeaturedTripView from "./views/FeaturedTripView";
+import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
 // import PastFormView from "./views/PastFormView";
 import PastFormView from "./views/PastFormView";
@@ -83,10 +83,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/members-only"
-          element={<PrivateRoute>{/* <MembersOnlyView /> */}</PrivateRoute>}
-        />
+
         <Route
           path="/login"
           element={
@@ -98,11 +95,13 @@ function App() {
         />
 
         <Route path="*" element={<Error404View />} />
+
+        <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
+
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
         {/* <Route path="/PastFormView" element={<TheMap />} /> */}
-        <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
-        <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
+        {/* <Route path="/NewRoadTripView" element={<NewRoadTripView /> */}
       </Routes>
     </div>
   );
