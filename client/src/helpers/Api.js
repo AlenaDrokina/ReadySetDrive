@@ -7,7 +7,6 @@ class Api {
 
   static async loginUser(username, password) {
     let body = { username, password };
-    console.log("tao");
     return await this._doFetch("/auth/login", "POST", body);
   }
 
