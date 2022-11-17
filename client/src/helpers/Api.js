@@ -48,10 +48,9 @@ class Api {
   }
 
   //DELETE stop
-  static async deleteStop(id) {
-    let body = id
-    return await this._doFetch("/stops", "DELETE", body);
-  }
+  // static async deleteStop(id) {
+  //   return await this._doFetch(`/stops/${id}`, "DELETE", id);
+  // }
 
   /**
    * Private method for internal use only

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useMap } from "react-leaflet/hooks";
 import "leaflet/dist/leaflet.css";
@@ -15,13 +16,34 @@ import Api from "../helpers/Api";
 
 function StopsView(props) {
 
+  let {id} = useParams();
+
   const [home, setHome] = useState(null);  // center of map
   const [places, setPlaces] = useState([]);
 
+  console.log("places", places);
   // Set "home" when the app loads
   useEffect(() => {
     getAndSetHome();
   }, []);
+
+  useEffect(() => {
+    getStops();
+  }, [])
+  
+  async function getStops(){
+    try{
+      let response = await fetch(`/stops/${id}`)
+      if(response.ok){
+        let places = await response.json();
+        setPlaces(places)
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Server error: ${err.message}`);
+    }
+  }
 
   // useEffect(() => {
   //   fetch(`/stops/${roadtrip_id}`)
@@ -38,8 +60,8 @@ function StopsView(props) {
     setHome(latLng);
   }
 
-
-  async function addMarkerForAddress(addressObj) {
+  //only show based on roadtrip id places(by roadtrip_id)
+  async function addMarkerForAddress(addressObj) {     
     //console.log("addressObj", addressObj)
     // Send a request to OpenCage to geocode 'addr'
     let myresponse = await geocode(addressObj.address);
@@ -52,19 +74,16 @@ function StopsView(props) {
               address: addressObj.address,
               latitude: d.latLng[0],
               longitude: d.latLng[1],
-              roadtrip_id: props.roadtrips[props.roadtrips.length-1].id
-                // formatted_address: d.formatted_address
+              roadtrip_id: id
             };
             // Add it to 'places' state
            //setPlaces(places => [...places, newPlace]);
 
-           //addStop
+           //addStop to db
             let response = await Api.addStop(newPlace);
                 if (response.ok) {
                     // let result = await response.json();   
                     setPlaces(response.data);
-                    console.log("lucie", response);
-                    console.log("lucie2", places);
                 } else {
                   console.log(`Server error: ${response.status} ${response.statusText}`);
                 }
@@ -77,25 +96,23 @@ function StopsView(props) {
 }
 
 
-
-
 //not working!
-async function deleteStop(id) {
-    let response = await Api.deleteStop(id)
+// async function deleteStop(id) {
+//     let response = await Api.deleteStop(id)
 
-    if (response.ok) {
-      setPlaces(response.data);
-    } else {
-      console.log(`Server error: ${response.status} ${response.statusText}`);
-    }
-}
+//     if (response.ok) {
+//       setPlaces(response.data);
+//     } else {
+//       console.log(`Server error: ${response.status} ${response.statusText}`);
+//     }
+// }
 
 
   return (
       <div className="StopsView">
         <div className="row mb-5">
           <div className="col">
-          <StopsForm addMarkerCb={addr => addMarkerForAddress(addr)} places={places} deleteStopCb={deleteStop} />
+          <StopsForm addMarkerCb={addr => addMarkerForAddress(addr)} places={places} />
           </div>
 
         <div className="col">
@@ -108,6 +125,10 @@ async function deleteStop(id) {
             />
           )}
         </div>
+
+        <div className="mapEr">
+          <MarkerTable places={places} updateStopsCb={getStops}/>
+          </div>
         </div>
 
 

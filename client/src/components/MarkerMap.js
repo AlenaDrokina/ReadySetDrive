@@ -61,12 +61,12 @@ function MarkerMap(props) {
             {/* <button type="button" onClick={(e) => props.updateMarker(p.id)}>
               &#x2713;
             </button> */}
-            <button
+            {/* <button
               type="buttonMarker"
               onClick={(e) => props.deleteMarker(p.id)}
             >
               X
-            </button>
+            </button> */}
           </Popup>
         </Marker>
       ))}

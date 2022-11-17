@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     `;
   try {
     await db(sql);
-    let result = await db("SELECT * FROM stops");
+    let result = await db(`SELECT * FROM stops WHERE roadtrip_id=${roadtrip_id}`);
     let stops = result.data;
     res.status(201).send(stops);
   } catch (err) {
@@ -43,10 +43,10 @@ router.post("/", async (req, res) => {
   }
 });
 
-// DELETE stop
+// DELETE stop 
 
-router.delete("/", async function (req, res, next) {
-  let stopId = req.body.id;
+router.delete("/:id", async function (req, res, next) {
+  let stopId = req.params.id;
   try {
     let result = await db(`SELECT * FROM stops WHERE id=${stopId}`);
     if (result.data.length === 0) {

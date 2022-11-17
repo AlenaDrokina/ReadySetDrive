@@ -53,7 +53,8 @@ router.post("/", async function (req, res) {
     //foreach stop in array, insert into stops table 
     let result = await db("SELECT * FROM roadtrips"); //get the list of items
     // let newItems = result.data;
-    res.status(201).send(result.data); // send data to client
+    res.status(201).send(result.data[result.data.length-1]);
+    // send data to client
   } catch (error) {
     res.status(500).send({ error: error.message });
   }

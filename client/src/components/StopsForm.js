@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MarkerTable from "./MarkerTable";
 
 
 const BLANK_ADDRESS_FORM = {
@@ -54,10 +53,7 @@ return (
         </div>
         </div>
         <button type="submit" className="btn btn-primary">Add Stop</button>
-
-    <div className="mapEr">
-    <MarkerTable places={props.places} deleteStopCb={props.deleteStopCb}/>
-    </div>
+      
 
     </form>
 </div>

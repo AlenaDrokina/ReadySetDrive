@@ -4,6 +4,33 @@ import React, { useState } from "react";
 function MarkerTable(props) {
 
 
+//   async function deleteStop(id) {
+//     let response = await Api.deleteStop(id)
+
+//     if (response.ok) {
+//       setPlaces(response.data);
+//     } else {
+//       console.log(`Server error: ${response.status} ${response.statusText}`);
+//     }
+// }
+
+async function deleteStop(id) {
+  let options = {
+    method: "DELETE",
+  };
+  try {
+    let response = await fetch(`/stops/${id}`, options);
+    if (response.ok) {
+      //props.updateMarkerCb();
+      props.updateStopsCb();
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
+  } catch (err) {
+    console.log(`Server error: ${err.message}`);
+  }
+}
+
 
   return (
     <div> 
@@ -22,7 +49,7 @@ function MarkerTable(props) {
           <tr key={p.id}>
             <td>{p.title}</td>
             <td>{p.address}</td>
-            <td> <button type="button" onClick={e => props.deleteStopCb(p.id)}>delete</button> </td>
+            <td> <button type="button" onClick={() => deleteStop(p.id)}>delete</button> </td>
           </tr>
         ))}
       </tbody>

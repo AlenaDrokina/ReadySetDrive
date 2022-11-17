@@ -25,7 +25,7 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const navigate = useNavigate();
-  const [roadtrips, setRoadtrips] = useState([]);
+  //const [roadtrips, setRoadtrips] = useState([]);
   let [roadtripData, setRoadtripData] = useState([]);
 
   async function doLogin(username, password) {
@@ -75,9 +75,12 @@ function App() {
     try {
     let response = await fetch("/roadtrips", options);
     if (response.ok) {
-      let data = await response.json();   
-      setRoadtrips(data);
-      navigate("/stops")
+      let newRoadtrip = await response.json(); 
+      let roadtrip_id = newRoadtrip.id;  
+      console.log("roadtrip", roadtrip_id);
+      console.log("newrt", newRoadtrip);
+      //setRoadtrips(data);
+      navigate(`/stops/${roadtrip_id}`)
     } else {
       console.log(`Server error: ${response.status} ${response.statusText}`);
     }
@@ -123,7 +126,8 @@ function App() {
 
         <Route path="*" element={<Error404View />} />
         <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />
-        <Route path="/stops" element={<StopsView roadtrips={roadtrips} />} />
+        <Route path="/stops/:id" element={<StopsView />} />
+        {/* <Route path="/stops/roadtripID" element={<StopsView roadtrips={roadtrips} />} /> */}
         {/* <Route path="/map" element={<TheMap />} /> */}
         {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
