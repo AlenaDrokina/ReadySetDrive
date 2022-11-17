@@ -19,7 +19,7 @@ router.get("/", async function (req, res, next) {
 
 //get
 
-router.get("/:userId", ensureSameUser, async function (req, res, next) {
+router.get("/:user_id", ensureSameUser, async function (req, res, next) {
   let { user_id } = req.params;
   let sql = "SELECT * FROM users WHERE id = " + user_id;
 

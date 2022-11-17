@@ -10,6 +10,8 @@ import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginView from "./views/LoginView";
 import HomeView from "./views/HomeView";
+import Favourites from "./views/Favourites";
+
 import { NavLink } from "react-router-dom";
 
 // import FeaturedTripView from "./views/FeaturedTripView";
@@ -25,6 +27,8 @@ import TheMap from "./components/TheMap";
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const [cardLiked, setCardLiked] = useState([]);
+
   const navigate = useNavigate();
 
   async function doLogin(username, password) {
@@ -76,17 +80,14 @@ function App() {
         {/* <Route path="/profile/*" element={<ProfileView />} /> */}
 
         <Route
-          path="/profile/*"
+          path="/users/:user_id"
           element={
             <PrivateRoute>
-              <ProfileView />
+              <ProfileView user={user} />
             </PrivateRoute>
           }
         />
-        <Route
-          path="/members-only"
-          element={<PrivateRoute>{/* <MembersOnlyView /> */}</PrivateRoute>}
-        />
+
         <Route
           path="/login"
           element={
@@ -103,6 +104,7 @@ function App() {
         {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
+        <Route path="/favourites" element={<Favourites />} />
       </Routes>
     </div>
   );
