@@ -21,7 +21,7 @@ function ProfileView(props) {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  });
 
   async function fetchProfile() {
     let myresponse = await Api.getUser(user_id);

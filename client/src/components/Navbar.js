@@ -56,6 +56,17 @@ function Navbar(props) {
           </li>
         </ul>
       )}
+      <ul>
+        <li className="dropdown-content">
+          {" "}
+          <NavLink
+            style={{ textDecoration: "none", color: "black" }}
+            to="/favourites"
+          >
+            Favourites
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 }
