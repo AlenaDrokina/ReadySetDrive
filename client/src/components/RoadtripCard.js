@@ -1,6 +1,8 @@
 import React from "react";
 import "./RoadtripCard.css";
 
+import { CiCircleMore } from "react-icons/ci";
+
 function RoadtripCard(props) {
   return (
     <div className="col-md-6 col-lg-4 mb-4">
@@ -13,7 +15,10 @@ function RoadtripCard(props) {
         <div className="card-body">
           <h5 className="card-title">{props.roadtripData.title}</h5>
           <h6 className="card-text">{props.roadtripData.countries}</h6>
-          <p className="card-text">{props.roadtripData.description}</p>
+          <div className="circle-icon-container">
+            {" "}
+            <CiCircleMore className="circle-icon" />
+          </div>
         </div>
       </div>
     </div>
