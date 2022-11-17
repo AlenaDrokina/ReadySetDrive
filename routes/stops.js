@@ -23,30 +23,30 @@ router.get("/:roadtrip_id", async function (req, res) {
   }
 });
 
-// POST new stop (won't need this)
+//POST new stop
 
-// router.post("/", async (req, res) => {
-//   let { title, address, longitude, latitude, roadtrip_id } = req.body;
+router.post("/", async (req, res) => {
+  let { title, address, longitude, latitude, roadtrip_id } = req.body;
 
-//   let sql = `
-//         INSERT INTO stops (title, address, longitude, latitude, roadtrip_id)
-//         VALUES ('${title}', '${address}', ${longitude}, ${latitude}, ${roadtrip_id})
-//     `;
-//   try {
-//     await db(sql);
-//     let result = await db("SELECT * FROM stops");
-//     let stops = result.data;
-//     res.status(201).send(stops);
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//     console.log(err.message);
-//   }
-// });
+  let sql = `
+        INSERT INTO stops (title, address, longitude, latitude, roadtrip_id)
+        VALUES ('${title}', '${address}', ${longitude}, ${latitude}, ${roadtrip_id})
+    `;
+  try {
+    await db(sql);
+    let result = await db("SELECT * FROM stops");
+    let stops = result.data;
+    res.status(201).send(stops);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+    console.log(err.message);
+  }
+});
 
 // DELETE stop
 
-router.delete("/:id", async function (req, res, next) {
-  let stopId = req.params.id;
+router.delete("/", async function (req, res, next) {
+  let stopId = req.body.id;
   try {
     let result = await db(`SELECT * FROM stops WHERE id=${stopId}`);
     if (result.data.length === 0) {

@@ -21,8 +21,8 @@ function StopsForm(props){
   function handleSubmit(event) {
     event.preventDefault()
     props.addMarkerCb(address);
-    props.addStopCb(address)
-    console.log("work", address);
+    //props.addStopCb(address)
+    //console.log("what is", props.places);
     setAddress(BLANK_ADDRESS_FORM);
 }
 
@@ -56,7 +56,7 @@ return (
         <button type="submit" className="btn btn-primary">Add Stop</button>
 
     <div className="mapEr">
-    <MarkerTable places={props.places} />
+    <MarkerTable places={props.places} deleteStopCb={props.deleteStopCb}/>
     </div>
 
     </form>

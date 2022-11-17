@@ -42,6 +42,17 @@ class Api {
   }
 
 
+  //POST new stop
+  static async addStop(newPlace) {
+    return await this._doFetch("/stops", "POST", newPlace);
+  }
+
+  //DELETE stop
+  static async deleteStop(id) {
+    let body = id
+    return await this._doFetch("/stops", "DELETE", body);
+  }
+
   /**
    * Private method for internal use only
    **/
@@ -66,8 +77,8 @@ class Api {
     }
 
     // Do the fetch() and store the results in a "unified" myresponse obj
-    console.log(body);
-    console.log(options);
+    //console.log(body);
+    //console.log(options);
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
       let response = await fetch(url, options);

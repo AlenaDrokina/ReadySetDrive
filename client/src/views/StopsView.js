@@ -11,27 +11,26 @@ import { geocode } from '../helpers/geo-opencage';
 import { getHome } from '../helpers/geoLocation';
 
 import StopsForm from "../components/StopsForm";
+import Api from "../helpers/Api";
 
-function StopsView() {
+function StopsView(props) {
 
   const [home, setHome] = useState(null);  // center of map
   const [places, setPlaces] = useState([]);
-//   const [stops, setStops] =useState([]);
-  //const [roadtrips, setRoadtrips] = useState();
 
   // Set "home" when the app loads
   useEffect(() => {
     getAndSetHome();
   }, []);
 
-//   useEffect(() => {
-//     fetch("/stops/:roadtrip_id")
-//       .then((res) => res.json())
-//       .then((json) => {
-//         setPlaces(json);
-//       })
-//       .catch((error) => {});
-//   }, []);
+  // useEffect(() => {
+  //   fetch(`/stops/${roadtrip_id}`)
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       setPlaces(json);
+  //     })
+  //     .catch((error) => {});
+  // }, []);
 
 
   async function getAndSetHome() {
@@ -39,7 +38,19 @@ function StopsView() {
     setHome(latLng);
   }
 
+//   async function addStop(places) {    
+  
+//     let response = await Api.addStop(places);
+//     if (response.ok) {
+//         let data = await response.json();   
+//         setPlaces(data);
+//     } else {
+//         console.log(`Server error: ${response.status} ${response.statusText}`);
+//     }
+// }
+
   async function addMarkerForAddress(addressObj) {
+    //console.log("addressObj", addressObj)
     // Send a request to OpenCage to geocode 'addr'
     let myresponse = await geocode(addressObj.address);
     if (myresponse.ok) {
@@ -47,15 +58,25 @@ function StopsView() {
             // Create new 'place' obj
             let d = myresponse.data;
             let newPlace = { 
-              name: addressObj.title,
-              title: addressObj.address,
+              title: addressObj.title,
+              address: addressObj.address,
               latitude: d.latLng[0],
               longitude: d.latLng[1],
+              roadtrip_id: props.roadtrips[props.roadtrips.length-1].id
                 // formatted_address: d.formatted_address
             };
             // Add it to 'places' state
-            setPlaces(places => [...places, newPlace]);
-            console.log(places);
+           //setPlaces(places => [...places, newPlace]);
+
+            let response = await Api.addStop(newPlace);
+                if (response.ok) {
+                    // let result = await response.json();   
+                    setPlaces(response.data);
+                    console.log("lucie", response);
+                    console.log("lucie2", places);
+                } else {
+                  console.log(`Server error: ${response.status} ${response.statusText}`);
+                }
         } else {
             console.log('addMarkerForAddress(): no results found');
         }
@@ -65,53 +86,25 @@ function StopsView() {
 }
 
 
-async function addStop(address) {    //should this be stops, create stop state??
-    let options= {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(address)         //here too 
-    };
-    
-    try {
-    let response = await fetch("/stops/:roadtrip_id", options);
+
+
+//ONCE THIS IS COMPLETE PASS TO MARKERMAP  Where to pass this to?
+async function deleteStop(id) {
+    let response = await Api.deleteStop(id)
+
     if (response.ok) {
-        let data = await response.json();   
-        setPlaces(data);
+      setPlaces(response.data);
     } else {
-        console.log(`Server error: ${response.status} ${response.statusText}`);
-    }
-    } catch (err) {
-    console.log(`Network error: ${err.message}`);
+      console.log(`Server error: ${response.status} ${response.statusText}`);
     }
 }
-
-
-
-//ONCE THIS IS COMPLETE PASS TO MARKERMAP
-// async function deleteMarker(id) {
-//   let options = {
-//     method: "DELETE",
-//   };
-//   try {
-//     let response = await fetch(`/stops/:roadtripid`, options);
-
-//     if (response.ok) {
-//       let data = await response.json();
-//       setPlaces(data);
-//     } else {
-//       console.log(`Server error: ${response.status} ${response.statusText}`);
-//     }
-//   } catch (err) {
-//     console.log(`Network error: ${err.message}`);
-//   }
-// }
 
 
   return (
       <div className="StopsView">
         <div className="row mb-5">
           <div className="col">
-          <StopsForm addMarkerCb={addr => addMarkerForAddress(addr)} places={places} addStopCb={addStop} />
+          <StopsForm addMarkerCb={addr => addMarkerForAddress(addr)} places={places} deleteStopCb={deleteStop} />
           </div>
 
         <div className="col">

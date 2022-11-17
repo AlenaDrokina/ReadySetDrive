@@ -26,6 +26,8 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const navigate = useNavigate();
+  const [roadtrips, setRoadtrips] = useState([]);
+  let [roadtripData, setRoadtripData] = useState([]);
 
   async function doLogin(username, password) {
     console.log(username, password);
@@ -48,7 +50,7 @@ function App() {
     // (NavBar will send user to home page)
   }
 
-  let [roadtripData, setRoadtripData] = useState([]);
+  
 
   useEffect(() => {
     fetchRoadtrips();
@@ -62,6 +64,29 @@ function App() {
       console.log("Response not okay.");
     }
   }
+
+   //POST A NEW ROADTRIP (RoadtripForm.js)
+   async function addRoadtrip(formData){
+    let options= {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+    };
+  
+    try {
+    let response = await fetch("/roadtrips", options);
+    if (response.ok) {
+      let data = await response.json();   
+      setRoadtrips(data);
+      navigate("/stops")
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
+    } catch (err) {
+    console.log(`Network error: ${err.message}`);
+    }
+  }
+
 
   return (
     <div className="App">
@@ -98,8 +123,8 @@ function App() {
         />
 
         <Route path="*" element={<Error404View />} />
-        <Route path="/roadtrip" element={<RoadtripView />} />
-        <Route path="/stops" element={<StopsView />} />
+        <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />
+        <Route path="/stops" element={<StopsView roadtrips={roadtrips} />} />
         <Route path="/map" element={<TheMap />} />
         {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />

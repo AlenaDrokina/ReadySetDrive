@@ -3,6 +3,8 @@ import React, { useState } from "react";
 
 function MarkerTable(props) {
 
+
+
   return (
     <div> 
     <h2> Destinations </h2>
@@ -16,13 +18,11 @@ function MarkerTable(props) {
         </tr>
       </thead>
       <tbody>
-        {props.places.map((p, ix) => (
-          <tr key={p.title}>
-            <td>{p.name}</td>
+        {props.places.map((p) => (
+          <tr key={p.id}>
             <td>{p.title}</td>
-            {/* <td>{p.formatted_address}</td>
-            <td>{p.latLng.join("/")}</td> */}
-            <td> <button type="button" onClick={e => props.delStop('stops-' + ix)}>delete</button> </td>
+            <td>{p.address}</td>
+            <td> <button type="button" onClick={e => props.deleteStopCb(p.id)}>delete</button> </td>
           </tr>
         ))}
       </tbody>
