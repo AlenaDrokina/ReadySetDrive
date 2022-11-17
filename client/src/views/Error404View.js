@@ -1,6 +1,6 @@
 import React from "react";
 
-function Erro404View() {
+function Error404View() {
   return (
     <div className="Erro404View">
       <div>
@@ -29,13 +29,13 @@ function Erro404View() {
         </h5>
         <h3>You just Hit END</h3>
         <h1> 4 4</h1>
-        <a href="#">
+        {/* <a href="#">
           <i class="bi bi-arrow-left-circle" style="padding-right:10px;"></i>
           Let's Go Back{" "}
-        </a>
+        </a> */}
       </div>
     </div>
   );
 }
 
-export default Erro404View;
+export default Error404View;

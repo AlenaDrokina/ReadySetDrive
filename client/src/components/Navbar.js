@@ -12,13 +12,13 @@ function Navbar() {
       </h3>
       <div className="topnav-right">
         <div className="dropdown-content">
-          <h5>
+          <p>
             <NavLink style={{ textDecoration: "none", color: "black" }} to="/">
               Home
             </NavLink>
-          </h5>
+          </p>
 
-          <h5>
+          <p>
             {" "}
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
@@ -26,7 +26,25 @@ function Navbar() {
             >
               My profile
             </NavLink>
-          </h5>
+          </p>
+          <p>
+            {" "}
+            <NavLink
+              style={{ textDecoration: "none", color: "black" }}
+              to="/NewRoadTripView"
+            >
+              New roadtrips
+            </NavLink>
+          </p>
+          <p>
+            {" "}
+            <NavLink
+              style={{ textDecoration: "none", color: "black" }}
+              to="/PastRoadTripView"
+            >
+              Past roadtrips
+            </NavLink>
+          </p>
         </div>
       </div>
     </nav>
