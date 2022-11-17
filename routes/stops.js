@@ -11,13 +11,13 @@ router.get("/:roadtrip_id", async function (req, res) {
       `SELECT * FROM stops WHERE roadtrip_id=${roadtrip_id}`
     );
     let stops = results.data;
-    if (stops.length === 0) {
-      res
-        .status(404)
-        .send({ error: "There are no stops for the requested roadtrip" });
-    } else {
+    // if (stops.length === 0) {
+    //   res
+    //     .status(404)
+    //     .send({ error: "There are no stops for the requested roadtrip" });
+    // } else {
       res.send(stops);
-    }
+    // }
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
