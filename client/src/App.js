@@ -25,6 +25,7 @@ import TheMap from "./components/TheMap";
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+
   const navigate = useNavigate();
 
   async function doLogin(username, password) {
