@@ -11,7 +11,7 @@ function Navbar(props) {
         <HiOutlineMenu />
       </h3>
       {props.user ? (
-        <ul className="topnav-right">
+        <ul>
           <li className="dropdown-content">
             <NavLink style={{ textDecoration: "none", color: "black" }} to="/">
               Home
@@ -48,7 +48,7 @@ function Navbar(props) {
           </li>
         </ul>
       ) : (
-        <ul className="topnav-right">
+        <ul>
           <li className="dropdown-content">
             <NavLink className="nav-link" to="/login">
               Login
@@ -58,7 +58,6 @@ function Navbar(props) {
       )}
       <ul>
         <li className="dropdown-content">
-          {" "}
           <NavLink
             style={{ textDecoration: "none", color: "black" }}
             to="/favourites"

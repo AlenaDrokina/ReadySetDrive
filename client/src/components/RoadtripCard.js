@@ -6,6 +6,9 @@ import { CiCircleMore } from "react-icons/ci";
 import { AiOutlineHeart } from "react-icons/ai";
 
 function RoadtripCard(props) {
+  // let roadtripData = props.roadtripData;
+  //    const [cardLiked, setCardLiked] = useState([]);
+  // const [current, setCurrent] = useState(props.roadtripData); .
   const navigate = useNavigate();
 
   let linkToFeaturedView = `/roadtrip/${props.roadtripData.id}`;
@@ -17,10 +20,9 @@ function RoadtripCard(props) {
   const [cardLiked, setCardLiked] = useState();
 
   function handleClick(id) {
-    // let currentLiked = props.roadtripData.filter((trip) => trip.id === id);
-    // setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
-    // props.LikedCardCb([...cardLiked, currentLiked[0]]);
+    props.makeFav(id);
   }
+
   return (
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="card h-100" onClick={changeView}>
@@ -36,7 +38,7 @@ function RoadtripCard(props) {
               <AiOutlineHeart
                 className="heart-icon"
                 type="button"
-                onClick={handleClick}
+                onClick={(e) => handleClick(props.roadtripData.id)}
               />
             </div>
           </h5>
