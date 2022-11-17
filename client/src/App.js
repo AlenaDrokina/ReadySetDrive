@@ -14,6 +14,9 @@ import Favourites from "./views/Favourites";
 
 import { NavLink } from "react-router-dom";
 
+import FeaturedTripView from "./views/FeaturedTripView";
+// import NewRoadTripView from "./views/NewRoadTripView";
+// import PastFormView from "./views/PastFormView";
 // import FeaturedTripView from "./views/FeaturedTripView";
 import NewRoadTripView from "./views/NewRoadTripView";
 import PastFormView from "./views/PastFormView";
@@ -84,7 +87,6 @@ function App() {
           }
         />
 
-
         <Route
           path="/users/:userId"
           element={
@@ -105,9 +107,11 @@ function App() {
         />
 
         <Route path="*" element={<Error404View />} />
+
+        <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
+
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
-        {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
         <Route path="/favourites" element={<Favourites />} />

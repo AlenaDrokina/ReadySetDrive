@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "./RoadtripCard.css";
 
@@ -5,6 +6,14 @@ import { CiCircleMore } from "react-icons/ci";
 import { AiOutlineHeart } from "react-icons/ai";
 
 function RoadtripCard(props) {
+  const navigate = useNavigate();
+
+  let linkToFeaturedView = `/roadtrip/${props.roadtripData.id}`;
+
+  function changeView() {
+    navigate(linkToFeaturedView);
+  }
+
   const [cardLiked, setCardLiked] = useState();
 
   function handleClick(id) {
@@ -14,13 +23,17 @@ function RoadtripCard(props) {
   }
   return (
     <div className="col-md-6 col-lg-4 mb-4">
-      <div className="card">
+      <div className="card h-100" onClick={changeView}>
         <img
           className="card-img-top"
           src={props.roadtripData.image_url}
           alt="roadtrip"
         />
         <div className="card-body">
+          <div className="title-heart-container">
+            <h5 className="card-title">{props.roadtripData.title}</h5>
+            <AiOutlineHeart className="heart-icon" />
+          </div>
           <h5 className="card-title">
             {props.roadtripData.title}{" "}
             <div className="title-heart-container">
