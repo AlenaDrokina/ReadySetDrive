@@ -30,12 +30,14 @@ function App() {
   const [cardLiked, setCardLiked] = useState([]);
 
   const navigate = useNavigate();
+  let [roadtripData, setRoadtripData] = useState([]);
+
+  useEffect(() => {
+    fetchRoadtrips();
+  }, []);
 
   async function doLogin(username, password) {
-    console.log(username, password);
-    console.log("potato");
     let myresponse = await Api.loginUser(username, password);
-
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       setUser(myresponse.data.user);
@@ -51,12 +53,6 @@ function App() {
     setUser(null);
     // (NavBar will send user to home page)
   }
-
-  let [roadtripData, setRoadtripData] = useState([]);
-
-  useEffect(() => {
-    fetchRoadtrips();
-  }, []);
 
   async function fetchRoadtrips() {
     let myresponse = await Api.getRoadtrips();
@@ -84,6 +80,16 @@ function App() {
           element={
             <PrivateRoute>
               <ProfileView user={user} />
+            </PrivateRoute>
+          }
+        />
+
+
+        <Route
+          path="/users/:userId"
+          element={
+            <PrivateRoute>
+              <ProfileView />
             </PrivateRoute>
           }
         />
