@@ -7,7 +7,6 @@ class Api {
 
   static async loginUser(username, password) {
     let body = { username, password };
-    console.log("tao");
     return await this._doFetch("/auth/login", "POST", body);
   }
 
@@ -20,7 +19,7 @@ class Api {
   }
 
   /**
-   * Get data for user with ID 'userId'
+   * Get data for user with ID 'user_id'
    **/
 
   static async getUser(user_id) {
@@ -70,7 +69,7 @@ class Api {
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
       let response = await fetch(url, options);
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
         myresponse.ok = true;
         myresponse.data = await response.json();

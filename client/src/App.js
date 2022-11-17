@@ -10,12 +10,17 @@ import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginView from "./views/LoginView";
 import HomeView from "./views/HomeView";
+import Favourites from "./views/Favourites";
+
 import { NavLink } from "react-router-dom";
 
 import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
 // import PastFormView from "./views/PastFormView";
+// import FeaturedTripView from "./views/FeaturedTripView";
+import NewRoadTripView from "./views/NewRoadTripView";
 import PastFormView from "./views/PastFormView";
+import PastRoadTripView from "./views/PastRoadTripView";
 import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
 // import Local from "./helpers/Local";
@@ -25,13 +30,17 @@ import TheMap from "./components/TheMap";
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const [cardLiked, setCardLiked] = useState([]);
+
   const navigate = useNavigate();
+  let [roadtripData, setRoadtripData] = useState([]);
+
+  useEffect(() => {
+    fetchRoadtrips();
+  }, []);
 
   async function doLogin(username, password) {
-    console.log(username, password);
-    console.log("potato");
     let myresponse = await Api.loginUser(username, password);
-
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       setUser(myresponse.data.user);
@@ -47,12 +56,6 @@ function App() {
     setUser(null);
     // (NavBar will send user to home page)
   }
-
-  let [roadtripData, setRoadtripData] = useState([]);
-
-  useEffect(() => {
-    fetchRoadtrips();
-  }, []);
 
   async function fetchRoadtrips() {
     let myresponse = await Api.getRoadtrips();
@@ -73,7 +76,16 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
-        <Route path="/profile/*" element={<ProfileView />} />
+        {/* <Route path="/profile/*" element={<ProfileView />} /> */}
+
+        <Route
+          path="/users/:user_id"
+          element={
+            <PrivateRoute>
+              <ProfileView user={user} />
+            </PrivateRoute>
+          }
+        />
 
         <Route
           path="/users/:userId"
@@ -100,8 +112,9 @@ function App() {
 
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
-        {/* <Route path="/PastFormView" element={<TheMap />} /> */}
-        {/* <Route path="/NewRoadTripView" element={<NewRoadTripView /> */}
+        <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
+        <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
+        <Route path="/favourites" element={<Favourites />} />
       </Routes>
     </div>
   );

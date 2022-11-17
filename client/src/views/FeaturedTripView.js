@@ -37,6 +37,3 @@ function FeaturedTripView(props) {
 }
 
 export default FeaturedTripView;
-
-// to show roadtrip data of roadtrip that was clicked on: save param with useParams to variable and let only data show from one roadtrip
-// show stops for this roadtrip: fetch stops of this particular roadtrip
