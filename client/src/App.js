@@ -13,9 +13,9 @@ import HomeView from "./views/HomeView";
 import { NavLink } from "react-router-dom";
 
 // import FeaturedTripView from "./views/FeaturedTripView";
-// import NewRoadTripView from "./views/NewRoadTripView";
-// import PastFormView from "./views/PastFormView";
+import NewRoadTripView from "./views/NewRoadTripView";
 import PastFormView from "./views/PastFormView";
+import PastRoadTripView from "./views/PastRoadTripView";
 import ProfileView from "./views/ProfileView";
 import Error404View from "./views/Error404View";
 // import Local from "./helpers/Local";
@@ -73,10 +73,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
-        <Route path="/profile/*" element={<ProfileView />} />
+        {/* <Route path="/profile/*" element={<ProfileView />} /> */}
 
         <Route
-          path="/users/:userId"
+          path="/profile/*"
           element={
             <PrivateRoute>
               <ProfileView />
