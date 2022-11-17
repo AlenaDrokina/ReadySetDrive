@@ -20,7 +20,6 @@ import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
 // import Local from "./helpers/Local";
 
-import TheMap from "./components/TheMap";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -125,7 +124,7 @@ function App() {
         <Route path="*" element={<Error404View />} />
         <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />
         <Route path="/stops" element={<StopsView roadtrips={roadtrips} />} />
-        <Route path="/map" element={<TheMap />} />
+        {/* <Route path="/map" element={<TheMap />} /> */}
         {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} /> */}

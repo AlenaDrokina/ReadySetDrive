@@ -38,16 +38,6 @@ function StopsView(props) {
     setHome(latLng);
   }
 
-//   async function addStop(places) {    
-  
-//     let response = await Api.addStop(places);
-//     if (response.ok) {
-//         let data = await response.json();   
-//         setPlaces(data);
-//     } else {
-//         console.log(`Server error: ${response.status} ${response.statusText}`);
-//     }
-// }
 
   async function addMarkerForAddress(addressObj) {
     //console.log("addressObj", addressObj)
@@ -68,6 +58,7 @@ function StopsView(props) {
             // Add it to 'places' state
            //setPlaces(places => [...places, newPlace]);
 
+           //addStop
             let response = await Api.addStop(newPlace);
                 if (response.ok) {
                     // let result = await response.json();   
@@ -88,7 +79,7 @@ function StopsView(props) {
 
 
 
-//ONCE THIS IS COMPLETE PASS TO MARKERMAP  Where to pass this to?
+//not working!
 async function deleteStop(id) {
     let response = await Api.deleteStop(id)
 
