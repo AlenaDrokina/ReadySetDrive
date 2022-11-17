@@ -14,6 +14,9 @@ import Favourites from "./views/Favourites";
 
 import { NavLink } from "react-router-dom";
 
+import FeaturedTripView from "./views/FeaturedTripView";
+// import NewRoadTripView from "./views/NewRoadTripView";
+// import PastFormView from "./views/PastFormView";
 // import FeaturedTripView from "./views/FeaturedTripView";
 import NewRoadTripView from "./views/NewRoadTripView";
 import PastFormView from "./views/PastFormView";
@@ -31,16 +34,18 @@ function App() {
   const [roadtripData, setRoadtripData] = useState([]);
 
   const navigate = useNavigate();
+  let [roadtripData, setRoadtripData] = useState([]);
+
+  useEffect(() => {
+    fetchRoadtrips();
+  }, []);
 
   function handleLiked(cardLiked) {
     setCardLiked(cardLiked);
   }
 
   async function doLogin(username, password) {
-    console.log(username, password);
-    console.log("potato");
     let myresponse = await Api.loginUser(username, password);
-
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       setUser(myresponse.data.user);
@@ -103,6 +108,15 @@ function App() {
         />
 
         <Route
+          path="/users/:userId"
+          element={
+            <PrivateRoute>
+              <ProfileView />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
           path="/login"
           element={
             <LoginView
@@ -113,9 +127,11 @@ function App() {
         />
 
         <Route path="*" element={<Error404View />} />
+
+        <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
+
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
-        {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
         <Route

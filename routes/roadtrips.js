@@ -19,7 +19,7 @@ router.get("/:roadtrip_id", async function (req, res) {
   let roadtrip_id = req.params.roadtrip_id;
   try {
     let result = await db(`SELECT * FROM  roadtrips WHERE id=${roadtrip_id}`);
-    let roadtrip = result.data;
+    let roadtrip = result.data[0];
     if (roadtrip.length === 0) {
       res
         .status(404)

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import "./RoadtripCard.css";
 
@@ -6,15 +7,25 @@ import { AiOutlineHeart } from "react-icons/ai";
 
 function RoadtripCard(props) {
   // let roadtripData = props.roadtripData;
-  const [cardLiked, setCardLiked] = useState([]);
+  //    const [cardLiked, setCardLiked] = useState([]);
   // const [current, setCurrent] = useState(props.roadtripData); .
+  const navigate = useNavigate();
+
+  let linkToFeaturedView = `/roadtrip/${props.roadtripData.id}`;
+
+  function changeView() {
+    navigate(linkToFeaturedView);
+  }
+
+  const [cardLiked, setCardLiked] = useState();
+
   function handleClick(id) {
     props.makeFav(id);
   }
 
   return (
     <div className="col-md-6 col-lg-4 mb-4">
-      <div className="card">
+      <div className="card h-100" onClick={changeView}>
         <img
           className="card-img-top"
           src={props.roadtripData.image_url}
