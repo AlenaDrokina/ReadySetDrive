@@ -6,10 +6,11 @@ import { AiOutlineHeart } from "react-icons/ai";
 
 function RoadtripCard(props) {
   const [cardLiked, setCardLiked] = useState();
+  // const [current, setCurrent] = useState(props.roadtripData); .
 
   function handleClick(id) {
-    // let currentLiked = props.roadtripData.filter((trip) => trip.id === id);
-    // setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
+    let currentLiked = props.roadtripData.filter((trip) => trip.id === id);
+    setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
     // props.LikedCardCb([...cardLiked, currentLiked[0]]);
   }
   return (
@@ -27,7 +28,7 @@ function RoadtripCard(props) {
               <AiOutlineHeart
                 className="heart-icon"
                 type="button"
-                onClick={handleClick}
+                onClick={(e) => handleClick(props.roadtripData.id)}
               />
             </div>
           </h5>
