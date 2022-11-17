@@ -34,7 +34,7 @@ function App() {
   const [roadtripData, setRoadtripData] = useState([]);
 
   const navigate = useNavigate();
-  let [roadtripData, setRoadtripData] = useState([]);
+  // let [roadtripData, setRoadtripData] = useState([]);
 
   useEffect(() => {
     fetchRoadtrips();
