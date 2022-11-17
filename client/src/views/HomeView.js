@@ -11,7 +11,14 @@ function Homeview(props) {
       <div className="container">
         <div className="row">
           {props.roadtripData.map((element) => {
-            return <RoadtripCard key={element.id} roadtripData={element} />;
+            return (
+              <RoadtripCard
+                key={element.id}
+                roadtripData={element}
+                handleLikedCb={props.handleLikedCb}
+                makeFav={props.makeFav}
+              />
+            );
           })}
         </div>
       </div>

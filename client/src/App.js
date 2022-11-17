@@ -28,8 +28,13 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const [cardLiked, setCardLiked] = useState([]);
+  const [roadtripData, setRoadtripData] = useState([]);
 
   const navigate = useNavigate();
+
+  function handleLiked(cardLiked) {
+    setCardLiked(cardLiked);
+  }
 
   async function doLogin(username, password) {
     console.log(username, password);
@@ -52,8 +57,6 @@ function App() {
     // (NavBar will send user to home page)
   }
 
-  let [roadtripData, setRoadtripData] = useState([]);
-
   useEffect(() => {
     fetchRoadtrips();
   }, []);
@@ -67,6 +70,14 @@ function App() {
     }
   }
 
+  function makeFav(id) {
+    //let currentLiked = Object.values(props.roadtripData);
+    let currentLiked = roadtripData.filter((trip) => trip.id === id);
+    setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
+    console.log(currentLiked);
+    // makeFav([...cardLiked, currentLiked]);
+  }
+
   return (
     <div className="App">
       <NavLink to="/" className="Logo">
@@ -76,7 +87,10 @@ function App() {
       <Navbar user={user} logoutCb={doLogout} />
 
       <Routes>
-        <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
+        <Route
+          path="/"
+          element={<HomeView roadtripData={roadtripData} makeFav={makeFav} />}
+        />
         {/* <Route path="/profile/*" element={<ProfileView />} /> */}
 
         <Route
@@ -104,7 +118,10 @@ function App() {
         {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
-        <Route path="/favourites" element={<Favourites />} />
+        <Route
+          path="/favourites"
+          element={<Favourites cardLiked={cardLiked} />}
+        />
       </Routes>
     </div>
   );

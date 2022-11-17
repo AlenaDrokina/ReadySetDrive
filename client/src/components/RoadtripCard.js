@@ -5,14 +5,13 @@ import { CiCircleMore } from "react-icons/ci";
 import { AiOutlineHeart } from "react-icons/ai";
 
 function RoadtripCard(props) {
-  const [cardLiked, setCardLiked] = useState();
+  // let roadtripData = props.roadtripData;
+  const [cardLiked, setCardLiked] = useState([]);
   // const [current, setCurrent] = useState(props.roadtripData); .
-
   function handleClick(id) {
-    let currentLiked = props.roadtripData.filter((trip) => trip.id === id);
-    setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
-    // props.LikedCardCb([...cardLiked, currentLiked[0]]);
+    props.makeFav(id);
   }
+
   return (
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="card">
