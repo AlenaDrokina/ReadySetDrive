@@ -22,7 +22,7 @@ class Local {
     return userjson ? JSON.parse(userjson) : null;
   }
 
-  static getUserId() {
+  static getUser_id() {
     let userjson = localStorage.getItem("user");
     if (!userjson) {
       return "";
