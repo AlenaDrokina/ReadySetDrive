@@ -30,8 +30,8 @@ function Error404View() {
         <h3>You just Hit END</h3>
         <h1> 4 4</h1>
         {/* <a href="#">
-          <i class="bi bi-arrow-left-circle" style="padding-right:10px;"></i>
-          Let's Go Back{" "}
+          <i class="bi bi-arrow-left-circle" style="padding-right:10px;"></i> */}
+        {/* Let's Go Back{" "}
         </a> */}
       </div>
     </div>

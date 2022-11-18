@@ -1,8 +1,18 @@
-import React from "react";
+import { React, useState } from "react";
 import "./SearchBar.css";
 import { BsSearch } from "react-icons/bs";
 
 function SearchBar(props) {
+  //get the input from user
+  const [inputText, setInputText] = useState("");
+
+  let inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value.toLowerCase();
+    setInputText(lowerCase);
+    props.filteredData(lowerCase);
+  };
+
   return (
     <div>
       <div className="container">
@@ -13,6 +23,7 @@ function SearchBar(props) {
               <input
                 type="text"
                 className="form-control form-input"
+                onChange={inputHandler}
                 placeholder="Search country..."
               />
             </div>
