@@ -1,26 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 // import "./MarkerTable.css";
 
 function MarkerTable(props) {
+
+async function deleteStop(id) {
+  let options = {
+    method: "DELETE",
+  };
+  try {
+    let response = await fetch(`/stops/${id}`, options);
+    if (response.ok) {
+      props.updateStopsCb();
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
+  } catch (err) {
+    console.log(`Server error: ${err.message}`);
+  }
+}
+
+
   return (
-    <table className="MarkerTable-table">
+    <div> 
+    <h2> Destinations </h2>
+    <table className="table">
       <thead>
         <tr>
-          <th>Address</th>
-          {/* <th>Formatted Address (from OpenCage)</th>
-          <th>Latitude/Longitude</th> */}
+          <th>Stop</th>
+          <th>Location</th>
         </tr>
       </thead>
       <tbody>
         {props.places.map((p) => (
-          <tr key={p.name}>
-            <td>{p.name}</td>
-            {/* <td>{p.formatted_address}</td>
-            <td>{p.latLng.join("/")}</td> */}
+          <tr key={p.id}>
+            <td>{p.title}</td>
+            <td>{p.address}</td>
+            <td> <button type="button" onClick={() => deleteStop(p.id)}>delete</button> </td>
           </tr>
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

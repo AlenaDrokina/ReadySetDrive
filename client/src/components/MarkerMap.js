@@ -1,7 +1,7 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
-// import "./MarkerMap.css";
+import "./MarkerMap.css";
 // Global Leaflet variable; only necessary for the green marker.
 // Everything else is provided by React Leaflet
 const L = window.L;
@@ -19,20 +19,21 @@ function MarkerMap(props) {
     nameAnchor: [1, -34],
     shadowSize: [41, 41],
   });
-  let rollerMArker = new L.icon({
-    iconUrl:
-      "https://cdn.shopify.com/s/files/1/0273/1202/9753/products/1201-LSTK.png?v=1644090455",
+  // let carMarker = new L.icon({
+  //   iconUrl:
+  //     "https://mpng.subpng.com/20180723/yxq/kisspng-computer-icons-desktop-wallpaper-clip-art-car-icon-black-5b569791f20cf8.3936918815324015539915.jpg",
 
-    iconSize: [80, 80],
-    iconAnchor: [12, 41],
-    nameAnchor: [1, -34],
-  });
+  //   iconSize: [80, 80],
+  //   iconAnchor: [12, 41],
+  //   nameAnchor: [1, -34],
+  // });
 
   return (
     <MapContainer
       className="MarkerMap"
-      // center={props.home}
+      center={props.home}
       zoom={props.zoom}
+      // {!props.places && zoom={3}}
       style={{ height: "500px" }} // you MUST specify map height, else it will be 0!
     >
       {/* Create the tile layer that shows the map */}
@@ -43,7 +44,7 @@ function MarkerMap(props) {
 
       {/* Draw the green "YOU ARE HERE" marker */}
       {/* {props.home && (
-        <Marker position={props.home} icon={greenMarker}>
+        <Marker position={props.home}>
           <Popup>YOU ARE HERE</Popup>
         </Marker>
       )} */}
@@ -51,21 +52,21 @@ function MarkerMap(props) {
       {/* Draw a blue marker for each of the places passed as prop */}
       {props.places.map((p) => (
         <Marker
-          key={p.name}
+          key={p.title}
           position={[p.latitude, p.longitude]}
-          icon={rollerMArker}
+          icon={greenMarker}
         >
           <Popup>
-            {breakAddr(p.name)}{" "}
+            {breakAddr(p.title)}{" "}
             {/* <button type="button" onClick={(e) => props.updateMarker(p.id)}>
               &#x2713;
             </button> */}
-            <button
+            {/* <button
               type="buttonMarker"
               onClick={(e) => props.deleteMarker(p.id)}
             >
               X
-            </button>
+            </button> */}
           </Popup>
         </Marker>
       ))}

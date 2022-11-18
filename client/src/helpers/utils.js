@@ -5,9 +5,9 @@
  * Return it in a "dangerous" <span> so React won't escape the <br /> tags.
  */
 
-// function breakAddr(addr) {
-//   let addrWithBrs = addr.replace(/, /g, "<br />");
-//   return <span dangerouslySetInnerHTML={{ __html: addrWithBrs }}></span>;
-// }
+function breakAddr(addr) {
+  let addrWithBrs = addr.replace(/, /g, "<br />");
+  return <span dangerouslySetInnerHTML={{ __html: addrWithBrs }}></span>;
+}
 
-// export { breakAddr };
+export { breakAddr };

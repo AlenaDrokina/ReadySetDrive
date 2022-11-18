@@ -11,19 +11,19 @@ router.get("/:roadtrip_id", async function (req, res) {
       `SELECT * FROM stops WHERE roadtrip_id=${roadtrip_id}`
     );
     let stops = results.data;
-    if (stops.length === 0) {
-      res
-        .status(404)
-        .send({ error: "There are no stops for the requested roadtrip" });
-    } else {
+    // if (stops.length === 0) {
+    //   res
+    //     .status(404)
+    //     .send({ error: "There are no stops for the requested roadtrip" });
+    // } else {
       res.send(stops);
-    }
+    // }
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
 
-// POST new stop
+//POST new stop
 
 router.post("/", async (req, res) => {
   let { title, address, longitude, latitude, roadtrip_id } = req.body;
@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     `;
   try {
     await db(sql);
-    let result = await db("SELECT * FROM stops");
+    let result = await db(`SELECT * FROM stops WHERE roadtrip_id=${roadtrip_id}`);
     let stops = result.data;
     res.status(201).send(stops);
   } catch (err) {
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// DELETE stop
+// DELETE stop 
 
 router.delete("/:id", async function (req, res, next) {
   let stopId = req.params.id;
