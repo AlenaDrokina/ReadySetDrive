@@ -91,7 +91,7 @@ function App() {
     <div className="App">
       <NavLink to="/" className="Logo">
         {" "}
-        <p>Road Tripper</p>
+        <h3> READY SET DRIVE </h3>
       </NavLink>
       <Navbar user={user} logoutCb={doLogout} />
 
@@ -133,11 +133,17 @@ function App() {
         <Route path="*" element={<Error404View />} />
         <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />
         <Route path="/stops/:id" element={<StopsView />} />
-        {/* <Route path="/stops/roadtripID" element={<StopsView roadtrips={roadtrips} />} /> */}
-        {/* <Route path="/map" element={<TheMap />} /> */}
-        {/* <Route path="/PastFormView" element={<TheMap />} /> */}
+        <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
         {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} /> */}
+        <Route
+          path="/favourites"
+          element={
+            <PrivateRoute>
+              <Favourites cardLiked={cardLiked} />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

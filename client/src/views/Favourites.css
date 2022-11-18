@@ -3,3 +3,11 @@
   height: 15vw;
   object-fit: cover;
 }
+.icon-unlock {
+  color: rgb(236, 13, 13);
+  font-size: x-large;
+}
+/* .Grid {
+  display: grid;
+  grid-template-columns: repeat (2, 1fr);
+} */

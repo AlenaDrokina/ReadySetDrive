@@ -49,7 +49,6 @@ function ProfileView(props) {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(profileData);
-    // console.log(stops); //add props to function PastForm(props)
     setProfileData(BLANK_STOP_PROFILE);
   }
   return (
@@ -96,24 +95,33 @@ function ProfileView(props) {
             </div>
           )}
           <br />
-          <p class="text-left">Hey!! {user.username}</p>
-          <p class="text-left">Email: {user.email}</p>
-          {/* <br /> */}
-          <p class="text-left">
-            Description: <br /> {user.slogan}
-          </p>
+          <div className="name">
+            {" "}
+            <p class="text-left">Hey!! {user.username}</p>
+          </div>
+          <div className="email">
+            {" "}
+            <p class="text-left">Email: {user.email}</p>
+          </div>
+
+          <div className="description">
+            {" "}
+            <p class="text-left">
+              Description: <br /> {user.slogan}
+            </p>
+          </div>
         </div>
         <div className="Project1">
           <h4>
             Add a past project <NavLink to="/PastRoadTripView">HERE</NavLink>{" "}
           </h4>
-          <div className="CardGrid"></div>
+          <div className="CardGrid1">Cards</div>
         </div>
         <div className="Project2">
           <h4>
             Add a new project <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
           </h4>
-          <div className="CardGrid"></div>
+          <div className="CardGrid2">Cards</div>
         </div>
       </div>
     </div>
