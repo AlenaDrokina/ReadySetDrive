@@ -28,10 +28,22 @@ function Homeview(props) {
         <div className="row">
           {filteredCards.length >= 1
             ? filteredCards.map((element) => {
-                return <RoadtripCard key={element.id} roadtripData={element} />;
+                return (
+                  <RoadtripCard
+                    key={element.id}
+                    roadtripData={element}
+                    makeFav={props.makeFav}
+                  />
+                );
               })
             : props.roadtripData.map((element) => {
-                return <RoadtripCard key={element.id} roadtripData={element} />;
+                return (
+                  <RoadtripCard
+                    key={element.id}
+                    roadtripData={element}
+                    makeFav={props.makeFav}
+                  />
+                );
               })}
         </div>
       </div>

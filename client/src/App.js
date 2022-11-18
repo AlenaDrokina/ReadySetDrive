@@ -31,13 +31,18 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const [cardLiked, setCardLiked] = useState([]);
+  const [roadtripData, setRoadtripData] = useState([]);
 
   const navigate = useNavigate();
-  let [roadtripData, setRoadtripData] = useState([]);
+  // let [roadtripData, setRoadtripData] = useState([]);
 
   useEffect(() => {
     fetchRoadtrips();
   }, []);
+
+  function handleLiked(cardLiked) {
+    setCardLiked(cardLiked);
+  }
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
@@ -57,6 +62,10 @@ function App() {
     // (NavBar will send user to home page)
   }
 
+  useEffect(() => {
+    fetchRoadtrips();
+  }, []);
+
   async function fetchRoadtrips() {
     let myresponse = await Api.getRoadtrips();
     if (myresponse.ok) {
@@ -66,16 +75,27 @@ function App() {
     }
   }
 
+  function makeFav(id) {
+    //let currentLiked = Object.values(props.roadtripData);
+    let currentLiked = roadtripData.filter((trip) => trip.id === id);
+    setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
+    console.log(currentLiked);
+    // makeFav([...cardLiked, currentLiked]);
+  }
+
   return (
     <div className="App">
       <NavLink to="/" className="Logo">
         {" "}
-        <p>Road Tripper</p>
+        <h3> READY SET DRIVE </h3>
       </NavLink>
       <Navbar user={user} logoutCb={doLogout} />
 
       <Routes>
-        <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
+        <Route
+          path="/"
+          element={<HomeView roadtripData={roadtripData} makeFav={makeFav} />}
+        />
         {/* <Route path="/profile/*" element={<ProfileView />} /> */}
 
         <Route
@@ -114,7 +134,14 @@ function App() {
         <Route path="/map" element={<TheMap />} />
         <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
-        <Route path="/favourites" element={<Favourites />} />
+        <Route
+          path="/favourites"
+          element={
+            <PrivateRoute>
+              <Favourites cardLiked={cardLiked} />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

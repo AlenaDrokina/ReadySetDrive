@@ -3,6 +3,7 @@ SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roadtrips;
 DROP TABLE IF EXISTS stops;
+DROP TABLE IF EXISTS favorite_roadtrip;
 
 SET foreign_key_checks = 1;
 
@@ -37,18 +38,18 @@ CREATE TABLE `stops` (
 	PRIMARY KEY (`id`)
 );
 
--- CREATE TABLE `favorite_roadtrips` (
--- 	`user_id` INT NOT NULL,
--- 	`roadtrip_id` INT NOT NULL
--- );
+CREATE TABLE `favorite_roadtrips` (
+	`user_id` INT NOT NULL,
+	`roadtrip_id` INT NOT NULL
+);
 
 ALTER TABLE `roadtrips` ADD CONSTRAINT `roadtrips_fk0` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
 ALTER TABLE `stops` ADD CONSTRAINT `stops_fk0` FOREIGN KEY (`roadtrip_id`) REFERENCES `roadtrips`(`id`);
 
--- ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk0` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
+ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk0` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
--- ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk1` FOREIGN KEY (`roadtrip_id`) REFERENCES `roadtrips`(`id`);
+ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk1` FOREIGN KEY (`roadtrip_id`) REFERENCES `roadtrips`(`id`);
 
 -- SAMPLE DATA 
 
