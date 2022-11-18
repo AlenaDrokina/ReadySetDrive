@@ -29,11 +29,12 @@ function RoadtripCard(props) {
 
   return (
     <div className="col-md-6 col-lg-4 mb-4">
-      <div className="card h-100" onClick={changeView}>
+      <div className="card h-100">
         <img
           className="card-img-top"
           src={props.roadtripData.image_url}
           alt="roadtrip"
+          onClick={changeView}
         />
         <div className="card-body">
           <h5 className="card-title">
@@ -46,14 +47,14 @@ function RoadtripCard(props) {
                   onClick={(e) => handleClick(props.roadtripData.id)}
                 />
               </button>
-              <i onclick={myFunction}></i>
+              <i onClick={myFunction}></i>
             </i>
           </h5>
 
           <h6 className="card-text">{props.roadtripData.countries}</h6>
           <div className="circle-icon-container">
             {" "}
-            <CiCircleMore className="circle-icon" />
+            <CiCircleMore className="circle-icon" onClick={changeView} />
           </div>
         </div>
       </div>

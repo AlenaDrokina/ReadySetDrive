@@ -6,6 +6,7 @@
  */
 
 function breakAddr(addr) {
+  console.log(addr);
   let addrWithBrs = addr.replace(/, /g, "<br />");
   return <span dangerouslySetInnerHTML={{ __html: addrWithBrs }}></span>;
 }
