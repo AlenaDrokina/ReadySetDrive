@@ -22,6 +22,10 @@ function LoginView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+<<<<<<< HEAD
+=======
+    // console.log("potato");
+>>>>>>> main
     props.loginCb(username, password);
   }
   // changed from /auth/register

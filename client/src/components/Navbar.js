@@ -1,33 +1,28 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 import { HiOutlineMenu } from "react-icons/hi";
 
-function Navbar() {
+function Navbar(props) {
   return (
     <nav className="dropdown">
       <h3>
         {" "}
         <HiOutlineMenu />
       </h3>
-      <div className="topnav-right">
-        <div className="dropdown-content">
-          <p>
+      {props.user ? (
+        <ul>
+          <li className="dropdown-content">
             <NavLink style={{ textDecoration: "none", color: "black" }} to="/">
               Home
             </NavLink>
-          </p>
-
-          <p>
-            {" "}
-            <NavLink
-              style={{ textDecoration: "none", color: "black" }}
-              to="/profile"
-            >
-              My profile
+          </li>
+          <li className="dropdown-content">
+            <NavLink className="nav-link" to={`/users/${props.user.id}`}>
+              Profile
             </NavLink>
-          </p>
-          <p>
+          </li>
+          <li className="dropdown-content">
             {" "}
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
@@ -35,8 +30,8 @@ function Navbar() {
             >
               New roadtrips
             </NavLink>
-          </p>
-          <p>
+          </li>{" "}
+          <li className="dropdown-content">
             {" "}
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
@@ -44,9 +39,33 @@ function Navbar() {
             >
               Past roadtrips
             </NavLink>
-          </p>
-        </div>
-      </div>
+          </li>
+          <li className="dropdown-content">
+            {/* Log out user. Then go to home page. */}
+            <Link className="nav-link" to="/" onClick={props.logoutCb}>
+              Logout
+            </Link>
+          </li>
+        </ul>
+      ) : (
+        <ul>
+          <li className="dropdown-content">
+            <NavLink className="nav-link" to="/login">
+              Login
+            </NavLink>
+          </li>
+        </ul>
+      )}
+      <ul>
+        <li className="dropdown-content">
+          <NavLink
+            style={{ textDecoration: "none", color: "black" }}
+            to="/favourites"
+          >
+            Favourites
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 }

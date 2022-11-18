@@ -11,8 +11,13 @@ import PrivateRoute from "./components/PrivateRoute";
 import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
 import HomeView from "./views/HomeView";
+import Favourites from "./views/Favourites";
+
 import { NavLink } from "react-router-dom";
 
+import FeaturedTripView from "./views/FeaturedTripView";
+// import NewRoadTripView from "./views/NewRoadTripView";
+// import PastFormView from "./views/PastFormView";
 // import FeaturedTripView from "./views/FeaturedTripView";
 import NewRoadTripView from "./views/NewRoadTripView";
 import PastFormView from "./views/PastFormView";
@@ -26,12 +31,19 @@ import TheMap from "./components/TheMap";
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const [cardLiked, setCardLiked] = useState([]);
+  const [roadtripData, setRoadtripData] = useState([]);
+
   const navigate = useNavigate();
-  let [roadtripData, setRoadtripData] = useState([]);
+  // let [roadtripData, setRoadtripData] = useState([]);
 
   useEffect(() => {
     fetchRoadtrips();
   }, []);
+
+  function handleLiked(cardLiked) {
+    setCardLiked(cardLiked);
+  }
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
@@ -51,6 +63,10 @@ function App() {
     // (NavBar will send user to home page)
   }
 
+  useEffect(() => {
+    fetchRoadtrips();
+  }, []);
+
   async function fetchRoadtrips() {
     let myresponse = await Api.getRoadtrips();
     if (myresponse.ok) {
@@ -60,23 +76,34 @@ function App() {
     }
   }
 
+  function makeFav(id) {
+    //let currentLiked = Object.values(props.roadtripData);
+    let currentLiked = roadtripData.filter((trip) => trip.id === id);
+    setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
+    console.log(currentLiked);
+    // makeFav([...cardLiked, currentLiked]); Can you see me?
+  }
+
   return (
     <div className="App">
       <NavLink to="/" className="Logo">
         {" "}
-        <p>Road Tripper</p>
+        <h3> READY SET DRIVE </h3>
       </NavLink>
       <Navbar user={user} logoutCb={doLogout} />
 
       <Routes>
-        <Route path="/" element={<HomeView roadtripData={roadtripData} />} />
+        <Route
+          path="/"
+          element={<HomeView roadtripData={roadtripData} makeFav={makeFav} />}
+        />
         {/* <Route path="/profile/*" element={<ProfileView />} /> */}
 
         <Route
-          path="/profile/*"
+          path="/users/:user_id"
           element={
             <PrivateRoute>
-              <ProfileView />
+              <ProfileView user={user} />
             </PrivateRoute>
           }
         />
@@ -103,11 +130,21 @@ function App() {
         <Route path="/register" element={<RegisterView />} />
 
         <Route path="*" element={<Error404View />} />
+
+        <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
+
         <Route path="/pastForm" element={<PastFormView />} />
         <Route path="/map" element={<TheMap />} />
-        {/* <Route path="/PastFormView" element={<TheMap />} /> */}
         <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
+        <Route
+          path="/favourites"
+          element={
+            <PrivateRoute>
+              <Favourites cardLiked={cardLiked} />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
