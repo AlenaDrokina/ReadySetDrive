@@ -16,16 +16,14 @@ import { NavLink } from "react-router-dom";
 
 import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
-// import PastFormView from "./views/PastFormView";
-// import FeaturedTripView from "./views/FeaturedTripView";
+import RoadtripView from "./views/RoadtripView";// import FeaturedTripView from "./views/FeaturedTripView";
 import NewRoadTripView from "./views/NewRoadTripView";
-import PastFormView from "./views/PastFormView";
 import PastRoadTripView from "./views/PastRoadTripView";
 import ProfileView from "./views/ProfileView";
+import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
 // import Local from "./helpers/Local";
 
-import TheMap from "./components/TheMap";
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -34,15 +32,6 @@ function App() {
   const [roadtripData, setRoadtripData] = useState([]);
 
   const navigate = useNavigate();
-  // let [roadtripData, setRoadtripData] = useState([]);
-
-  useEffect(() => {
-    fetchRoadtrips();
-  }, []);
-
-  function handleLiked(cardLiked) {
-    setCardLiked(cardLiked);
-  }
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
@@ -62,6 +51,7 @@ function App() {
     // (NavBar will send user to home page)
   }
 
+
   useEffect(() => {
     fetchRoadtrips();
   }, []);
@@ -75,12 +65,34 @@ function App() {
     }
   }
 
+//POST a new Roadtrip (RoadtripView.js)
+  async function addRoadtrip(formData){
+  let options= {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData)
+  };
+
+  try {
+  let response = await fetch("/roadtrips", options);
+  if (response.ok) {
+    let newRoadtrip = await response.json(); 
+    let roadtrip_id = newRoadtrip.id;  
+    navigate(`/stops/${roadtrip_id}`)
+  } else {
+    console.log(`Server error: ${response.status} ${response.statusText}`);
+  }
+} catch (err) {
+console.log(`Network error: ${err.message}`);
+}
+}
+
   function makeFav(id) {
     //let currentLiked = Object.values(props.roadtripData);
     let currentLiked = roadtripData.filter((trip) => trip.id === id);
     setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
     console.log(currentLiked);
-    // makeFav([...cardLiked, currentLiked]);
+    // makeFav([...cardLiked, currentLiked]); Can you see me?
   }
 
   return (
@@ -127,13 +139,11 @@ function App() {
         />
 
         <Route path="*" element={<Error404View />} />
-
+        <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />
+        <Route path="/stops/:id" element={<StopsView />} />
         <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
-
-        <Route path="/pastForm" element={<PastFormView />} />
-        <Route path="/map" element={<TheMap />} />
-        <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
-        <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
+        {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
+        <Route path="/PastRoadTripView" element={<PastRoadTripView />} /> */}
         <Route
           path="/favourites"
           element={
