@@ -22,10 +22,7 @@ function LoginView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-<<<<<<< HEAD
-=======
-    // console.log("potato");
->>>>>>> main
+
     props.loginCb(username, password);
   }
   // changed from /auth/register
@@ -75,7 +72,7 @@ function LoginView(props) {
           </button>
           <p>
             Don't have an account?{" "}
-            <span className="link" onClick={gotoRegisterPage}>
+            <span class="text-success" onClick={gotoRegisterPage}>
               Sign up
             </span>
           </p>
