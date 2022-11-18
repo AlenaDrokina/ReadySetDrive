@@ -51,7 +51,6 @@ function App() {
     // (NavBar will send user to home page)
   }
 
-  let [roadtripData, setRoadtripData] = useState([]);
 
   useEffect(() => {
     fetchRoadtrips();
@@ -65,6 +64,28 @@ function App() {
       console.log("Response not okay.");
     }
   }
+
+//POST a new Roadtrip (RoadtripView.js)
+  async function addRoadtrip(formData){
+  let options= {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(formData)
+  };
+
+  try {
+  let response = await fetch("/roadtrips", options);
+  if (response.ok) {
+    let newRoadtrip = await response.json(); 
+    let roadtrip_id = newRoadtrip.id;  
+    navigate(`/stops/${roadtrip_id}`)
+  } else {
+    console.log(`Server error: ${response.status} ${response.statusText}`);
+  }
+  } catch (err) {
+  console.log(`Network error: ${err.message}`);
+  }
+}
 
   return (
     <div className="App">
