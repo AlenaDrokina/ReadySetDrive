@@ -11,8 +11,8 @@ CREATE TABLE `users` (
 	`username` varchar(255) NOT NULL UNIQUE,
 	`email` varchar(255) NOT NULL,
 	`password` varchar(255) NOT NULL,
-	`image_url` varchar(255) NOT NULL,
-	`slogan` varchar(255) NOT NULL,
+	`image_url` varchar(255) default "",
+	`slogan` varchar(255) default "",
 	PRIMARY KEY (`id`)
 );
 

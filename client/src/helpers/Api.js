@@ -1,6 +1,11 @@
 import Local from "./Local";
 
 class Api {
+  // Register a new user
+  static async registerUser(username, password, email) {
+    let body = { username, password, email };
+    return await this._doFetch("/auth/register", "POST", body);
+  }
   /**
    * Log in a user
    **/

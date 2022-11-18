@@ -11,6 +11,7 @@ const db = require("../model/helper");
 
 router.post("/register", async (req, res) => {
   let { username, email, password } = req.body;
+  console.log("register", req.body);
   let hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
 
   try {
