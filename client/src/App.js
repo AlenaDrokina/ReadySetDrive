@@ -87,7 +87,7 @@ function App() {
     <div className="App">
       <NavLink to="/" className="Logo">
         {" "}
-        <p>Road Tripper</p>
+        <h3> READY SET DRIVE </h3>
       </NavLink>
       <Navbar user={user} logoutCb={doLogout} />
 
@@ -136,7 +136,11 @@ function App() {
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
         <Route
           path="/favourites"
-          element={<Favourites cardLiked={cardLiked} />}
+          element={
+            <PrivateRoute>
+              <Favourites cardLiked={cardLiked} />
+            </PrivateRoute>
+          }
         />
       </Routes>
     </div>

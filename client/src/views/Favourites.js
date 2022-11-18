@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { CiCircleMore } from "react-icons/ci";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import "./Favourites.css";
 
 export default function Favourites(props) {
-  const [faved, setFaved] = useState();
+  //   const [faved, setFaved] = useState();
   //post in db
 
   //   useEffect(() => {
@@ -17,7 +17,7 @@ export default function Favourites(props) {
   //   }, []);
   //   console.log(props.cardLiked);
   return (
-    <div className="FavoritesGrid">
+    <div className="Grid">
       <div className="col-md-6 col-lg-4 mb-4">
         {props.cardLiked.length
           ? props.cardLiked.map((card) => (
@@ -31,9 +31,9 @@ export default function Favourites(props) {
                   <div className="card-body">
                     <h5 className="card-title">
                       {card.title}{" "}
-                      <div className="title-heart-container">
-                        <AiOutlineHeart className="heart-icon" type="button" />
-                      </div>
+                      <i className="title-heart-container">
+                        <AiFillHeart className="icon-unlock" type="button" />
+                      </i>
                     </h5>
 
                     <h6 className="card-text">{card.countries}</h6>

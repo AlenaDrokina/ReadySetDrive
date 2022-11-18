@@ -1,5 +1,5 @@
 .card {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .card-img-top {
@@ -15,6 +15,7 @@
 
 .circle-icon {
   font-size: x-large;
+  color: rgb(13, 58, 236);
 }
 
 /* .title-heart-container {
@@ -23,4 +24,15 @@
 } */
 .heart-icon {
   font-size: x-large;
+  color: rgb(236, 13, 13);
 }
+/* .icon-lock {
+  display: none;
+}
+
+.title-heart-container :hover {
+  display: none;
+}
+.icon-lock :hover {
+  display: none;
+} */
