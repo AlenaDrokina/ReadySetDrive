@@ -139,11 +139,36 @@ console.log(`Network error: ${err.message}`);
         />
 
         <Route path="*" element={<Error404View />} />
-        <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />
-        <Route path="/stops/:id" element={<StopsView />} />
+        {/* <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} /> */}
         <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
-        {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
-        <Route path="/PastRoadTripView" element={<PastRoadTripView />} /> */}
+
+        <Route 
+          path="/stops/:id" 
+          element={
+            <PrivateRoute>
+              <StopsView />
+            </PrivateRoute>
+          }
+          />
+        
+        <Route 
+          path="/NewRoadTripView" 
+          element={
+            <PrivateRoute>
+              <NewRoadTripView addRoadtripCb={formData => addRoadtrip(formData)} />
+            </PrivateRoute>
+          } 
+          />
+
+        <Route 
+          path="/PastRoadTripView" 
+          element={
+            <PrivateRoute>
+            <PastRoadTripView addRoadtripCb={formData => addRoadtrip(formData)} />
+            </PrivateRoute>
+            } 
+            />
+
         <Route
           path="/favourites"
           element={

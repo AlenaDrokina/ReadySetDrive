@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
 
   try {
     let results = await db(
-      `SELECT * FROM users WHERE username = '${username}'`
+      `SELECT * FROM users WHERE username ='${username}'`
     );
     if (results.data.length === 0) {
       // Username not found

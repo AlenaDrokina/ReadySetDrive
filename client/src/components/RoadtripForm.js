@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./RoadtripForm.css";
 
 
 const BLANK_TRIP_FORM = {
@@ -28,10 +29,10 @@ function RoadtripForm(props) {
 
   return (
     <div className="RoadtripForm"> 
-      <h1>Create Your Roadtrip </h1>
+      {/* <h1>Create Your Roadtrip </h1> */}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-              <label className="form-label">Title</label>
+              <label className="form-label1">Title</label>
               <input 
                   type="text"
                   name="title"
@@ -42,7 +43,7 @@ function RoadtripForm(props) {
 
           </div>
           <div className="mb-3">
-              <label className="form-label">Countries Visited</label>
+              <label className="form-label2">Countries Visited</label>
               <input 
                   type="text"
                   name="countries"
@@ -53,18 +54,18 @@ function RoadtripForm(props) {
           </div>
 
           <div className="mb-3">
-              <label className="form-label">Description</label>
-              <input 
-                  type="text"
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  className="form-control" 
-              />
+              <label className="form-label3">Description</label>
+                <textarea
+                    type="text"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    className="form-control"
+                />
           </div>
 
         <div className="mb-3">
-            <label className="form-label">Add Picture Here</label>
+            <label className="form-label">Add Picture URL</label>
             <input 
                 type="text"
                 name="image_url"
