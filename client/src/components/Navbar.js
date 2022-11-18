@@ -23,12 +23,6 @@ function Navbar(props) {
             </NavLink>
           </li>
           <li className="dropdown-content">
-            {/* Log out user. Then go to home page. */}
-            <Link className="nav-link" to="/" onClick={props.logoutCb}>
-              Logout
-            </Link>
-          </li>
-          <li className="dropdown-content">
             {" "}
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
@@ -45,6 +39,12 @@ function Navbar(props) {
             >
               Past roadtrips
             </NavLink>
+          </li>
+          <li className="dropdown-content">
+            {/* Log out user. Then go to home page. */}
+            <Link className="nav-link" to="/" onClick={props.logoutCb}>
+              Logout
+            </Link>
           </li>
         </ul>
       ) : (

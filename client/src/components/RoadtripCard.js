@@ -4,6 +4,7 @@ import "./RoadtripCard.css";
 
 import { CiCircleMore } from "react-icons/ci";
 import { AiOutlineHeart } from "react-icons/ai";
+import { AiTwotoneHeart } from "react-icons/ai";
 
 function RoadtripCard(props) {
   // let roadtripData = props.roadtripData;
@@ -22,6 +23,9 @@ function RoadtripCard(props) {
   function handleClick(id) {
     props.makeFav(id);
   }
+  function myFunction(x) {
+    x.classList.toggle(<AiTwotoneHeart />);
+  }
 
   return (
     <div className="col-md-6 col-lg-4 mb-4">
@@ -34,13 +38,16 @@ function RoadtripCard(props) {
         <div className="card-body">
           <h5 className="card-title">
             {props.roadtripData.title}{" "}
-            <div className="title-heart-container">
-              <AiOutlineHeart
-                className="heart-icon"
-                type="button"
-                onClick={(e) => handleClick(props.roadtripData.id)}
-              />
-            </div>
+            <i className="title-heart-container">
+              <button>
+                <AiOutlineHeart
+                  className="heart-icon"
+                  type="button"
+                  onClick={(e) => handleClick(props.roadtripData.id)}
+                />
+              </button>
+              <i onclick={myFunction}></i>
+            </i>
           </h5>
 
           <h6 className="card-text">{props.roadtripData.countries}</h6>
