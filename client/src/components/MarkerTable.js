@@ -3,17 +3,6 @@ import React, { useState } from "react";
 
 function MarkerTable(props) {
 
-
-//   async function deleteStop(id) {
-//     let response = await Api.deleteStop(id)
-
-//     if (response.ok) {
-//       setPlaces(response.data);
-//     } else {
-//       console.log(`Server error: ${response.status} ${response.statusText}`);
-//     }
-// }
-
 async function deleteStop(id) {
   let options = {
     method: "DELETE",
@@ -21,7 +10,6 @@ async function deleteStop(id) {
   try {
     let response = await fetch(`/stops/${id}`, options);
     if (response.ok) {
-      //props.updateMarkerCb();
       props.updateStopsCb();
     } else {
       console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -40,8 +28,6 @@ async function deleteStop(id) {
         <tr>
           <th>Stop</th>
           <th>Location</th>
-          {/* <th>Formatted Address (from OpenCage)</th>
-          <th>Latitude/Longitude</th> */}
         </tr>
       </thead>
       <tbody>

@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useParams} from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useMap } from "react-leaflet/hooks";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-//import { LatLngExpression } from "leaflet";
-//import RoadtripForm from '../components/RoadtripForm';
 import MarkerTable from '../components/MarkerTable';
 import MarkerMap from '../components/MarkerMap';
 import { geocode } from '../helpers/geo-opencage';
@@ -21,7 +16,7 @@ function StopsView(props) {
   const [home, setHome] = useState(null);  // center of map
   const [places, setPlaces] = useState([]);
 
-  console.log("places", places);
+
   // Set "home" when the app loads
   useEffect(() => {
     getAndSetHome();
@@ -45,29 +40,18 @@ function StopsView(props) {
     }
   }
 
-  // useEffect(() => {
-  //   fetch(`/stops/${roadtrip_id}`)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setPlaces(json);
-  //     })
-  //     .catch((error) => {});
-  // }, []);
-
 
   async function getAndSetHome() {
     let latLng = await getHome();  // returns [lat, lng]
     setHome(latLng);
   }
 
-  //only show based on roadtrip id places(by roadtrip_id)
+  //add marker to map & add stop to db
   async function addMarkerForAddress(addressObj) {     
-    //console.log("addressObj", addressObj)
     // Send a request to OpenCage to geocode 'addr'
     let myresponse = await geocode(addressObj.address);
     if (myresponse.ok) {
         if (myresponse.data.latLng) {
-            // Create new 'place' obj
             let d = myresponse.data;
             let newPlace = { 
               title: addressObj.title,
@@ -76,13 +60,10 @@ function StopsView(props) {
               longitude: d.latLng[1],
               roadtrip_id: id
             };
-            // Add it to 'places' state
-           //setPlaces(places => [...places, newPlace]);
 
-           //addStop to db
+           //add stop to db
             let response = await Api.addStop(newPlace);
                 if (response.ok) {
-                    // let result = await response.json();   
                     setPlaces(response.data);
                 } else {
                   console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -94,18 +75,6 @@ function StopsView(props) {
         console.log('addMarkerForAddress(): response.error:', myresponse.error);
     }
 }
-
-
-//not working!
-// async function deleteStop(id) {
-//     let response = await Api.deleteStop(id)
-
-//     if (response.ok) {
-//       setPlaces(response.data);
-//     } else {
-//       console.log(`Server error: ${response.status} ${response.statusText}`);
-//     }
-// }
 
 
   return (
@@ -121,7 +90,6 @@ function StopsView(props) {
               home={home}
               places={places}
               zoom={13}
-            //   deleteMarker={(id) => deleteMarker(id)}
             />
           )}
         </div>

@@ -25,7 +25,6 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const navigate = useNavigate();
-  //const [roadtrips, setRoadtrips] = useState([]);
   let [roadtripData, setRoadtripData] = useState([]);
 
   async function doLogin(username, password) {
@@ -64,7 +63,7 @@ function App() {
     }
   }
 
-   //POST A NEW ROADTRIP (RoadtripForm.js)
+   //POST a new Roadtrip (RoadtripView.js)
    async function addRoadtrip(formData){
     let options= {
     method: "POST",
@@ -77,9 +76,6 @@ function App() {
     if (response.ok) {
       let newRoadtrip = await response.json(); 
       let roadtrip_id = newRoadtrip.id;  
-      console.log("roadtrip", roadtrip_id);
-      console.log("newrt", newRoadtrip);
-      //setRoadtrips(data);
       navigate(`/stops/${roadtrip_id}`)
     } else {
       console.log(`Server error: ${response.status} ${response.statusText}`);

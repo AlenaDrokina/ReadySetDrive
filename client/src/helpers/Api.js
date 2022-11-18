@@ -81,7 +81,7 @@ class Api {
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
       let response = await fetch(url, options);
-      console.log(response);
+     // console.log(response);
       if (response.ok) {
         myresponse.ok = true;
         myresponse.data = await response.json();

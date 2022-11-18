@@ -41,7 +41,7 @@ async function getHome() {
     let geoPos = await _asyncGetCurrentPosition(opts);
     let { latitude, longitude } = geoPos.coords;
     if (DEBUG) {
-      console.log("geoloc: browser location:", latitude, longitude);
+      //console.log("geoloc: browser location:", latitude, longitude);
     }
     return [latitude, longitude];
   } catch (err) {

@@ -10,7 +10,6 @@ const BLANK_ADDRESS_FORM = {
 
 function StopsForm(props){
   const [address, setAddress] = useState (BLANK_ADDRESS_FORM)
-//const [stops, setStops] = useState (BLANK_ADDRESS_FORM)
 
   function handleChange2(event){
     let { name, value } = event.target;
@@ -20,8 +19,6 @@ function StopsForm(props){
   function handleSubmit(event) {
     event.preventDefault()
     props.addMarkerCb(address);
-    //props.addStopCb(address)
-    //console.log("what is", props.places);
     setAddress(BLANK_ADDRESS_FORM);
 }
 
@@ -32,7 +29,7 @@ return (
     <form onSubmit={handleSubmit}> 
         <div className="row"> 
         <div className="col">
-            <label for="stopstitleinput" class="form-label">Stop Name</label>
+            <label className="form-label">Stop Name</label>
             <input
             type="text"
             className="form-control"
@@ -42,7 +39,7 @@ return (
             />
         </div>
         <div className="col">
-            <label for="stopstitleinput" class="form-label">Address</label>
+            <label className="form-label">Address</label>
             <input
             type="text"
             className="form-control"
