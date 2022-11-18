@@ -80,7 +80,7 @@ function App() {
     let currentLiked = roadtripData.filter((trip) => trip.id === id);
     setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
     console.log(currentLiked);
-    // makeFav([...cardLiked, currentLiked]);
+    // makeFav([...cardLiked, currentLiked]); Can you see me?
   }
 
   return (
