@@ -82,10 +82,18 @@ function App() {
   } else {
     console.log(`Server error: ${response.status} ${response.statusText}`);
   }
-  } catch (err) {
-  console.log(`Network error: ${err.message}`);
-  }
+} catch (err) {
+console.log(`Network error: ${err.message}`);
 }
+}
+
+  function makeFav(id) {
+    //let currentLiked = Object.values(props.roadtripData);
+    let currentLiked = roadtripData.filter((trip) => trip.id === id);
+    setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
+    console.log(currentLiked);
+    // makeFav([...cardLiked, currentLiked]); Can you see me?
+  }
 
   return (
     <div className="App">
