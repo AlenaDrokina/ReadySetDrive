@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(event) {
     let { name, value } = event.target;
@@ -20,9 +22,12 @@ function LoginView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // console.log("potato");
+
     props.loginCb(username, password);
   }
+  // changed from /auth/register
+
+  const gotoRegisterPage = () => navigate("/register");
 
   return (
     <div className="LoginView row">
@@ -63,8 +68,14 @@ function LoginView(props) {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Submit
+            SIGN IN
           </button>
+          <p>
+            Don't have an account?{" "}
+            <span class="text-success" onClick={gotoRegisterPage}>
+              Sign up
+            </span>
+          </p>
         </form>
       </div>
     </div>

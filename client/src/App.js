@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 
 import PrivateRoute from "./components/PrivateRoute";
 import LoginView from "./views/LoginView";
+import RegisterView from "./views/RegisterView";
 import HomeView from "./views/HomeView";
 import Favourites from "./views/Favourites";
 
@@ -137,6 +138,8 @@ console.log(`Network error: ${err.message}`);
             />
           }
         />
+
+        <Route path="/register" element={<RegisterView />} />
 
         <Route path="*" element={<Error404View />} />
         <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />

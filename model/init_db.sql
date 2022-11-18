@@ -3,7 +3,7 @@ SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roadtrips;
 DROP TABLE IF EXISTS stops;
-DROP TABLE IF EXISTS favorite_roadtrip;
+DROP TABLE IF EXISTS favorite_roadtrips;
 
 SET foreign_key_checks = 1;
 
@@ -12,8 +12,8 @@ CREATE TABLE `users` (
 	`username` varchar(255) NOT NULL UNIQUE,
 	`email` varchar(255) NOT NULL,
 	`password` varchar(255) NOT NULL,
-	`image_url` varchar(255) NOT NULL,
-	`slogan` varchar(255) NOT NULL,
+	`image_url` varchar(255) default "",
+	`slogan` varchar(255) default "",
 	PRIMARY KEY (`id`)
 );
 
