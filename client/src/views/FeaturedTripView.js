@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import MarkerMap from "../components/MarkerMap";
-import StopsView from "./StopsView";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
-import { getHome } from "../helpers/geoLocation";
 import "../components/MarkerMap.css";
+import "./FeaturedTripView.css";
 
 const L = window.L;
 
@@ -15,19 +13,11 @@ function FeaturedTripView(props) {
 
   let [currentRoadtripData, setCurrentRoadtripData] = useState({});
   let [currentStops, setCurrentStops] = useState({});
-  const [home, setHome] = useState(null); // center of map
 
   useEffect(() => {
     getCurrentRoadtripData();
     getCurrentStops();
-    getAndSetHome();
   }, []);
-
-  async function getAndSetHome() {
-    let latLng = await getHome(); // returns [lat, lng]
-    setHome(latLng);
-    console.log(`home: ${home}`);
-  }
 
   let greenMarker = new L.icon({
     iconUrl:
@@ -47,7 +37,6 @@ function FeaturedTripView(props) {
       if (response.ok) {
         let currentRoadtripData = await response.json();
         setCurrentRoadtripData(currentRoadtripData);
-        // console.log(currentRoadtripData);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -72,72 +61,62 @@ function FeaturedTripView(props) {
     }
   }
 
-  const position = [51.505, -0.09];
-
   return (
-    <div>
-      <h2>{currentRoadtripData.title}</h2>
-      <h3>{currentRoadtripData.countries}</h3>
-      <img src={currentRoadtripData.image_url} alt="roadtrip" />
-      <p>{currentRoadtripData.description}</p>
-      <h2>Stops</h2>
-      <p>{currentStops && console.log(currentStops)}</p>
-      {currentStops.length
-        ? currentStops.map((stop) => {
-            return (
-              <div>
-                <h4>{stop.title}</h4>
-                <h5>{stop.address}</h5>
-              </div>
-            );
-          })
-        : null}
-      {/* <MarkerMap /> */}
-      <MapContainer
-        className="MarkerMap"
-        center={position}
-        zoom={13}
-        // {!props.places && zoom={3}}
-        style={{ height: "500px" }} // you MUST specify map height, else it will be 0!
-      >
-        {/* Create the tile layer that shows the map */}
-        <TileLayer
-          attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={position}></Marker>
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <h2>{currentRoadtripData.title}</h2>
+          <h3>{currentRoadtripData.countries}</h3>
+          <img
+            src={currentRoadtripData.image_url}
+            alt="roadtrip"
+            className="featured-img"
+          />
+          <p>{currentRoadtripData.description}</p>
 
-        {/* Draw the green "YOU ARE HERE" marker */}
-        {/* {home && (
-          <Marker position={home}>
-            <Popup>YOU ARE HERE</Popup>
-          </Marker>
-        )} */}
+          {currentStops.length > 0 && (
+            <div>
+              <h3>Stops</h3>
+              {currentStops.map((stop) => {
+                return (
+                  <div>
+                    <h4>{stop.title}</h4>
+                    <h5>{stop.address}</h5>
+                    {console.log("Stop data:", stop)}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
-        {/* Draw a blue marker for each of the places passed as prop */}
-        {/* {currentStops.length
-          ? currentStops.map((stop) => (
-              <Marker
-                key={stop.title}
-                position={[stop.latitude, stop.longitude]}
-                icon={greenMarker}
-              >
-                <Popup>
-                  {breakAddr(stop.title)}{" "} */}
-        {/* <button type="button" onClick={(e) => props.updateMarker(p.id)}>
-              &#x2713;
-            </button> */}
-        {/* <button
-              type="buttonMarker"
-              onClick={(e) => props.deleteMarker(p.id)}
+        {currentStops.length > 0 && (
+          <div className="col">
+            <MapContainer
+              className="MarkerMap"
+              center={[currentStops[0].latitude, currentStops[0].longitude]}
+              zoom={8}
+              style={{ height: "500px" }}
             >
-              X
-            </button> */}
-        {/* </Popup>
-              </Marker>
-            ))
-          : null} */}
-      </MapContainer>
+              <TileLayer
+                attribution='&copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {currentStops.map((stop) => {
+                return (
+                  <Marker
+                    key={stop.id}
+                    position={[stop.latitude, stop.longitude]}
+                    icon={greenMarker}
+                  >
+                    <Popup>{breakAddr(stop.title)}</Popup>
+                  </Marker>
+                );
+              })}
+            </MapContainer>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

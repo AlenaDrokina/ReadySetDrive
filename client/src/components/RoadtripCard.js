@@ -37,19 +37,17 @@ function RoadtripCard(props) {
           onClick={changeView}
         />
         <div className="card-body">
-          <h5 className="card-title">
-            {props.roadtripData.title}{" "}
-            <i className="title-heart-container">
-              <button>
-                <AiOutlineHeart
-                  className="heart-icon"
-                  type="button"
-                  onClick={(e) => handleClick(props.roadtripData.id)}
-                />
-              </button>
+          <div className="title-heart-container">
+            <h5 className="card-title">{props.roadtripData.title} </h5>
+            <i>
+              <AiOutlineHeart
+                className="heart-icon"
+                onClick={(e) => handleClick(props.roadtripData.id)}
+              />
+
               <i onClick={myFunction}></i>
             </i>
-          </h5>
+          </div>
 
           <h6 className="card-text">{props.roadtripData.countries}</h6>
           <div className="circle-icon-container">

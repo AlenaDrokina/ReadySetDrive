@@ -16,13 +16,15 @@
   cursor: pointer;
 }
 
-/* .title-heart-container {
+.title-heart-container {
   display: flex;
   justify-content: space-between;
-} */
+}
+
 .heart-icon {
   font-size: x-large;
   color: rgb(236, 13, 13);
+  cursor: pointer;
 }
 /* .icon-lock {
   display: none;
