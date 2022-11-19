@@ -81,7 +81,7 @@ function StopsView(props) {
       <div className="StopsView">
         <div className="row mb-5">
           <div className="col">
-          <StopsForm addMarkerCb={addr => addMarkerForAddress(addr)} places={places} />
+          <StopsForm addMarkerCb={addr => addMarkerForAddress(addr)} places={places} markComplete={props.markComplete} />
           </div>
 
         <div className="col">
@@ -89,7 +89,7 @@ function StopsView(props) {
             <MarkerMap
               home={home}
               places={places}
-              zoom={13}
+              zoom={1.5}
             />
           )}
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Api from "../helpers/Api";
 import "./RoadtripForm.css";
 
 
@@ -7,7 +8,7 @@ const BLANK_TRIP_FORM = {
   countries: "",
   description: "",
   image_url: "",
-  done: 1,
+  done: 0,
   user_id: 1        //debug only, remove after auth is done!!
 };
 
@@ -18,14 +19,32 @@ function RoadtripForm(props) {
   function handleChange(event){
     let { name, value } = event.target;
     setFormData (data => ({...data, [name]: value}));
-}
+  }
 
   function handleSubmit(event){
     event.preventDefault();
     props.addRoadtripCb(formData);
     console.log(formData);
     setFormData(BLANK_TRIP_FORM);
-}
+  }
+
+
+  //function updateRoadtrip
+
+//mark roadtrip as complete MOVED TO STOPS FORM
+  // async function markComplete(roadtrip_id) {
+
+  //    let completed = {
+  //     done: 1
+  //   };
+
+  //   let response = await Api.updateRoadtrip(roadtrip_id, completed);
+  //     if(response.ok) {
+  //     //updateRoadtrip();
+  //     } else {
+  //     console.log(`Server error: ${response.status} ${response.statusText}`);
+  //     }
+  // }
 
   return (
     <div className="RoadtripForm"> 

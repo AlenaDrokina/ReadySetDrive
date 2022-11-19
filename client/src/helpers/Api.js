@@ -40,6 +40,10 @@ class Api {
     return await this._doFetch("/roadtrips");
   }
 
+  //PATCH (mark roadtrip as complete)
+  static async updateRoadtrip(roadtrip_id, completed) {
+    return await this._doFetch(`/roadtrips/${roadtrip_id}/done`, "PATCH", completed);
+  }
 
   //POST new stop
   static async addStop(newPlace) {

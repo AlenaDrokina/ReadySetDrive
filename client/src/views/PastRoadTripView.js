@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import RoadtripForm from '../components/RoadtripForm';
-
+import "./PastRoadTripView.css";
 
 function PastRoadTripView(props) {
 
 
   return (
-      <div className="PastFormView">
-        <h1> Plan Your Next Adventure </h1>
+      <div className="PastRoadTripView">
+        <h1> Record A Roadtrip </h1>
         <div className="row mb-5">
             <RoadtripForm addRoadtripCb={formData => props.addRoadtripCb(formData)}/>
           </div>
