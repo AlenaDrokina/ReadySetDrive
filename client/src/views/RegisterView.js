@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const RegisterView = () => {
-  const [name, setName] = useState("");
+const RegisterView = (props) => {
+  const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
@@ -10,9 +10,9 @@ const RegisterView = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, name, password, confPassword });
+    props.registerCb(username, email, password, confPassword);
     setEmail("");
-    setName("");
+    setUserName("");
     setPassword("");
     setConfPassword("");
   };
@@ -39,11 +39,11 @@ const RegisterView = () => {
             <label htmlFor="username">Username</label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={name}
+              id="username"
+              name="username"
+              value={username}
               required
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setUserName(e.target.value)}
             />
           </div>
 
@@ -76,9 +76,10 @@ const RegisterView = () => {
           <button type="submit" className="btn btn-primary">
             SIGN UP
           </button>
+          <p>{props.registerError}</p>
           <p>
             Already have an account?{" "}
-            <span class="text-success" onClick={gotoLoginPage}>
+            <span className="text-success" onClick={gotoLoginPage}>
               Login
             </span>
           </p>

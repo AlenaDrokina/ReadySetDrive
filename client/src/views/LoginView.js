@@ -72,7 +72,7 @@ function LoginView(props) {
           </button>
           <p>
             Don't have an account?{" "}
-            <span class="text-success" onClick={gotoRegisterPage}>
+            <span className="text-success" onClick={gotoRegisterPage}>
               Sign up
             </span>
           </p>

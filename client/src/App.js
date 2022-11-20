@@ -17,7 +17,7 @@ import { NavLink } from "react-router-dom";
 
 import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
-import RoadtripView from "./views/RoadtripView";// import FeaturedTripView from "./views/FeaturedTripView";
+import RoadtripView from "./views/RoadtripView"; // import FeaturedTripView from "./views/FeaturedTripView";
 import NewRoadTripView from "./views/NewRoadTripView";
 import PastRoadTripView from "./views/PastRoadTripView";
 import ProfileView from "./views/ProfileView";
@@ -25,14 +25,31 @@ import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
 // import Local from "./helpers/Local";
 
-
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const [registerErrorMsg, setRegisterErrorMsg] = useState("");
   const [cardLiked, setCardLiked] = useState([]);
   const [roadtripData, setRoadtripData] = useState([]);
 
   const navigate = useNavigate();
+
+  async function doRegister(username, email, password, confPassword) {
+    let myresponse = await Api.registerUser(
+      username,
+      email,
+      password,
+      confPassword
+    );
+    if (myresponse.ok) {
+      Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      setUser(myresponse.data.user);
+      setRegisterErrorMsg("");
+      navigate("/login");
+    } else {
+      setRegisterErrorMsg(`Register failed: ${myresponse.error}`);
+    }
+  }
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
@@ -42,7 +59,7 @@ function App() {
       setLoginErrorMsg("");
       navigate("/");
     } else {
-      setLoginErrorMsg("Login failed");
+      setLoginErrorMsg(`Login failed: ${myresponse.error}`);
     }
   }
 
@@ -51,7 +68,6 @@ function App() {
     setUser(null);
     // (NavBar will send user to home page)
   }
-
 
   useEffect(() => {
     fetchRoadtrips();
@@ -66,27 +82,27 @@ function App() {
     }
   }
 
-//POST a new Roadtrip (RoadtripView.js)
-  async function addRoadtrip(formData){
-  let options= {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(formData)
-  };
+  //POST a new Roadtrip (RoadtripView.js)
+  async function addRoadtrip(formData) {
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
 
-  try {
-  let response = await fetch("/roadtrips", options);
-  if (response.ok) {
-    let newRoadtrip = await response.json(); 
-    let roadtrip_id = newRoadtrip.id;  
-    navigate(`/stops/${roadtrip_id}`)
-  } else {
-    console.log(`Server error: ${response.status} ${response.statusText}`);
+    try {
+      let response = await fetch("/roadtrips", options);
+      if (response.ok) {
+        let newRoadtrip = await response.json();
+        let roadtrip_id = newRoadtrip.id;
+        navigate(`/stops/${roadtrip_id}`);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
   }
-} catch (err) {
-console.log(`Network error: ${err.message}`);
-}
-}
 
   function makeFav(id) {
     //let currentLiked = Object.values(props.roadtripData);
@@ -139,10 +155,23 @@ console.log(`Network error: ${err.message}`);
           }
         />
 
-        <Route path="/register" element={<RegisterView />} />
+        <Route
+          path="/register"
+          element={
+            <RegisterView
+              registerCb={(n, e, p, conf) => doRegister(n, e, p, conf)}
+              registerError={registerErrorMsg}
+            />
+          }
+        />
 
         <Route path="*" element={<Error404View />} />
-        <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} />
+        <Route
+          path="/roadtrip"
+          element={
+            <RoadtripView addRoadtripCb={(formData) => addRoadtrip(formData)} />
+          }
+        />
         <Route path="/stops/:id" element={<StopsView />} />
         <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
         {/* <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
