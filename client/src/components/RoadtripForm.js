@@ -24,27 +24,11 @@ function RoadtripForm(props) {
   function handleSubmit(event){
     event.preventDefault();
     props.addRoadtripCb(formData);
-    console.log(formData);
+    //console.log(formData);
     setFormData(BLANK_TRIP_FORM);
   }
 
 
-  //function updateRoadtrip
-
-//mark roadtrip as complete MOVED TO STOPS FORM
-  // async function markComplete(roadtrip_id) {
-
-  //    let completed = {
-  //     done: 1
-  //   };
-
-  //   let response = await Api.updateRoadtrip(roadtrip_id, completed);
-  //     if(response.ok) {
-  //     //updateRoadtrip();
-  //     } else {
-  //     console.log(`Server error: ${response.status} ${response.statusText}`);
-  //     }
-  // }
 
   return (
     <div className="RoadtripForm"> 

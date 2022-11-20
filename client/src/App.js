@@ -65,7 +65,7 @@ function App() {
     }
   }
 
-//POST a new Roadtrip (RoadtripView.js)
+//POST a new Roadtrip (RoadtripForm.js)
   async function addRoadtrip(formData){
   let options= {
   method: "POST",
@@ -93,42 +93,6 @@ console.log(`Network error: ${err.message}`);
     setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
     console.log(currentLiked);
     // makeFav([...cardLiked, currentLiked]); Can you see me?
-  }
-
-
-//     async function updateRoadtrip() {
-//     try {
-//       let response = await fetch(`/roadtrips/:roadtrip_id`);
-//       if (response.ok) {
-//         let updated = await response.json();
-//         setRoadtripData(updated);
-       
-//       } else {
-//         console.log(`Server error: ${response.status} ${response.statusText}`);
-//       }
-//     } catch (err) {
-//       console.log(`Server error: ${err.message}`);
-//     }
-// }
-
-
-
-  //Mark Roadtrip as complete
-  async function markComplete(roadtrip_id) {
-
-    let completed = {
-      done: 1
-    };
-  
-   console.log("done", completed.done) //but this is in backend, so this should work
-
-   let response = await Api.updateRoadtrip(roadtrip_id, completed);
-     if(response.ok) {
-      //updateRoadtrip();
-      //console.log("done", completed)
-     } else {
-     console.log(`Server error: ${response.status} ${response.statusText}`);
-     }
   }
   
 
@@ -183,7 +147,7 @@ console.log(`Network error: ${err.message}`);
           path="/stops/:id" 
           element={
             <PrivateRoute>
-              <StopsView markComplete={markComplete} />
+              <StopsView />
             </PrivateRoute>
           }
           />

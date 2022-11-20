@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useParams} from "react-router-dom";
 import Api from "../helpers/Api";
 import "./StopsForm.css"
 
@@ -6,11 +7,12 @@ import "./StopsForm.css"
 const BLANK_ADDRESS_FORM = {
     title: "",
     address: "",
-    //roadtrip_id: 1      //debug purpose only!!!! fix with actual data
   };
 
 
 function StopsForm(props){
+  let {id} = useParams();
+
   const [address, setAddress] = useState (BLANK_ADDRESS_FORM)
 
   function handleChange2(event){
@@ -26,12 +28,14 @@ function StopsForm(props){
 
 
 
-//mark roadtrip as complete moved to app
-// async function markComplete(roadtrip_id) {
-
+//mark roadtrip as complete moved to stops view
+// async function markComplete() {
+ 
 //   let completed = {
 //    done: 1
 //  };
+
+//   let roadtrip_id = id;    //debug purposes only but works this way, need to get roadtrip somehow
 
 //  let response = await Api.updateRoadtrip(roadtrip_id, completed);
 //    if(response.ok) {
@@ -71,15 +75,15 @@ return (
         
         <button type="submit" className="btn btn-primary">Add Stop</button>
 
-        <div className="mb-3 form-check">
+        {/* <div className="mb-3 form-check">
               <input 
               type="checkbox" 
               className="form-check-input" 
               id="exampleCheck1"
-              onClick={() => props.markComplete()}
+              onClick={() => markComplete()}
               />
             <label class="form-check-label" for="exampleCheck1">Mark here if your trip is completed</label>
-        </div>
+        </div> */}
 
     </form>
 </div>
