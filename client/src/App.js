@@ -183,6 +183,7 @@ function App() {
             <PrivateRoute>
               <NewRoadTripView
                 addRoadtripCb={(formData) => addRoadtrip(formData)}
+                user={user}
               />
             </PrivateRoute>
           }
@@ -194,6 +195,7 @@ function App() {
             <PrivateRoute>
               <PastRoadTripView
                 addRoadtripCb={(formData) => addRoadtrip(formData)}
+                user={user}
               />
             </PrivateRoute>
           }

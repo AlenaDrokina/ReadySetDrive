@@ -8,7 +8,7 @@ function NewRoadTripView(props) {
     <div className="NewRoadTripView">
       <h1> Plan Your Next Adventure </h1>
       <div className="row mb-5">
-          <RoadtripForm addRoadtripCb={formData => props.addRoadtripCb(formData)}/>
+          <RoadtripForm addRoadtripCb={formData => props.addRoadtripCb(formData)} user={props.user}/>
         </div>
     </div>
 );
