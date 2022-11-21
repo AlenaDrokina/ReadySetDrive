@@ -80,7 +80,7 @@ function App() {
     }
   }
 
-  //POST a new Roadtrip (RoadtripView.js)
+  //POST a new Roadtrip (RoadtripForm.js)
   async function addRoadtrip(formData) {
     let options = {
       method: "POST",
@@ -165,16 +165,40 @@ function App() {
         />
 
         <Route path="*" element={<Error404View />} />
+        {/* <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} /> */}
+        <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
+
         <Route
-          path="/roadtrip"
+          path="/stops/:id"
           element={
-            <RoadtripView addRoadtripCb={(formData) => addRoadtrip(formData)} />
+            <PrivateRoute>
+              <StopsView />
+            </PrivateRoute>
           }
         />
-        <Route path="/stops/:id" element={<StopsView />} />
-        <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
-        <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
-        <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
+
+        <Route
+          path="/NewRoadTripView"
+          element={
+            <PrivateRoute>
+              <NewRoadTripView
+                addRoadtripCb={(formData) => addRoadtrip(formData)}
+              />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/PastRoadTripView"
+          element={
+            <PrivateRoute>
+              <PastRoadTripView
+                addRoadtripCb={(formData) => addRoadtrip(formData)}
+              />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/favorite_roadtrips/:user_id"
           element={

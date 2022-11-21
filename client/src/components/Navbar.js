@@ -30,7 +30,7 @@ function Navbar(props) {
               style={{ textDecoration: "none", color: "black" }}
               to="/NewRoadTripView"
             >
-              New roadtrips
+              Plan roadtrip
             </NavLink>
           </li>{" "}
           <li className="dropdown-content">
@@ -39,7 +39,7 @@ function Navbar(props) {
               style={{ textDecoration: "none", color: "black" }}
               to="/PastRoadTripView"
             >
-              Past roadtrips
+              Share roadtrip
             </NavLink>
           </li>
           <li className="dropdown-content">
