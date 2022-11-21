@@ -1,11 +1,8 @@
-.card {
-  cursor: pointer;
-}
-
 .card-img-top {
   width: 100%;
   height: 15vw;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .circle-icon-container {
@@ -15,16 +12,19 @@
 
 .circle-icon {
   font-size: x-large;
-  color: pink;
+  color: black;
+  cursor: pointer;
 }
 
-/* .title-heart-container {
+.title-heart-container {
   display: flex;
   justify-content: space-between;
-} */
+}
+
 .heart-icon {
   font-size: x-large;
   color: rgb(236, 13, 13);
+  cursor: pointer;
 }
 /* .icon-lock {
   display: none;

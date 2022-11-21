@@ -82,13 +82,13 @@ function App() {
     }
   }
 
-//POST a new Roadtrip (RoadtripForm.js)
-  async function addRoadtrip(formData){
-  let options= {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(formData)
-  };
+  //POST a new Roadtrip (RoadtripForm.js)
+  async function addRoadtrip(formData) {
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    };
 
     try {
       let response = await fetch("/roadtrips", options);
@@ -111,7 +111,6 @@ function App() {
     console.log(currentLiked);
     // makeFav([...cardLiked, currentLiked]); Can you see me?
   }
-  
 
   return (
     <div className="App">
@@ -170,32 +169,36 @@ function App() {
         {/* <Route path="/roadtrip" element={<RoadtripView addRoadtripCb={formData => addRoadtrip(formData)} />} /> */}
         <Route path="/roadtrip/:id" element={<FeaturedTripView />} />
 
-        <Route 
-          path="/stops/:id" 
+        <Route
+          path="/stops/:id"
           element={
             <PrivateRoute>
               <StopsView />
             </PrivateRoute>
           }
-          />
-        
-        <Route 
-          path="/NewRoadTripView" 
-          element={
-            <PrivateRoute>
-              <NewRoadTripView addRoadtripCb={formData => addRoadtrip(formData)} />
-            </PrivateRoute>
-          } 
-          />
+        />
 
-        <Route 
-          path="/PastRoadTripView" 
+        <Route
+          path="/NewRoadTripView"
           element={
             <PrivateRoute>
-            <PastRoadTripView addRoadtripCb={formData => addRoadtrip(formData)} />
+              <NewRoadTripView
+                addRoadtripCb={(formData) => addRoadtrip(formData)}
+              />
             </PrivateRoute>
-            } 
-            />
+          }
+        />
+
+        <Route
+          path="/PastRoadTripView"
+          element={
+            <PrivateRoute>
+              <PastRoadTripView
+                addRoadtripCb={(formData) => addRoadtrip(formData)}
+              />
+            </PrivateRoute>
+          }
+        />
 
         <Route
           path="/favourites"
