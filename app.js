@@ -40,11 +40,7 @@ app.use(function (err, req, res, next) {
 
   // send the error page
   res.status(err.status || 500);
-<<<<<<< HEAD
   res.send("error");
-=======
-  res.send(err);
->>>>>>> main
 });
 
 module.exports = app;

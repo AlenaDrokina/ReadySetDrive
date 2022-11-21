@@ -48,6 +48,14 @@ function Navbar(props) {
               Logout
             </Link>
           </li>
+          <li className="dropdown-content">
+            <NavLink
+              style={{ textDecoration: "none", color: "black" }}
+              to={`/favorite_roadtrips/${props.user.id}`}
+            >
+              Favorites
+            </NavLink>
+          </li>
         </ul>
       ) : (
         <ul>
@@ -58,16 +66,6 @@ function Navbar(props) {
           </li>
         </ul>
       )}
-      <ul>
-        <li className="dropdown-content">
-          <NavLink
-            style={{ textDecoration: "none", color: "black" }}
-            to={`/favorites/${user_id}`}
-          >
-            Favorites
-          </NavLink>
-        </li>
-      </ul>
     </nav>
   );
 }

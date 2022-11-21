@@ -4,7 +4,7 @@ const db = require("../model/helper");
 // const { ensureUserLoggedIn } = require("../middleware/guards");
 const { ensureSameUser } = require("../middleware/guards");
 
-router.get("/:user_id", ensureSameUser, async function (req, res) {
+router.get("/:user_id", async function (req, res) {
   let user_id = req.params.user_id;
   try {
     let favorite_roadtrips = await db(
@@ -16,7 +16,7 @@ router.get("/:user_id", ensureSameUser, async function (req, res) {
   }
 });
 
-router.post("/:user_id/:roadtrip_id", ensureSameUser, async (req, res) => {
+router.post("/:user_id/:roadtrip_id", async (req, res) => {
   let roadtrip_id = req.params.roadtrip_id;
   // let user_id = req.locals.user_id;
   let user_id = req.params.user_id;

@@ -18,6 +18,8 @@ import PastRoadTripView from "./views/PastRoadTripView";
 import ProfileView from "./views/ProfileView";
 import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
+import { useParams } from "react-router-dom";
+
 // import Local from "./helpers/Local";
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
   const [registerErrorMsg, setRegisterErrorMsg] = useState("");
   const [cardLiked, setCardLiked] = useState([]);
   const [roadtripData, setRoadtripData] = useState([]);
+  let { user_id } = useParams();
 
   const navigate = useNavigate();
 
@@ -122,7 +125,7 @@ function App() {
         {" "}
         <h3> READY SET DRIVE </h3>
       </NavLink>
-      <Navbar user={user} logoutCb={doLogout} />
+      <Navbar user={user} logoutCb={doLogout} user_id={user_id} />
 
       <Routes>
         <Route
@@ -172,10 +175,10 @@ function App() {
         <Route path="/NewRoadTripView" element={<NewRoadTripView />} />
         <Route path="/PastRoadTripView" element={<PastRoadTripView />} />
         <Route
-          path="/favorites/:user_id"
+          path="/favorite_roadtrips/:user_id"
           element={
             <PrivateRoute>
-              <Favorites cardLiked={cardLiked} />
+              <Favorites cardLiked={cardLiked} user={user} />
             </PrivateRoute>
           }
         />
