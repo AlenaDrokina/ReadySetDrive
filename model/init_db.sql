@@ -71,4 +71,4 @@ INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
 
 
 INSERT INTO `favorite_roadtrips` (user_id, roadtrip_id) 
-VALUES (1 , 1), (1 , 2)
+VALUES (1 , 1), (1 , 2), (1, 3), (2, 1), (2, 5);

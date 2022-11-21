@@ -19,7 +19,7 @@ import ProfileView from "./views/ProfileView";
 import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
 import { useParams } from "react-router-dom";
-
+import "./Logotip.png";
 // import Local from "./helpers/Local";
 
 function App() {
@@ -124,6 +124,7 @@ function App() {
       <NavLink to="/" className="Logo">
         {" "}
         <h3> READY SET DRIVE </h3>
+        {/* <img src="Logotip.png" alt="logo" /> */}
       </NavLink>
       <Navbar user={user} logoutCb={doLogout} user_id={user_id} />
 

@@ -56,11 +56,11 @@ export default function Favorites(props) {
       <div className="col-md-6 col-lg-4 mb-4">
         {faved.length
           ? faved.map((card) => (
-              <div key={card.id}>
+              <div key={card.roadtrip_id}>
                 <div className="card">
                   <img
                     className="card-img-top"
-                    src={card.image_url}
+                    src={card.roadtrip_id.image_url}
                     alt="roadtrip"
                   />
                   <div className="card-body">
@@ -72,6 +72,8 @@ export default function Favorites(props) {
                     </h5>
 
                     <h6 className="card-text">{card.countries}</h6>
+                    <h6 className="card-text">{card.roadtrip_id}</h6>
+
                     <div className="circle-icon-container">
                       {" "}
                       <CiCircleMore className="circle-icon" />
