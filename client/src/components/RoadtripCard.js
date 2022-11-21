@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import "./RoadtripCard.css";
 
 import { CiCircleMore } from "react-icons/ci";
@@ -18,7 +18,7 @@ function RoadtripCard(props) {
     navigate(linkToFeaturedView);
   }
 
-  const [cardLiked, setCardLiked] = useState();
+  // const [cardLiked, setCardLiked] = useState();
 
   function handleClick(id) {
     props.makeFav(id);

@@ -9,7 +9,7 @@ var usersRouter = require("./routes/users");
 var roadtripsRouter = require("./routes/roadtrips");
 var stopsRouter = require("./routes/stops");
 var authRouter = require("./routes/auth");
-var favourite_roadtripsRouter = require("./routes/favourite_roadtrips");
+var favorite_roadtripsRouter = require("./routes/favorite_roadtrips");
 
 var app = express();
 app.use(cors()); // add after 'app' is created
@@ -24,7 +24,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/stops", stopsRouter);
 app.use("/roadtrips", roadtripsRouter);
-app.use("/favorite_roadtrips", favourite_roadtripsRouter);
+app.use("/favorite_roadtrips", favorite_roadtripsRouter);
 app.use("/auth", authRouter);
 
 // catch 404 and forward to error handler
