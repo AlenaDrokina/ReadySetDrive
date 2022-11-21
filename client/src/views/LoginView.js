@@ -31,70 +31,69 @@ function LoginView(props) {
   const gotoRegisterPage = () => navigate("/register");
 
   return (
-    // <meta charset="UTF-8">
-    // <meta name="viewport" content="width=device-width, initial-scale=1">
-    // <meta name="author" content="Yinka Enoch Adedokun">
-    <div className="row main-content bg-success text-center">
-      <div class="col-md-4 text-center company__info">
-        <span class="company__logo">
-          <h2>
-            <span class="fa fa-android"></span>
-          </h2>
-        </span>
-        <h4 class="company_title">Your Company Logo</h4>
-      </div>
-      <div className="col-md-8 col-xs-12 col-sm-12 login_form">
-        <div class="container-fluid">
-          <div class="row">
-            <h2>Login</h2>
-          </div>
-          {props.loginError && (
-            <div className="alert alert-danger">{props.loginError}</div>
-          )}
-
-          <form control="" className="form-group" onSubmit={handleSubmit}>
-            <div className="row">
-              <label>
-                Username
-                <input
-                  type="text"
-                  id="username"
-                  name="usernameInput"
-                  required
-                  className="form__input"
-                  value={username}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className="row">
-              <label>
-                Password
-                <input
-                  type="password"
-                  id="password"
-                  name="passwordInput"
-                  required
-                  className="form__input"
-                  value={password}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-
-            <div className="row">
-              <input type="submit" value="Submit" class="btn" />
-            </div>
-          </form>
+    <div className="container-fluid">
+      <div className="row main-content bg-success text-center">
+        <div className="col-md-4 text-center company__info">
+          <span className="company__logo">
+            <h2>
+              <span className="fa fa-android"></span>
+            </h2>
+          </span>
+          <h4 class="company_title">Your Company Logo</h4>
         </div>
-        <div class="row">
-          <p>
-            Don't have an account?{" "}
-            <span className="text-success" onClick={gotoRegisterPage}>
-              Register Here
-            </span>
-          </p>
+        <div className="col-md-8 col-xs-12 col-sm-12 login_form">
+          <div className="container-fluid">
+            <div className="row">
+              <h2>Login</h2>
+            </div>
+            {props.loginError && (
+              <div className="alert alert-danger">{props.loginError}</div>
+            )}
+
+            <form control="" className="form-group" onSubmit={handleSubmit}>
+              <div className="row">
+                <label>
+                  Username
+                  <input
+                    type="text"
+                    id="username"
+                    name="usernameInput"
+                    required
+                    className="form__input"
+                    value={username}
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+
+              <div className="row">
+                <label>
+                  Password
+                  <input
+                    type="password"
+                    id="password"
+                    name="passwordInput"
+                    required
+                    className="form__input"
+                    value={password}
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+
+              <div className="row">
+                <input type="submit" value="Submit" class="btn" />
+              </div>
+            </form>
+          </div>
+          <div className="row">
+            <p>
+              Don't have an account?{" "}
+              <span className="text-success" onClick={gotoRegisterPage}>
+                Register Here
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
