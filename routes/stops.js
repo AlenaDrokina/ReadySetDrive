@@ -30,13 +30,6 @@ router.get("/:roadtrip_id", async function (req, res) {
 router.post("/", ensureSameUserB, async (req, res) => {
   let { title, address, longitude, latitude, roadtrip_id, user_id } = req.body;
 
-  // let sql_join = `
-  //       SELECT roadtrips.id, roadtrips.user_id, stops.*
-  //       FROM stops
-  //       LEFT JOIN roadtrips ON roadtrips.id = stops.roadtrip_id
-  //       WHERE roadtrips.id = 1
-  //       `
-
   let sql = `
         INSERT INTO stops (title, address, longitude, latitude, roadtrip_id)
         VALUES ('${title}', '${address}', ${longitude}, ${latitude}, ${roadtrip_id})

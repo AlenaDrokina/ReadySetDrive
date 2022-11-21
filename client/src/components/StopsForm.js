@@ -27,26 +27,6 @@ function StopsForm(props){
 }
 
 
-
-//mark roadtrip as complete moved to stops view
-// async function markComplete() {
- 
-//   let completed = {
-//    done: 1
-//  };
-
-//   let roadtrip_id = id;    //debug purposes only but works this way, need to get roadtrip somehow
-
-//  let response = await Api.updateRoadtrip(roadtrip_id, completed);
-//    if(response.ok) {
-//    //updateRoadtrip();
-//    } else {
-//    console.log(`Server error: ${response.status} ${response.statusText}`);
-//    }
-// }
-
-
-
 return (
 <div className="StopsForm" > 
     <h1> Add Your Stops </h1>
