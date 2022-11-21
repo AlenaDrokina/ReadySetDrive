@@ -1,0 +1,15 @@
+.StopsForm {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+.StopsForm form button {
+    margin-top:10px;
+    margin-bottom: 30px;
+}
+
+#mb-3 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

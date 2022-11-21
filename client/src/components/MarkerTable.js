@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "./MarkerTable.css";
+import "./MarkerTable.css";
 
 function MarkerTable(props) {
 
@@ -21,13 +21,14 @@ async function deleteStop(id) {
 
 
   return (
-    <div> 
+    <div className="MarkerTable"> 
     <h2> Destinations </h2>
-    <table className="table">
+    <table className="table table-striped">
       <thead>
         <tr>
           <th>Stop</th>
           <th>Location</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +36,7 @@ async function deleteStop(id) {
           <tr key={p.id}>
             <td>{p.title}</td>
             <td>{p.address}</td>
-            <td> <button type="button" onClick={() => deleteStop(p.id)}>delete</button> </td>
+            <td> <button className="btn btn-primary" type="button" onClick={() => deleteStop(p.id)}>X</button> </td>
           </tr>
         ))}
       </tbody>

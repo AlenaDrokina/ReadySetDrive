@@ -29,31 +29,30 @@ function RoadtripCard(props) {
 
   return (
     <div className="col-md-6 col-lg-4 mb-4">
-      <div className="card h-100" onClick={changeView}>
+      <div className="card h-100">
         <img
           className="card-img-top"
           src={props.roadtripData.image_url}
           alt="roadtrip"
+          onClick={changeView}
         />
         <div className="card-body">
-          <h5 className="card-title">
-            {props.roadtripData.title}{" "}
-            <i className="title-heart-container">
-              <button>
-                <AiOutlineHeart
-                  className="heart-icon"
-                  type="button"
-                  onClick={(e) => handleClick(props.roadtripData.id)}
-                />
-              </button>
-              <i onclick={myFunction}></i>
+          <div className="title-heart-container">
+            <h5 className="card-title">{props.roadtripData.title} </h5>
+            <i>
+              <AiOutlineHeart
+                className="heart-icon"
+                onClick={(e) => handleClick(props.roadtripData.id)}
+              />
+
+              <i onClick={myFunction}></i>
             </i>
-          </h5>
+          </div>
 
           <h6 className="card-text">{props.roadtripData.countries}</h6>
           <div className="circle-icon-container">
             {" "}
-            <CiCircleMore className="circle-icon" />
+            <CiCircleMore className="circle-icon" onClick={changeView} />
           </div>
         </div>
       </div>

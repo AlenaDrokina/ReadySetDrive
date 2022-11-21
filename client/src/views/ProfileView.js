@@ -97,7 +97,7 @@ function ProfileView(props) {
           <br />
           <div className="name">
             {" "}
-            <p class="text-left">Hey!! {user.username}</p>
+            <p className="text-left">Hey!! {user.username}</p>
           </div>
           <div className="email">
             {" "}

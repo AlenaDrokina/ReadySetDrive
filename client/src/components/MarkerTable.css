@@ -1,0 +1,22 @@
+.MarkerTable {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+.MarkerTable table {
+    width: 50%;
+}
+
+tr {
+    text-align: center;
+}
+
+.MarkerTable h2 {
+    margin-bottom: 30px;
+}
+
+.MarkerTable .btn {
+    background-color: red;
+    border-color: red;
+}

@@ -85,4 +85,21 @@ router.delete("/:roadtrip_id", async (req, res) => {
   }
 });
 
+//UPDATE roadtrip as complete
+
+router.patch("/:roadtrip_id/done", async function (req, res, next){
+  let roadtrip_id = req.params.roadtrip_id;
+  let completed = req.body;
+  
+  try{
+    await db(
+      `UPDATE roadtrips SET done=${completed.done} WHERE id=${roadtrip_id}`
+    );
+    let completedTrip = await db(`SELECT * FROM roadtrips WHERE id=${roadtrip_id}`);
+    res.status(201).send(completedTrip.data);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 module.exports = router;

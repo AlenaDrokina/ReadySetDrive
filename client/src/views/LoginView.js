@@ -31,7 +31,10 @@ function LoginView(props) {
   const gotoRegisterPage = () => navigate("/register");
 
   return (
-    <div className="LoginView row">
+    // <meta charset="UTF-8">
+    // <meta name="viewport" content="width=device-width, initial-scale=1">
+    // <meta name="author" content="Yinka Enoch Adedokun">
+    <div className="row main-content bg-success text-center">
       <div class="col-md-4 text-center company__info">
         <span class="company__logo">
           <h2>
