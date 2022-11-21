@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
+const { ensureSameUserB } = require("../middleware/guards");
 
 // GET all stops for a roadtrip
 
@@ -26,11 +27,11 @@ router.get("/:roadtrip_id", async function (req, res) {
 //POST new stop
 
 router.post("/", async (req, res) => {
-  let { title, address, longitude, latitude, roadtrip_id } = req.body;
+  let { title, address, longitude, latitude, roadtrip_id, user_id } = req.body;
 
   let sql = `
-        INSERT INTO stops (title, address, longitude, latitude, roadtrip_id)
-        VALUES ('${title}', '${address}', ${longitude}, ${latitude}, ${roadtrip_id})
+        INSERT INTO stops (title, address, longitude, latitude, roadtrip_id, user_id)
+        VALUES ('${title}', '${address}', ${longitude}, ${latitude}, ${roadtrip_id}, ${user_id})
     `;
   try {
     await db(sql);

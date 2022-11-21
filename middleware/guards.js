@@ -45,6 +45,25 @@ function ensureSameUser(req, res, next) {
   }
 }
 
+//Get userId from body
+function ensureSameUserB(req, res, next) {
+  let token = _getToken(req);
+
+  try {
+    // Throws error on invalid/missing token
+    let payload = jwt.verify(token, SECRET_KEY);
+    // If we get here, a valid token was passed
+    //console.log(payload, req.body.user_id);
+    if (payload.user_id === Number(req.body.user_id)) {
+      next();
+    } else {
+      res.status(403).send({ error: "Forbidden" });
+    }
+  } catch (err) {
+    res.status(401).send({ error: "Unauthorized" });
+  }
+}
+
 /**
  * Return the JWT token if found, else return ''
  * Authorization header string looks like: "Bearer <token>"
@@ -66,4 +85,5 @@ function _getToken(req) {
 module.exports = {
   ensureUserLoggedIn,
   ensureSameUser,
+  ensureSameUserB,
 };
