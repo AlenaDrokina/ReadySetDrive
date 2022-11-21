@@ -1,6 +1,11 @@
 import Local from "./Local";
 
 class Api {
+  // Register a new user
+  static async registerUser(username, email, password, confPassword) {
+    let body = { username, email, password, confPassword };
+    return await this._doFetch("/auth/register", "POST", body);
+  }
   /**
    * Log in a user
    **/
@@ -40,6 +45,10 @@ class Api {
     return await this._doFetch("/roadtrips");
   }
 
+  //PATCH (mark roadtrip as complete)
+  static async updateRoadtrip(roadtrip_id, completed) {
+    return await this._doFetch(`/roadtrips/${roadtrip_id}/done`, "PATCH", completed);
+  }
 
   //POST new stop
   static async addStop(newPlace) {
@@ -80,14 +89,13 @@ class Api {
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
       let response = await fetch(url, options);
-     // console.log(response);
+      myresponse.data = await response.json();
+      myresponse.status = response.status;
+      // console.log(response);
       if (response.ok) {
         myresponse.ok = true;
-        myresponse.data = await response.json();
-        myresponse.status = response.status;
       } else {
-        myresponse.status = response.status;
-        myresponse.error = response.statusText;
+        myresponse.error = myresponse.data.error;
       }
     } catch (err) {
       myresponse.error = err.message;

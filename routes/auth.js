@@ -11,6 +11,7 @@ const db = require("../model/helper");
 
 router.post("/register", async (req, res) => {
   let { username, email, password } = req.body;
+  console.log("register", req.body);
   let hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
 
   try {
@@ -34,7 +35,7 @@ router.post("/login", async (req, res) => {
 
   try {
     let results = await db(
-      `SELECT * FROM users WHERE username = '${username}'`
+      `SELECT * FROM users WHERE username ='${username}'`
     );
     if (results.data.length === 0) {
       // Username not found
