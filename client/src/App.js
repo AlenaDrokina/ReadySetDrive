@@ -6,6 +6,7 @@ import Api from "./helpers/Api";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import LoginView from "./views/LoginView";
+import RegisterView from "./views/RegisterView";
 import HomeView from "./views/HomeView";
 import Favorites from "./views/Favorites";
 import { NavLink } from "react-router-dom";
@@ -22,10 +23,28 @@ import Error404View from "./views/Error404View";
 function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const [registerErrorMsg, setRegisterErrorMsg] = useState("");
   const [cardLiked, setCardLiked] = useState([]);
   const [roadtripData, setRoadtripData] = useState([]);
 
   const navigate = useNavigate();
+
+  async function doRegister(username, email, password, confPassword) {
+    let myresponse = await Api.registerUser(
+      username,
+      email,
+      password,
+      confPassword
+    );
+    if (myresponse.ok) {
+      Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      setUser(myresponse.data.user);
+      setRegisterErrorMsg("");
+      navigate("/login");
+    } else {
+      setRegisterErrorMsg(`Register failed: ${myresponse.error}`);
+    }
+  }
 
   async function doLogin(username, password) {
     let myresponse = await Api.loginUser(username, password);
@@ -35,7 +54,7 @@ function App() {
       setLoginErrorMsg("");
       navigate("/");
     } else {
-      setLoginErrorMsg("Login failed");
+      setLoginErrorMsg(`Login failed: ${myresponse.error}`);
     }
   }
 
@@ -127,6 +146,16 @@ function App() {
             <LoginView
               loginCb={(u, p) => doLogin(u, p)}
               loginError={loginErrorMsg}
+            />
+          }
+        />
+
+        <Route
+          path="/register"
+          element={
+            <RegisterView
+              registerCb={(n, e, p, conf) => doRegister(n, e, p, conf)}
+              registerError={registerErrorMsg}
             />
           }
         />

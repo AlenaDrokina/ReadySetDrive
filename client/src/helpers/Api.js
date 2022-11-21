@@ -1,6 +1,11 @@
 import Local from "./Local";
 
 class Api {
+  // Register a new user
+  static async registerUser(username, email, password, confPassword) {
+    let body = { username, email, password, confPassword };
+    return await this._doFetch("/auth/register", "POST", body);
+  }
   /**
    * Log in a user
    **/
@@ -84,14 +89,16 @@ class Api {
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
       let response = await fetch(url, options);
+<<<<<<< HEAD
+=======
+      myresponse.data = await response.json();
+      myresponse.status = response.status;
+>>>>>>> main
       // console.log(response);
       if (response.ok) {
         myresponse.ok = true;
-        myresponse.data = await response.json();
-        myresponse.status = response.status;
       } else {
-        myresponse.status = response.status;
-        myresponse.error = response.statusText;
+        myresponse.error = myresponse.data.error;
       }
     } catch (err) {
       myresponse.error = err.message;
