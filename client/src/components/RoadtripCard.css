@@ -17,10 +17,8 @@
   font-size: x-large;
   color: rgb(13, 58, 236);
 }
-
-/* .title-heart-container {
-  display: flex;
-  justify-content: space-between;
+/* 
+.heart{
 } */
 .heart-icon {
   font-size: x-large;

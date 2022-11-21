@@ -40,7 +40,6 @@ class Api {
     return await this._doFetch("/roadtrips");
   }
 
-
   //POST new stop
   static async addStop(newPlace) {
     return await this._doFetch("/stops", "POST", newPlace);
@@ -49,6 +48,11 @@ class Api {
   //DELETE stop
   // static async deleteStop(id) {
   //   return await this._doFetch(`/stops/${id}`, "DELETE", id);
+  // }
+
+  //Post favs
+  // static async addFav(user_id) {
+  //   return await this._doFetch(`/favorite_roadtrips/${user_id}`, "POST");
   // }
 
   /**
@@ -80,7 +84,7 @@ class Api {
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
       let response = await fetch(url, options);
-     // console.log(response);
+      // console.log(response);
       if (response.ok) {
         myresponse.ok = true;
         myresponse.data = await response.json();
