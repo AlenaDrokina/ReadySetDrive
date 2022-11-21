@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import "./MarkerTable.css";
 
+
 function MarkerTable(props) {
 
+
 async function deleteStop(id) {
+
+
   let options = {
     method: "DELETE",
   };
+
   try {
-    let response = await fetch(`/stops/${id}`, options);
+    let response = await fetch(`/stops/${id}/`, options);
     if (response.ok) {
       props.updateStopsCb();
     } else {

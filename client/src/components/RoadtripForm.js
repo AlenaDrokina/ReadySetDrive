@@ -3,9 +3,6 @@ import Api from "../helpers/Api";
 import "./RoadtripForm.css";
 
 
-
-
-
 function RoadtripForm(props) {
 
   const BLANK_TRIP_FORM = {

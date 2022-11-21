@@ -172,7 +172,7 @@ function App() {
           path="/stops/:id"
           element={
             <PrivateRoute>
-              <StopsView />
+              <StopsView user={user}/>
             </PrivateRoute>
           }
         />
