@@ -9,6 +9,7 @@ import "./StopsView.css";
 
 import StopsForm from "../components/StopsForm";
 import Api from "../helpers/Api";
+import Local from "../helpers/Local";
 
 function StopsView(props) {
   let { id } = useParams();
@@ -47,8 +48,10 @@ function StopsView(props) {
 
   //add marker to map & add stop to db
   async function addMarkerForAddress(addressObj) {
+    let uid= await Local.getUser_id()
     // Send a request to OpenCage to geocode 'addr'
     let myresponse = await geocode(addressObj.address);
+    console.log("2", myresponse)
     if (myresponse.ok) {
       if (myresponse.data.latLng) {
         let d = myresponse.data;
@@ -58,10 +61,12 @@ function StopsView(props) {
           latitude: d.latLng[0],
           longitude: d.latLng[1],
           roadtrip_id: id,
+          user_id: uid
         };
 
         //add stop to db
         let response = await Api.addStop(newPlace);
+        console.log("hi", newPlace)
         if (response.ok) {
           setPlaces(response.data);
         } else {

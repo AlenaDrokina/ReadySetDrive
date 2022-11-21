@@ -69,3 +69,7 @@ INSERT INTO `roadtrips`(image_url, title, countries, description, done, user_id)
 
 INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
     VALUES ("Seville", "Av. Test", -5.984459, 37.389091, 1), ("Dos Hermanas", "Test", 37.283180, -5.922240, 1);
+
+
+INSERT INTO `favorite_roadtrips` (user_id, roadtrip_id) 
+VALUES (1 , 1), (1 , 2), (1, 3), (2, 1), (2, 5);

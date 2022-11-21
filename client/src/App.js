@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
-
 import Local from "./helpers/Local";
 import Api from "./helpers/Api";
-
 import Navbar from "./components/Navbar";
-
 import PrivateRoute from "./components/PrivateRoute";
 import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
 import HomeView from "./views/HomeView";
-import Favourites from "./views/Favourites";
-
+import Favorites from "./views/Favorites";
 import { NavLink } from "react-router-dom";
-
 import FeaturedTripView from "./views/FeaturedTripView";
 // import NewRoadTripView from "./views/NewRoadTripView";
 import RoadtripView from "./views/RoadtripView"; // import FeaturedTripView from "./views/FeaturedTripView";
@@ -23,6 +18,8 @@ import PastRoadTripView from "./views/PastRoadTripView";
 import ProfileView from "./views/ProfileView";
 import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
+import { useParams } from "react-router-dom";
+import "./Logotip.png";
 // import Local from "./helpers/Local";
 
 function App() {
@@ -31,6 +28,7 @@ function App() {
   const [registerErrorMsg, setRegisterErrorMsg] = useState("");
   const [cardLiked, setCardLiked] = useState([]);
   const [roadtripData, setRoadtripData] = useState([]);
+  let { user_id } = useParams();
 
   const navigate = useNavigate();
 
@@ -112,13 +110,23 @@ function App() {
     // makeFav([...cardLiked, currentLiked]); Can you see me?
   }
 
+  // async function fetchRoadtrips() {
+  //   let myresponse = await Api.addFav();
+  //   if (myresponse.ok) {
+  //     setCardLiked(myresponse.data);
+  //   } else {
+  //     console.log("Response not okay.");
+  //   }
+  // }
+
   return (
     <div className="App">
       <NavLink to="/" className="Logo">
         {" "}
-        <h3> READY SET DRIVE </h3>
+        <h3> READY SET DRIVE! </h3>
+        {/* <img src="Logotip.png" alt="logo" /> */}
       </NavLink>
-      <Navbar user={user} logoutCb={doLogout} />
+      <Navbar user={user} logoutCb={doLogout} user_id={user_id} />
 
       <Routes>
         <Route
@@ -132,15 +140,6 @@ function App() {
           element={
             <PrivateRoute>
               <ProfileView user={user} />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
-          path="/users/:userId"
-          element={
-            <PrivateRoute>
-              <ProfileView />
             </PrivateRoute>
           }
         />
@@ -201,10 +200,10 @@ function App() {
         />
 
         <Route
-          path="/favourites"
+          path="/favorite_roadtrips/:user_id"
           element={
             <PrivateRoute>
-              <Favourites cardLiked={cardLiked} />
+              <Favorites cardLiked={cardLiked} user={user} />
             </PrivateRoute>
           }
         />
