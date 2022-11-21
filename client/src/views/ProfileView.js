@@ -18,10 +18,15 @@ function ProfileView(props) {
   const [user, setUser] = useState(null);
   const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   const [errorMsg, setErrorMsg] = useState("");
+  const [roadtripDataUser, setRoadtripDataUser] = useState({});
+  const [completedTrips, setCompletedTrips] = useState({});
+  const [plannedTrips, setPlannedTrips] = useState({});
+
   let { user_id } = useParams();
 
   useEffect(() => {
     fetchProfile();
+    getRoadtripDataUser();
   }, []);
 
   async function fetchProfile() {
@@ -35,6 +40,24 @@ function ProfileView(props) {
       setErrorMsg(msg);
     }
   }
+
+  async function getRoadtripDataUser() {
+    try {
+      let response = await fetch(`/roadtrips/${user_id}`);
+      console.log(response);
+      if (response.ok) {
+        let roadtripDataUser = await response.json();
+        setRoadtripDataUser(roadtripDataUser);
+        getCompletedTrips(roadtripDataUser);
+        getPlannedTrips(roadtripDataUser);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Server error: ${err.message}`);
+    }
+  }
+
   if (errorMsg) {
     return <h2 style={{ color: "blue" }}>{errorMsg}</h2>;
   }
@@ -51,6 +74,17 @@ function ProfileView(props) {
     console.log(profileData);
     setProfileData(BLANK_STOP_PROFILE);
   }
+
+  function getCompletedTrips(roadtrips) {
+    let completedTrips = roadtrips.filter((el) => el.done === 1);
+    setCompletedTrips(completedTrips);
+  }
+
+  function getPlannedTrips(roadtrips) {
+    let plannedTrips = roadtrips.filter((el) => el.done === 0);
+    setPlannedTrips(plannedTrips);
+  }
+
   return (
     <div className="ProfileView">
       <h1>Profile</h1>
@@ -106,7 +140,7 @@ function ProfileView(props) {
 
           <div className="description">
             {" "}
-            <p class="text-left">
+            <p className="text-left">
               Description: <br /> {user.slogan}
             </p>
           </div>
@@ -115,13 +149,25 @@ function ProfileView(props) {
           <h4>
             Add a past project <NavLink to="/PastRoadTripView">HERE</NavLink>{" "}
           </h4>
-          <div className="CardGrid1">Cards</div>
+          <div className="CardGrid1">
+            {completedTrips.length >= 1
+              ? completedTrips.map((element) => {
+                  return <h5>{element.id}</h5>;
+                })
+              : null}
+          </div>
         </div>
         <div className="Project2">
           <h4>
             Add a new project <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
           </h4>
-          <div className="CardGrid2">Cards</div>
+          <div className="CardGrid2">
+            {plannedTrips.length >= 1
+              ? plannedTrips.map((element) => {
+                  return <h5>{element.id}</h5>;
+                })
+              : null}
+          </div>
         </div>
       </div>
     </div>

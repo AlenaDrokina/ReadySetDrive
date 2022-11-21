@@ -137,15 +137,6 @@ function App() {
         />
 
         <Route
-          path="/users/:userId"
-          element={
-            <PrivateRoute>
-              <ProfileView />
-            </PrivateRoute>
-          }
-        />
-
-        <Route
           path="/login"
           element={
             <LoginView
