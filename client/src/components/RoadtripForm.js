@@ -14,9 +14,9 @@ function RoadtripForm(props) {
     description: "",
     image_url: "",
     done: 0,
-    user_id: props.user.id       //debug only, remove after auth is done!!
+    user_id: props.user.id
   };
-  
+
   const [formData, setFormData] = useState(BLANK_TRIP_FORM);
 
   function handleChange(event){
