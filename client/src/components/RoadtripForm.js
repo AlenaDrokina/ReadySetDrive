@@ -3,17 +3,20 @@ import Api from "../helpers/Api";
 import "./RoadtripForm.css";
 
 
-const BLANK_TRIP_FORM = {
-  title: "",
-  countries: "",
-  description: "",
-  image_url: "",
-  done: 0,
-  user_id: 1        //debug only, remove after auth is done!!
-};
+
 
 
 function RoadtripForm(props) {
+
+  const BLANK_TRIP_FORM = {
+    title: "",
+    countries: "",
+    description: "",
+    image_url: "",
+    done: 0,
+    user_id: props.user.id
+  };
+
   const [formData, setFormData] = useState(BLANK_TRIP_FORM);
 
   function handleChange(event){
