@@ -4,8 +4,11 @@
 
 class Local {
   static saveUserInfo(token, user) {
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
+    //TODO: Check token validation
+    if (token && user) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+    }
   }
 
   static removeUserInfo() {
