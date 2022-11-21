@@ -1,11 +1,13 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
+const { ensureSameUserB } = require("../middleware/guards");
 
 // GET all stops for a roadtrip
 
 router.get("/:roadtrip_id", async function (req, res) {
   let roadtrip_id = req.params.roadtrip_id;
+  
   try {
     let results = await db(
       `SELECT * FROM stops WHERE roadtrip_id=${roadtrip_id}`
@@ -25,8 +27,15 @@ router.get("/:roadtrip_id", async function (req, res) {
 
 //POST new stop
 
-router.post("/", async (req, res) => {
-  let { title, address, longitude, latitude, roadtrip_id } = req.body;
+router.post("/", ensureSameUserB, async (req, res) => {
+  let { title, address, longitude, latitude, roadtrip_id, user_id } = req.body;
+
+  // let sql_join = `
+  //       SELECT roadtrips.id, roadtrips.user_id, stops.*
+  //       FROM stops
+  //       LEFT JOIN roadtrips ON roadtrips.id = stops.roadtrip_id
+  //       WHERE roadtrips.id = 1
+  //       `
 
   let sql = `
         INSERT INTO stops (title, address, longitude, latitude, roadtrip_id)
