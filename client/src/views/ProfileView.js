@@ -125,7 +125,7 @@ function ProfileView(props) {
         <div className="userInfo">
           {user.image_url && (
             <div key={user.image_url}>
-              {/* <img src={user.image_url} alt="User" /> */}
+              <img src={user.image_url} alt="User" />
             </div>
           )}
           <br />
@@ -146,27 +146,61 @@ function ProfileView(props) {
           </div>
         </div>
         <div className="Project1">
+          <h4>My shared roadtrips</h4>
           <h4>
-            Add a past project <NavLink to="/PastRoadTripView">HERE</NavLink>{" "}
+            Add another one <NavLink to="/PastRoadTripView">HERE</NavLink>{" "}
           </h4>
-          <div className="CardGrid1">
-            {completedTrips.length >= 1
-              ? completedTrips.map((element) => {
-                  return <h5>{element.id}</h5>;
-                })
-              : null}
+          <div className="container CardGrid1">
+            <div className="row">
+              {completedTrips.length >= 1
+                ? completedTrips.map((element) => {
+                    return (
+                      <div className="col-md-6 col-lg-4 mb-4">
+                        <div className="card h-100 profile-cards">
+                          <img
+                            className="crad-img-top"
+                            src={element.image_url}
+                            alt="completed roadtrips"
+                          />
+                          <div className="card-body">
+                            <h5 className="card-title">{element.title}</h5>
+                            <h6 className="card-text">{element.countries}</h6>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+                : null}
+            </div>
           </div>
         </div>
         <div className="Project2">
+          <h4>My planned roadtrips</h4>
           <h4>
-            Add a new project <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
+            Plan another one <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
           </h4>
-          <div className="CardGrid2">
-            {plannedTrips.length >= 1
-              ? plannedTrips.map((element) => {
-                  return <h5>{element.id}</h5>;
-                })
-              : null}
+          <div className="container CardGrid2">
+            <div className="row">
+              {plannedTrips.length >= 1
+                ? plannedTrips.map((element) => {
+                    return (
+                      <div className="col-md-6 col-lg-4 mb-4">
+                        <div className="card h-100">
+                          <img
+                            className="crad-img-top"
+                            src={element.image_url}
+                            alt="completed roadtrips"
+                          />
+                          <div className="card-body">
+                            <h5 className="card-title">{element.title}</h5>
+                            <h6 className="card-text">{element.countries}</h6>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+                : null}
+            </div>
           </div>
         </div>
       </div>
