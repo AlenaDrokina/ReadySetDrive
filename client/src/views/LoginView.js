@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LoginView.css";
 
 function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -31,52 +32,67 @@ function LoginView(props) {
 
   return (
     <div className="LoginView row">
-      <div className="col-4 offset-4">
-        <h2>Login</h2>
-
-        {props.loginError && (
-          <div className="alert alert-danger">{props.loginError}</div>
-        )}
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>
-              Username
-              <input
-                type="text"
-                name="usernameInput"
-                required
-                className="form-control"
-                value={username}
-                onChange={handleChange}
-              />
-            </label>
+      <div class="col-md-4 text-center company__info">
+        <span class="company__logo">
+          <h2>
+            <span class="fa fa-android"></span>
+          </h2>
+        </span>
+        <h4 class="company_title">Your Company Logo</h4>
+      </div>
+      <div className="col-md-8 col-xs-12 col-sm-12 login_form">
+        <div class="container-fluid">
+          <div class="row">
+            <h2>Login</h2>
           </div>
+          {props.loginError && (
+            <div className="alert alert-danger">{props.loginError}</div>
+          )}
 
-          <div className="form-group">
-            <label>
-              Password
-              <input
-                type="password"
-                name="passwordInput"
-                required
-                className="form-control"
-                value={password}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
+          <form control="" className="form-group" onSubmit={handleSubmit}>
+            <div className="row">
+              <label>
+                Username
+                <input
+                  type="text"
+                  id="username"
+                  name="usernameInput"
+                  required
+                  className="form__input"
+                  value={username}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
 
-          <button type="submit" className="btn btn-primary">
-            SIGN IN
-          </button>
+            <div className="row">
+              <label>
+                Password
+                <input
+                  type="password"
+                  id="password"
+                  name="passwordInput"
+                  required
+                  className="form__input"
+                  value={password}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+
+            <div className="row">
+              <input type="submit" value="Submit" class="btn" />
+            </div>
+          </form>
+        </div>
+        <div class="row">
           <p>
             Don't have an account?{" "}
             <span className="text-success" onClick={gotoRegisterPage}>
-              Sign up
+              Register Here
             </span>
           </p>
-        </form>
+        </div>
       </div>
     </div>
   );
