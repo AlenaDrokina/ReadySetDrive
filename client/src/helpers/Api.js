@@ -31,6 +31,9 @@ class Api {
     return await this._doFetch(`/users/${user_id}`);
   }
 
+  static async getFav(user_id) {
+    return await this._doFetch(`/favorite_roadtrips/${user_id}`);
+  }
   /**
    * General purpose GET (for URLs like /members-only)
    **/
@@ -58,6 +61,11 @@ class Api {
   //DELETE stop
   // static async deleteStop(id) {
   //   return await this._doFetch(`/stops/${id}`, "DELETE", id);
+  // }
+
+  //Post favs
+  // static async addFav(user_id) {
+  //   return await this._doFetch(`/favorite_roadtrips/${user_id}`, "POST");
   // }
 
   /**
