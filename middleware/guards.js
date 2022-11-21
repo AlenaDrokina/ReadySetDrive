@@ -15,6 +15,7 @@ function ensureUserLoggedIn(req, res, next) {
   try {
     // Throws error on invalid/missing token
     jwt.verify(token, SECRET_KEY);
+    res.locals.user_id = payload.user_id;
     // If we get here, a valid token was passed
     next();
   } catch (err) {
@@ -29,12 +30,12 @@ function ensureUserLoggedIn(req, res, next) {
 
 function ensureSameUser(req, res, next) {
   let token = _getToken(req);
-
+  // console.log(token);
   try {
     // Throws error on invalid/missing token
     let payload = jwt.verify(token, SECRET_KEY);
     // If we get here, a valid token was passed
-    console.log(payload, req.params.user_id);
+    console.log("heyyaa", payload, req.params.user_id);
     if (payload.user_id === Number(req.params.user_id)) {
       next();
     } else {

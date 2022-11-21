@@ -2,8 +2,10 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 import { HiOutlineMenu } from "react-icons/hi";
+import { useParams } from "react-router-dom";
 
 function Navbar(props) {
+  let { user_id } = useParams();
   return (
     <nav className="dropdown">
       <h3>
@@ -46,6 +48,14 @@ function Navbar(props) {
               Logout
             </Link>
           </li>
+          <li className="dropdown-content">
+            <NavLink
+              style={{ textDecoration: "none", color: "black" }}
+              to={`/favorite_roadtrips/${props.user.id}`}
+            >
+              Favorites
+            </NavLink>
+          </li>
         </ul>
       ) : (
         <ul>
@@ -56,16 +66,6 @@ function Navbar(props) {
           </li>
         </ul>
       )}
-      <ul>
-        <li className="dropdown-content">
-          <NavLink
-            style={{ textDecoration: "none", color: "black" }}
-            to="/favourites"
-          >
-            Favourites
-          </NavLink>
-        </li>
-      </ul>
     </nav>
   );
 }

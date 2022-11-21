@@ -91,7 +91,7 @@ function ProfileView(props) {
         <div className="userInfo">
           {user.image_url && (
             <div key={user.image_url}>
-              <img src={user.image_url} alt="User" />
+              {/* <img src={user.image_url} alt="User" /> */}
             </div>
           )}
           <br />
