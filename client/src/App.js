@@ -123,7 +123,7 @@ function App() {
     <div className="App">
       <NavLink to="/" className="Logo">
         {" "}
-        <h3> READY SET DRIVE </h3>
+        <h3> READY SET DRIVE! </h3>
         {/* <img src="Logotip.png" alt="logo" /> */}
       </NavLink>
       <Navbar user={user} logoutCb={doLogout} user_id={user_id} />
