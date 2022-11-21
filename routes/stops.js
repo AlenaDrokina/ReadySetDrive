@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
-const { ensureSameUserB } = require("../middleware/guards");
+const { ensureSameUserB, ensureSameUser } = require("../middleware/guards");
 
 // GET all stops for a roadtrip
 
@@ -47,8 +47,10 @@ router.post("/", ensureSameUserB, async (req, res) => {
 
 // DELETE stop 
 
-router.delete("/:id", async function (req, res, next) {
+router.delete("/:id/", async function (req, res, next) {
   let stopId = req.params.id;
+
+
   try {
     let result = await db(`SELECT * FROM stops WHERE id=${stopId}`);
     if (result.data.length === 0) {

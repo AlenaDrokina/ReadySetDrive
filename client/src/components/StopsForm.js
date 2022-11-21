@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom";
 import Api from "../helpers/Api";
 import "./StopsForm.css"
 
-
 const BLANK_ADDRESS_FORM = {
     title: "",
     address: "",

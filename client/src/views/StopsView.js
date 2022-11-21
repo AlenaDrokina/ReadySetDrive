@@ -99,25 +99,18 @@ function StopsView(props) {
 
   //MARK TRIP AS COMPLETE
   async function markComplete() {
-    let roadtrip_id = id;
-    let uid= await Local.getUser_id()
-
     let completed = {
       done: 1,
     };
 
-    
-    if (uid = roadtrip_id) { 
-        let response = await Api.updateRoadtrip(roadtrip_id, completed);
-        if (response.ok) {
-          navigate(`/`); //would like this to go to profile, but 403
-        } else {
-          console.log(`Server error: ${response.status} ${response.statusText}`);
-        }
-  } else {
-    console.log("you can't do this")
-  }
+    let roadtrip_id = id;
 
+    let response = await Api.updateRoadtrip(roadtrip_id, completed);
+    if (response.ok) {
+      navigate(`/`); //would like this to go to profile, but 403
+    } else {
+      console.log(`Server error: ${response.status} ${response.statusText}`);
+    }
   }
 
   return (
