@@ -21,7 +21,7 @@ router.get("/:user_id", async function (req, res) {
 });
 
 router.post("/:user_id", async (req, res) => {
-  //let roadtrip_id = req.params.roadtrip_id;
+  // let roadtrip_id = req.params.roadtrip_id;
   let { roadtrip_id } = req.body;
 
   let user_id = req.params.user_id;
@@ -41,23 +41,30 @@ router.post("/:user_id", async (req, res) => {
     console.log(err.message);
   }
 });
-// router.delete("/:id/", async function (req, res, next) {
-//   let stopId = req.params.id;
-
-//   try {
-//     let result = await db(`SELECT * FROM stops WHERE id=${stopId}`);
-//     if (result.data.length === 0) {
-//       res.status(404).send({ error: "Stop not found" });
-//     } else {
-//       await db(`DELETE FROM stops WHERE id = ${stopId}`);
-//       let result = await db(`SELECT * FROM stops`);
-//       let stops = result.data;
-//       res.status(201).send(stops);
-//     }
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+router.delete("/:user_id/:roadtrip_id", async (req, res) => {
+  // URL params are available in req.params
+  let roadtrip_id = req.params.roadtrip_id;
+  try {
+    // get item with id matching req params
+    let result = await db(
+      `SELECT * FROM favorite_roadtrips WHERE id = ${roadtrip_id}`
+    );
+    // if this returns nothing, id doesn’t exist: throw an error
+    if (result.data.length === 0) {
+      res.status(404).send({ error: "item not found" });
+    } else {
+      // delete item with id matching req params
+      await db(`DELETE FROM favorite_roadtrips WHERE id = ${roadtrip_id}`);
+      // save result to result variable
+      let result = await db(`SELECT * FROM favorite_roadtrips`);
+      // send result data to client and return server status
+      res.status(200).send(result.data);
+    }
+    // if try fails, catch with 500 error
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 // router.post("/:user_id/:roadtrip_id", async (req, res) => {
 //   let roadtrip_id = req.params.roadtrip_id;
