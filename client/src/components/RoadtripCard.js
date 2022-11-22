@@ -12,7 +12,7 @@ function RoadtripCard(props) {
   // const [current, setCurrent] = useState(props.roadtripData); .
   const navigate = useNavigate();
 
-  let linkToFeaturedView = `/roadtrip/${props.roadtripData.id}`;
+  let linkToFeaturedView = `/roadtrips/${props.roadtripData.id}`;
 
   function changeView() {
     navigate(linkToFeaturedView);

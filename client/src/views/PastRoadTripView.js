@@ -9,6 +9,7 @@ function PastRoadTripView(props) {
       <div className="row mb-5">
         <RoadtripForm
           addRoadtripCb={(formData) => props.addRoadtripCb(formData)}
+          user={props.user}
         />
       </div>
     </div>

@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom";
 import Api from "../helpers/Api";
 import "./StopsForm.css"
 
-
 const BLANK_ADDRESS_FORM = {
     title: "",
     address: "",
@@ -25,26 +24,6 @@ function StopsForm(props){
     props.addMarkerCb(address);
     setAddress(BLANK_ADDRESS_FORM);
 }
-
-
-
-//mark roadtrip as complete moved to stops view
-// async function markComplete() {
- 
-//   let completed = {
-//    done: 1
-//  };
-
-//   let roadtrip_id = id;    //debug purposes only but works this way, need to get roadtrip somehow
-
-//  let response = await Api.updateRoadtrip(roadtrip_id, completed);
-//    if(response.ok) {
-//    //updateRoadtrip();
-//    } else {
-//    console.log(`Server error: ${response.status} ${response.statusText}`);
-//    }
-// }
-
 
 
 return (
