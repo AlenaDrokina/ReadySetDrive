@@ -2,7 +2,22 @@ li {
   list-style-type: none;
   text-decoration: none;
 }
-.burger {
+
+.logoIcon {
+  width: 200px;
+  margin-left: 25px;
+}
+
+.button {
   text-align: right;
 }
 
+.navbar .btn {
+  float: right;
+  width: 50px;
+  margin-right:100px;
+}
+
+.dropdown-menu {
+  float: right;
+}

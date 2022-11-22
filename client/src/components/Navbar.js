@@ -3,25 +3,32 @@ import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useParams } from "react-router-dom";
+import logo from './logo.png'
 
 function Navbar(props) {
   let { user_id } = useParams();
   return (
-    <nav className="navbar">
-      {/* <h3>
+    <nav className="navbar navbar-light" color="background-color: #e3f2fd;">
+      <NavLink to="/" className="Logo">
         {" "}
-        <HiOutlineMenu />
-      </h3> */}
+        <img className="logoIcon" src={logo} alt="carlogo"/>
+        {/* <img src="Logotip.png" alt="logo" /> */}
+      </NavLink>
+
+      <li className="nav-item dropdown">
+
       <button
-        // type="button"
-        className="float-right"
-        // class="btn btn-primary dropdown-toggle"
+        type="button"
+        className="btn btn-primary dropdown-toggle"
         data-bs-toggle="dropdown"
+        id="navbarDropdownMenuLink"
       >
         {" "}
         <HiOutlineMenu />
       </button>
+
       {props.user ? (
+  
         <div className="dropdown-menu">
           <a className="dropdown-item">
             <NavLink style={{ textDecoration: "none", color: "black" }} to="/">
@@ -66,6 +73,7 @@ function Navbar(props) {
             </NavLink>
           </a>
         </div>
+    
       ) : (
         <div className="dropdown-menu">
           <a className="dropdown-item">
@@ -74,7 +82,9 @@ function Navbar(props) {
             </NavLink>
           </a>
         </div>
+
       )}
+    </li>
     </nav>
   );
 }

@@ -130,7 +130,7 @@ function StopsView(props) {
           </div>
 
           <div className="row2">
-            <a type="button" className="btn btn-primary" href="/users/:user_id" role="button">
+            <a type="button" className="btn btn-primary" href="/" role="button">
               {" "}
               No, I'll keep planning later{" "}
             </a>
