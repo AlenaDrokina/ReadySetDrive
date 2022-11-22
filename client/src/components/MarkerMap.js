@@ -1,5 +1,5 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
 import "./MarkerMap.css";
 // Global Leaflet variable; only necessary for the green marker.
@@ -28,13 +28,23 @@ function MarkerMap(props) {
   //   nameAnchor: [1, -34],
   // });
 
+  const polyline = [
+    [50.11, 8.68],
+    [41.38, 2.17],
+    [38.707, -9.153],
+  ]
+
+
+  console.log("lat", props.places.latitude)
+
+  const lineColor = { color: 'red' }
+
   return (
     <MapContainer
       className="MarkerMap"
       center={props.home}
       zoom={props.zoom}
-      // {!props.places && zoom={3}}
-      style={{ height: "500px" }} // you MUST specify map height, else it will be 0!
+      style={{ height: "500px" }}
     >
       {/* Create the tile layer that shows the map */}
       <TileLayer
@@ -42,34 +52,27 @@ function MarkerMap(props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* Draw the green "YOU ARE HERE" marker */}
-      {/* {props.home && (
-        <Marker position={props.home}>
-          <Popup>YOU ARE HERE</Popup>
-        </Marker>
-      )} */}
+      {/* <Polyline pathOptions={limeOptions} positions={polyline} /> */}
 
-      {/* Draw a blue marker for each of the places passed as prop */}
-      {props.places.map((p) => (
-        <Marker
-          key={p.title}
-          position={[p.latitude, p.longitude]}
-          icon={greenMarker}
-        >
-          <Popup>
-            {breakAddr(p.title)}{" "}
-            {/* <button type="button" onClick={(e) => props.updateMarker(p.id)}>
-              &#x2713;
-            </button> */}
-            {/* <button
-              type="buttonMarker"
-              onClick={(e) => props.deleteMarker(p.id)}
-            >
-              X
-            </button> */}
-          </Popup>
-        </Marker>
-      ))}
+            {props.places.map((p) => (
+              <Marker
+                key={p.title}
+                position={[p.latitude, p.longitude]}
+                icon={greenMarker}
+              >
+              
+              {console.log("mapLat",[[p.latitude, p.longitude]])}
+
+              <Polyline 
+                positions={[[p.latitude, p.longitude]]}
+                pathOptions={lineColor}
+              />
+
+              <Popup> {breakAddr(p.title)}{" "} </Popup>
+
+            </Marker>
+            ))}
+
     </MapContainer>
   );
 }
