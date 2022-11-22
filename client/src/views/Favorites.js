@@ -10,25 +10,41 @@ export default function Favorites(props) {
   const [faved, setFaved] = useState([]);
   // const [allcards, setAllCards] = useState([]);
   let { user_id } = useParams();
-  let { roadtrip_id } = useParams();
+  // let { roadtrip_id } = useParams();
 
   useEffect(() => {
-    // getCurrentRoadtripData();
-    newFav();
+    // newFav();
     getFav();
+    // addLikedCard();
   }, []);
-  // function cards(id) {
-  //   let card = props.roadtripData.filter((trip) => trip.id === id);
-  //   setFaved((cards) => [...cards, card[0]]);
-  // }
-  let makeFav = props.makeFav;
-  console.log("heyy", props.cardLiked);
+  console.log("The liked Cards", props.cardLiked);
+  // let makeFav = props.makeFav;
+  // console.log("CardLiked", props.cardLikedCb);
   // setFaved(props.cardLiked);
 
-  async function newFav() {
-    setFaved(props.cardLiked);
-    console.log("THIS IS FAVED", faved);
-  }
+  // async function newFav() {
+  //   setFaved(props.cardLikedCb);
+  //   console.log("THIS IS FAVED", faved);
+  // }
+  // async function addLikedCard(id) {
+  //   let options = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(faved),
+  //   };
+
+  //   try {
+  //     let response = await fetch(`/foavorite_roadtrips/${user_id}`, options);
+  //     if (response.ok) {
+  //       let newLiked = await response.json();
+  //       setFaved(newLiked);
+  //     } else {
+  //       console.log(`Server error: ${response.status} ${response.statusText}`);
+  //     }
+  //   } catch (err) {
+  //     console.log(`Network error: ${err.message}`);
+  //   }
+  // }
 
   async function getFav() {
     //let id = await Api.getUser(user_id);
