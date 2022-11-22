@@ -22,11 +22,12 @@ function RoadtripCard(props) {
   function handleClick(id) {
     setIsActive(!isActive);
     props.makeFav(id);
-    console.log("you just liked");
   }
   // function handleHover(event) {
   //   console.log("you just clicked");
   // }
+
+  //put on click - just the id
 
   return (
     <div className="col-md-6 col-lg-4 mb-4">
