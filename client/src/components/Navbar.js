@@ -3,37 +3,44 @@ import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useParams } from "react-router-dom";
+import logo from './logo.png'
 
 function Navbar(props) {
   let { user_id } = useParams();
   return (
-    <nav className="navbar" class="float-right">
-      {/* <h3>
+    <nav className="navbar navbar-light" color="background-color: #e3f2fd;">
+      <NavLink to="/" className="Logo">
         {" "}
-        <HiOutlineMenu />
-      </h3> */}
+        <img className="logoIcon" src={logo} alt="carlogo"/>
+        {/* <img src="Logotip.png" alt="logo" /> */}
+      </NavLink>
+
+      <li className="nav-item dropdown">
+
       <button
-        // type="button"
-        class="float-right"
-        // class="btn btn-primary dropdown-toggle"
+        type="button"
+        className="btn btn-primary dropdown-toggle"
         data-bs-toggle="dropdown"
+        id="navbarDropdownMenuLink"
       >
         {" "}
         <HiOutlineMenu />
       </button>
+
       {props.user ? (
-        <div class="dropdown-menu">
-          <a class="dropdown-item">
+  
+        <div className="dropdown-menu">
+          <a className="dropdown-item">
             <NavLink style={{ textDecoration: "none", color: "black" }} to="/">
               Home
             </NavLink>
           </a>
-          <a class="dropdown-item">
+          <a className="dropdown-item">
             <NavLink className="nav-link" to={`/users/${props.user.id}`}>
               Profile
             </NavLink>
           </a>
-          <a class="dropdown-item">
+          <a className="dropdown-item">
             {" "}
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
@@ -42,7 +49,7 @@ function Navbar(props) {
               Plan roadtrip
             </NavLink>
           </a>{" "}
-          <a class="dropdown-item">
+          <a className="dropdown-item">
             {" "}
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
@@ -51,13 +58,13 @@ function Navbar(props) {
               Share roadtrip
             </NavLink>
           </a>
-          <a class="dropdown-item">
+          <a className="dropdown-item">
             {/* Log out user. Then go to home page. */}
             <Link className="nav-link" to="/" onClick={props.logoutCb}>
               Logout
             </Link>
           </a>
-          <a class="dropdown-item">
+          <a className="dropdown-item">
             <NavLink
               style={{ textDecoration: "none", color: "black" }}
               to={`/favorite_roadtrips/${props.user.id}`}
@@ -66,15 +73,18 @@ function Navbar(props) {
             </NavLink>
           </a>
         </div>
+    
       ) : (
-        <div class="dropdown-menu">
-          <a class="dropdown-item">
+        <div className="dropdown-menu">
+          <a className="dropdown-item">
             <NavLink className="nav-link" to="/login">
               Login
             </NavLink>
           </a>
         </div>
+
       )}
+    </li>
     </nav>
   );
 }

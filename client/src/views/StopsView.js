@@ -42,7 +42,8 @@ function StopsView(props) {
   }
 
   async function getAndSetHome() {
-    let latLng = await getHome(); // returns [lat, lng]
+    // let latLng = await getHome(); // returns [lat, lng]
+    let latLng = [54.52, 15.25]
     setHome(latLng);
   }
 
@@ -58,7 +59,7 @@ function StopsView(props) {
     console.log("uid", uid)
 
     //make sure user that is logged in is the same as the user that created the roadtrip
-    if (uid = id) {
+    // if (uid = id) {     //(not working because don't want it to roadtrip_user id not roadtrip id )
 
       if (myresponse.ok) {
         if (myresponse.data.latLng) {
@@ -89,9 +90,9 @@ function StopsView(props) {
         console.log("addMarkerForAddress(): response.error:", myresponse.error);
       }
 
-    } else {
-      console.log("you cannot edit this")
-    }
+    // } else {
+    //   console.log("you cannot edit this")
+    // }
 
     }
  
@@ -147,7 +148,7 @@ function StopsView(props) {
 
         <div className="col">
           <div className="map">
-            {home && <MarkerMap home={home} places={places} zoom={1.5} />}
+            {home && <MarkerMap home={home} places={places} zoom={3.25} />}
           </div>
         </div>
 
