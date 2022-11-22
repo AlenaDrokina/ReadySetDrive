@@ -50,7 +50,11 @@ class Api {
 
   //PATCH (mark roadtrip as complete)
   static async updateRoadtrip(roadtrip_id, completed) {
-    return await this._doFetch(`/roadtrips/${roadtrip_id}/done`, "PATCH", completed);
+    return await this._doFetch(
+      `/roadtrips/${roadtrip_id}/done`,
+      "PATCH",
+      completed
+    );
   }
 
   //POST new stop
@@ -61,6 +65,13 @@ class Api {
   //DELETE stop
   // static async deleteStop(id) {
   //   return await this._doFetch(`/stops/${id}`, "DELETE", id);
+  // // }
+  // static async addFav(newFav) {
+  //   return await this._doFetch(
+  //     `/favorite_roadtrips/${user_id}/${roadtrips_id}`,
+  //     "POST",
+  //     newFav
+  //   );
   // }
 
   //Post favs

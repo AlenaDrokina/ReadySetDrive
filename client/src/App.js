@@ -107,10 +107,12 @@ function App() {
     //let currentLiked = Object.values(props.roadtripData);
     let currentLiked = roadtripData.filter((trip) => trip.id === id);
     setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
-    console.log(currentLiked);
+    // setCardLiked((cardLiked) => currentLiked);
+    // setCardLiked(currentLiked);
+
     // makeFav([...cardLiked, currentLiked]); Can you see me?
   }
-
+  // console.log()
   // async function fetchRoadtrips() {
   //   let myresponse = await Api.addFav();
   //   if (myresponse.ok) {
@@ -206,7 +208,12 @@ function App() {
           path="/favorite_roadtrips/:user_id"
           element={
             <PrivateRoute>
-              <Favorites cardLiked={cardLiked} user={user} />
+              <Favorites
+                user={user}
+                roadtripData={roadtripData}
+                makeFav={makeFav}
+                cardLiked={cardLiked}
+              />
             </PrivateRoute>
           }
         />
