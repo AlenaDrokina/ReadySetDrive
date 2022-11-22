@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LoginView.css";
 
 function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -30,53 +31,66 @@ function LoginView(props) {
   const gotoRegisterPage = () => navigate("/register");
 
   return (
-    <div className="LoginView row">
-      <div className="col-4 offset-4">
-        <h2>Login</h2>
+    <div className="container-fluid">
+      <div className="row main-content bg-success text-center">
+        <div className="col-md-4 text-center company__info">
+          <span className="company__logo">
+            <h2>
+              <span className="fa fa-android"></span>
+            </h2>
+          </span>
+          <h4 className="company_title">Set to drive</h4>
+        </div>
+        <div className="col-md-8 col-xs-12 col-sm-12 login_form">
+          <div className="container-fluid">
+            <div className="row">
+              <h2>Login</h2>
+            </div>
+            {props.loginError && (
+              <div className="alert alert-danger">{props.loginError}</div>
+            )}
 
-        {props.loginError && (
-          <div className="alert alert-danger">{props.loginError}</div>
-        )}
+            <form control="" className="form-group" onSubmit={handleSubmit}>
+              <div className="row">
+                <input
+                  type="text"
+                  id="username"
+                  name="usernameInput"
+                  required
+                  className="form__input"
+                  value={username}
+                  onChange={handleChange}
+                  placeholder="Username"
+                />
+              </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>
-              Username
-              <input
-                type="text"
-                name="usernameInput"
-                required
-                className="form-control"
-                value={username}
-                onChange={handleChange}
-              />
-            </label>
+              <div className="row">
+                <input
+                  type="password"
+                  id="password"
+                  name="passwordInput"
+                  required
+                  className="form__input"
+                  value={password}
+                  onChange={handleChange}
+                  placeholder="Password"
+                />
+              </div>
+
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </form>
           </div>
-
-          <div className="form-group">
-            <label>
-              Password
-              <input
-                type="password"
-                name="passwordInput"
-                required
-                className="form-control"
-                value={password}
-                onChange={handleChange}
-              />
-            </label>
+          <div className="row">
+            <p>
+              Don't have an account?{" "}
+              <span className="text-success" onClick={gotoRegisterPage}>
+                Register Here
+              </span>
+            </p>
           </div>
-
-          <button type="submit" className="btn btn-primary">
-            SIGN IN
-          </button>
-          <p>
-            Don't have an account?{" "}
-            <span className="text-success" onClick={gotoRegisterPage}>
-              Sign up
-            </span>
-          </p>
-        </form>
+        </div>
       </div>
     </div>
   );
