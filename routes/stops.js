@@ -27,8 +27,8 @@ router.get("/:roadtrip_id", async function (req, res) {
 
 //POST new stop
 
-router.post("/", ensureSameUserB, async (req, res) => {
-  let { title, address, longitude, latitude, roadtrip_id, user_id } = req.body;
+router.post("/", async (req, res) => {
+  let { title, address, longitude, latitude, roadtrip_id } = req.body;
 
   let sql = `
         INSERT INTO stops (title, address, longitude, latitude, roadtrip_id)
