@@ -67,7 +67,7 @@ function Navbar(props) {
           </a>
         </div>
       ) : (
-        <div>
+        <div class="dropdown-menu">
           <a class="dropdown-item">
             <NavLink className="nav-link" to="/login">
               Login

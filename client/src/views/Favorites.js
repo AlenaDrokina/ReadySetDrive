@@ -22,23 +22,12 @@ export default function Favorites(props) {
   //   setFaved((cards) => [...cards, card[0]]);
   // }
   let makeFav = props.makeFav;
-  console.log(props.cardLiked);
+  console.log("heyy", props.cardLiked);
+  // setFaved(props.cardLiked);
 
   async function newFav() {
-    let id = await Local.getUser_id();
-
-    try {
-      let response = await fetch(`/favorite_roadtrips/${id}`);
-      console.log(response);
-      if (response.ok) {
-        let fav = await response.json();
-        setFaved(fav);
-      } else {
-        console.log(`Server error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`Server error: ${err.message}`);
-    }
+    setFaved(props.cardLiked);
+    console.log("THIS IS FAVED", faved);
   }
 
   async function getFav() {
@@ -55,6 +44,7 @@ export default function Favorites(props) {
         console.log(response);
         let faved = await response.json();
         setFaved(faved);
+
         console.log(faved);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -63,14 +53,14 @@ export default function Favorites(props) {
       console.log(`Server error: ${err.message}`);
     }
   }
-  console.log("faved", faved);
+  // console.log("faved", faved);
   return (
     <div className="container">
       <div className="row row-cols-3">
-        <div className="col-md-6 col-lg-4 mb-4">
+        <div className="grid">
           {faved.length
             ? faved.map((card) => (
-                <div key={card.id} className="card h-100">
+                <div key={card.id} className="">
                   <div className="card">
                     <img
                       className="card-img-top"
@@ -97,9 +87,9 @@ export default function Favorites(props) {
                 </div>
               ))
             : null}
+          {!faved.length && <p>Add some Fav's!</p>}
         </div>
       </div>
-      //{" "}
     </div>
   );
 }
