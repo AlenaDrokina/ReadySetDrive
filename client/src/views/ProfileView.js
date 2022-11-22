@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import NewRoadTripView from "./NewRoadTripView";
 import Api from "../helpers/Api";
 import { useParams } from "react-router-dom";
+import { RiDeleteBin5Line } from "react-icons/ri";
 // import NewRoadTripView from "./NewRoadTripView";
 // import PastFormView from "./PastFormView";
 import "./ProfileView.css";
@@ -85,11 +86,31 @@ function ProfileView(props) {
     setPlannedTrips(plannedTrips);
   }
 
+  // async function deleteRoadtrip(id) {
+  //   let options = {
+  //     method: "DELETE",
+  //   };
+  //   try {
+  //     let response = await fetch(`/roadtrips/${id}`, options);
+  //     if (response.ok) {
+  //       getRoadtripDataUser();
+  //     } else {
+  //       console.log(`Server error: ${response.status} ${response.statusText}`);
+  //     }
+  //   } catch (err) {
+  //     console.log(`Server error: ${err.message}`);
+  //   }
+  // }
+
+  function deleteRoadtrip(id) {
+    console.log(id);
+  }
+
   return (
-    <div className="ProfileView container">
+    <div>
       <div className="row">
-        <div className="col-6">
-          <h1>Profile</h1>
+        <div className="profile-section col-4">
+          <h2>Profile</h2>
           <div className="box">
             {!props.user.image_url ||
               (!props.user.slogan && (
@@ -150,67 +171,78 @@ function ProfileView(props) {
               </div>
             </div>
           </div>
-          <div className="col-6">
-            <div className="Project1">
-              <h4>My shared roadtrips</h4>
-              <h5>
-                <NavLink to="/PastRoadTripView">Add more</NavLink>{" "}
-              </h5>
-              <div className="container CardGrid1">
-                <div className="row">
-                  {completedTrips.length >= 1
-                    ? completedTrips.map((element) => {
-                        return (
-                          <div className="col-md-6 col-lg-4 mb-4">
-                            <div className="card h-100 profile-cards">
-                              <img
-                                className="crad-img-top"
-                                src={element.image_url}
-                                alt="completed roadtrips"
-                              />
-                              <div className="card-body">
+        </div>
+        <div className="roadtrip-section col-8">
+          <h2>Roadtrips</h2>
+          <div>
+            <h4>My shared roadtrips</h4>
+            <h5>
+              <NavLink to="/PastRoadTripView">Add more</NavLink>{" "}
+            </h5>
+            <div>
+              <div className="row">
+                {completedTrips.length >= 1
+                  ? completedTrips.map((element) => {
+                      return (
+                        <div className="col-md-6 col-lg-4 mb-4">
+                          <div className="card h-100 profile-cards">
+                            <img
+                              className="card-img-top"
+                              src={element.image_url}
+                              alt="completed roadtrips"
+                            />
+                            <div className="card-body">
+                              <div className="title-delete-container">
                                 <h5 className="card-title">{element.title}</h5>
-                                <h6 className="card-text">
-                                  {element.countries}
-                                </h6>
+                                <i>
+                                  <RiDeleteBin5Line
+                                    className="delete-icon"
+                                    onClick={() => deleteRoadtrip(element.id)}
+                                  />
+                                </i>
                               </div>
+                              <h6 className="card-text">{element.countries}</h6>
                             </div>
                           </div>
-                        );
-                      })
-                    : null}
-                </div>
+                        </div>
+                      );
+                    })
+                  : null}
               </div>
             </div>
-            <div className="Project2">
-              <h4>My planned roadtrips</h4>
-              <h5>
-                <NavLink to="/NewRoadTripView">Plan more</NavLink>{" "}
-              </h5>
-              <div className="container CardGrid2">
-                <div className="row">
-                  {plannedTrips.length >= 1
-                    ? plannedTrips.map((element) => {
-                        return (
-                          <div className="col-md-6 col-lg-4 mb-4">
-                            <div className="card h-100">
-                              <img
-                                className="crad-img-top"
-                                src={element.image_url}
-                                alt="completed roadtrips"
-                              />
-                              <div className="card-body">
+          </div>
+
+          <div>
+            <h4>My planned roadtrips</h4>
+            <h5>
+              <NavLink to="/NewRoadTripView">Plan more</NavLink>{" "}
+            </h5>
+            <div>
+              <div className="row">
+                {plannedTrips.length >= 1
+                  ? plannedTrips.map((element) => {
+                      return (
+                        <div className="col-md-6 col-lg-4 mb-4">
+                          <div className="card h-100 profile-cards">
+                            <img
+                              className="card-img-top"
+                              src={element.image_url}
+                              alt="completed roadtrips"
+                            />
+                            <div className="card-body">
+                              <div className="title-delete-container">
                                 <h5 className="card-title">{element.title}</h5>
-                                <h6 className="card-text">
-                                  {element.countries}
-                                </h6>
+                                <i>
+                                  <RiDeleteBin5Line className="delete-icon" />
+                                </i>
                               </div>
+                              <h6 className="card-text">{element.countries}</h6>
                             </div>
                           </div>
-                        );
-                      })
-                    : null}
-                </div>
+                        </div>
+                      );
+                    })
+                  : null}
               </div>
             </div>
           </div>

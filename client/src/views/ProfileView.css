@@ -1,7 +1,7 @@
-.ProfileView {
+/* .ProfileView {
   text-align: center;
   display: grid;
-}
+} */
 .name {
   margin-top: 15px;
 
@@ -82,12 +82,23 @@
 .userInfo {
   grid-area: item5;
 }
-.Project1 {
-  grid-area: item2;
+
+.title-delete-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  font-size: x-large;
+  cursor: pointer;
+}
+
+/* .Project1 {
+  grid-area: item2; */
   /* margin-top: -20px; */
   /* grid-area: item3; */
-}
-.Project2 {
+/* } */
+/* .Project2 {
   grid-area: item8;
 
   margin-top: 10px;
@@ -98,4 +109,4 @@
 
 .CardGrid2 {
   grid-area: item10;
-}
+} */
