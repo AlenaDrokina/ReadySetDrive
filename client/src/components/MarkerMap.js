@@ -1,5 +1,6 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import { AiOutlineCar } from 'react-icons/fa';
 import { breakAddr } from "../helpers/utils";
 import "./MarkerMap.css";
 // Global Leaflet variable; only necessary for the green marker.
@@ -11,7 +12,7 @@ function MarkerMap(props) {
   // https://github.com/pointhi/leaflet-color-markers
   let greenMarker = new L.icon({
     iconUrl:
-      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+      "https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png",
     shadowUrl:
       "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
     iconSize: [25, 41],
@@ -28,16 +29,14 @@ function MarkerMap(props) {
   //   nameAnchor: [1, -34],
   // });
 
-  const polyline = [
-    [50.11, 8.68],
-    [41.38, 2.17],
-    [38.707, -9.153],
-  ]
+  const polyline = props.places.map((p) => 
+    [p.latitude, p.longitude]
+  );
 
 
-  console.log("lat", props.places.latitude)
+   console.log("poly", polyline);
 
-  const lineColor = { color: 'red' }
+  const lineColor = { color: 'green' }
 
   return (
     <MapContainer
@@ -52,7 +51,6 @@ function MarkerMap(props) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {/* <Polyline pathOptions={limeOptions} positions={polyline} /> */}
 
             {props.places.map((p) => (
               <Marker
@@ -60,18 +58,16 @@ function MarkerMap(props) {
                 position={[p.latitude, p.longitude]}
                 icon={greenMarker}
               >
-              
-              {console.log("mapLat",[[p.latitude, p.longitude]])}
-
-              <Polyline 
-                positions={[[p.latitude, p.longitude]]}
-                pathOptions={lineColor}
-              />
 
               <Popup> {breakAddr(p.title)}{" "} </Popup>
 
             </Marker>
             ))}
+
+            <Polyline 
+            positions={polyline}
+            pathOptions={lineColor}
+            />
 
     </MapContainer>
   );
