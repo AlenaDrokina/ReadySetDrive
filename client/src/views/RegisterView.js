@@ -28,7 +28,7 @@ const RegisterView = (props) => {
               <span className="fa fa-android"></span>
             </h2>
           </span>
-          <h4 className="company_title">Your Company Logo</h4>
+          <h4 className="company_title">Set to drive</h4>
         </div>
         <div className="col-md-8 col-xs-12 col-sm-12 signup__form ">
           <div className="container-fluid">
@@ -37,54 +37,60 @@ const RegisterView = (props) => {
             </div>
 
             <div className="row">
-              <form control="" className="signup__form" onSubmit={handleSubmit}>
+              <form control="" className="form-group" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={email}
-                    required
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                  <div className="row">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="form__input"
+                      value={email}
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Email Address"
+                    />
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="username">Username</label>
+                <div className="row">
                   <input
                     type="text"
                     id="username"
                     name="username"
+                    className="form__input"
                     value={username}
                     required
                     onChange={(e) => setUserName(e.target.value)}
+                    placeholder="Username"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                <div className="row">
                   <input
                     type="password"
                     name="password"
+                    className="form__input"
                     id="password"
                     minLength={6}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="confpassword">Confirm Password</label>
+                <div className="row">
                   <input
                     type="password"
                     name="confPassword"
+                    className="form__input"
                     id="confPassword"
                     minLength={6}
                     required
                     value={confPassword}
                     onChange={(e) => setConfPassword(e.target.value)}
+                    placeholder="Confirm Password"
                   />
                 </div>
 

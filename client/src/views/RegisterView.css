@@ -6,7 +6,7 @@
   display: flex;
 }
 .company__info {
-  background-color: #008080;
+  background-color: #519259;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   display: flex;
@@ -35,7 +35,7 @@
   }
 }
 .row > h2 {
-  color: #008080;
+  color: #519259;
 }
 .signup__form {
   background-color: #fff;
@@ -59,7 +59,7 @@ form {
   transition: all 0.5s ease;
 }
 .form__input:focus {
-  border-bottom-color: #008080;
+  border-bottom-color: #519259;
   box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
   border-radius: 4px;
 }
@@ -67,10 +67,10 @@ form {
   transition: all 0.5s ease;
   width: 70%;
   border-radius: 30px;
-  color: #008080;
+  color: #519259;
   font-weight: 600;
   background-color: #fff;
-  border: 1px solid #008080;
+  border: 1px solid#519259;
   margin-top: 1.5em;
   margin-bottom: 1em;
 }

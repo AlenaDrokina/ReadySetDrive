@@ -39,7 +39,7 @@ function LoginView(props) {
               <span className="fa fa-android"></span>
             </h2>
           </span>
-          <h4 class="company_title">Your Company Logo</h4>
+          <h4 className="company_title">Set to drive</h4>
         </div>
         <div className="col-md-8 col-xs-12 col-sm-12 login_form">
           <div className="container-fluid">
@@ -52,38 +52,34 @@ function LoginView(props) {
 
             <form control="" className="form-group" onSubmit={handleSubmit}>
               <div className="row">
-                <label>
-                  Username
-                  <input
-                    type="text"
-                    id="username"
-                    name="usernameInput"
-                    required
-                    className="form__input"
-                    value={username}
-                    onChange={handleChange}
-                  />
-                </label>
+                <input
+                  type="text"
+                  id="username"
+                  name="usernameInput"
+                  required
+                  className="form__input"
+                  value={username}
+                  onChange={handleChange}
+                  placeholder="Username"
+                />
               </div>
 
               <div className="row">
-                <label>
-                  Password
-                  <input
-                    type="password"
-                    id="password"
-                    name="passwordInput"
-                    required
-                    className="form__input"
-                    value={password}
-                    onChange={handleChange}
-                  />
-                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="passwordInput"
+                  required
+                  className="form__input"
+                  value={password}
+                  onChange={handleChange}
+                  placeholder="Password"
+                />
               </div>
 
-              <div className="row">
-                <input type="submit" value="Submit" class="btn" />
-              </div>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
             </form>
           </div>
           <div className="row">
