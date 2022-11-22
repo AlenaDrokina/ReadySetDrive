@@ -101,12 +101,12 @@ function ProfileView(props) {
           </div>
           <div className="email">
             {" "}
-            <p class="text-left">Email: {user.email}</p>
+            <p className="text-left">Email: {user.email}</p>
           </div>
 
           <div className="description">
             {" "}
-            <p class="text-left">
+            <p className="text-left">
               Description: <br /> {user.slogan}
             </p>
           </div>
