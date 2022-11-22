@@ -86,120 +86,132 @@ function ProfileView(props) {
   }
 
   return (
-    <div className="ProfileView">
-      <h1>Profile</h1>
-      <div className="box">
-        {!props.user.image_url ||
-          (!props.user.slogan && (
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label className="form-label">Add Picture Here</label>
-                <input
-                  type="text"
-                  name="url"
-                  value={profileData.url}
-                  onChange={handleChange}
-                  className="form-control"
-                  placeholder="Add a pic of you! (url)"
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Add a little description!</label>
-                <input
-                  type="text"
-                  name="slogan"
-                  value={profileData.slogan}
-                  onChange={handleChange}
-                  className="form-control"
-                  placeholder="I like to..."
-                  // placeholder="Add a url of a pic of you!"
-                />
-              </div>
-              <button onSubmit={handleSubmit} className="btn btn-primary">
-                Submit
-              </button>
-            </form>
-          ))}
-      </div>
-      <div className="box2">
-        <div className="userInfo">
-          {user.image_url && (
-            <div key={user.image_url}>
-              <img src={user.image_url} alt="User" />
-            </div>
-          )}
-          <br />
-          <div className="name">
-            {" "}
-            <p className="text-left">Hey!! {user.username}</p>
+    <div className="ProfileView container">
+      <div className="row">
+        <div className="col-6">
+          <h1>Profile</h1>
+          <div className="box">
+            {!props.user.image_url ||
+              (!props.user.slogan && (
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label className="form-label">Add Picture Here</label>
+                    <input
+                      type="text"
+                      name="url"
+                      value={profileData.url}
+                      onChange={handleChange}
+                      className="form-control"
+                      placeholder="Add a pic of you! (url)"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">
+                      Add a little description!
+                    </label>
+                    <input
+                      type="text"
+                      name="slogan"
+                      value={profileData.slogan}
+                      onChange={handleChange}
+                      className="form-control"
+                      placeholder="I like to..."
+                      // placeholder="Add a url of a pic of you!"
+                    />
+                  </div>
+                  <button onSubmit={handleSubmit} className="btn btn-primary">
+                    Submit
+                  </button>
+                </form>
+              ))}
           </div>
-          <div className="email">
-            {" "}
-            <p class="text-left">Email: {user.email}</p>
-          </div>
+          <div className="box2">
+            <div className="userInfo">
+              {user.image_url && (
+                <div key={user.image_url}>
+                  <img src={user.image_url} alt="User" />
+                </div>
+              )}
+              <br />
+              <div className="name">
+                {" "}
+                <p className="text-left">Hey!! {user.username}</p>
+              </div>
+              <div className="email">
+                {" "}
+                <p class="text-left">Email: {user.email}</p>
+              </div>
 
-          <div className="description">
-            {" "}
-            <p className="text-left">
-              Description: <br /> {user.slogan}
-            </p>
-          </div>
-        </div>
-        <div className="Project1">
-          <h4>My shared roadtrips</h4>
-          <h4>
-            Add another one <NavLink to="/PastRoadTripView">HERE</NavLink>{" "}
-          </h4>
-          <div className="container CardGrid1">
-            <div className="row">
-              {completedTrips.length >= 1
-                ? completedTrips.map((element) => {
-                    return (
-                      <div className="col-md-6 col-lg-4 mb-4">
-                        <div className="card h-100 profile-cards">
-                          <img
-                            className="crad-img-top"
-                            src={element.image_url}
-                            alt="completed roadtrips"
-                          />
-                          <div className="card-body">
-                            <h5 className="card-title">{element.title}</h5>
-                            <h6 className="card-text">{element.countries}</h6>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })
-                : null}
+              <div className="description">
+                {" "}
+                <p className="text-left">
+                  Description: <br /> {user.slogan}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="Project2">
-          <h4>My planned roadtrips</h4>
-          <h4>
-            Plan another one <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
-          </h4>
-          <div className="container CardGrid2">
-            <div className="row">
-              {plannedTrips.length >= 1
-                ? plannedTrips.map((element) => {
-                    return (
-                      <div className="col-md-6 col-lg-4 mb-4">
-                        <div className="card h-100">
-                          <img
-                            className="crad-img-top"
-                            src={element.image_url}
-                            alt="completed roadtrips"
-                          />
-                          <div className="card-body">
-                            <h5 className="card-title">{element.title}</h5>
-                            <h6 className="card-text">{element.countries}</h6>
+          <div className="col-6">
+            <div className="Project1">
+              <h4>My shared roadtrips</h4>
+              <h5>
+                <NavLink to="/PastRoadTripView">Add more</NavLink>{" "}
+              </h5>
+              <div className="container CardGrid1">
+                <div className="row">
+                  {completedTrips.length >= 1
+                    ? completedTrips.map((element) => {
+                        return (
+                          <div className="col-md-6 col-lg-4 mb-4">
+                            <div className="card h-100 profile-cards">
+                              <img
+                                className="crad-img-top"
+                                src={element.image_url}
+                                alt="completed roadtrips"
+                              />
+                              <div className="card-body">
+                                <h5 className="card-title">{element.title}</h5>
+                                <h6 className="card-text">
+                                  {element.countries}
+                                </h6>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })
-                : null}
+                        );
+                      })
+                    : null}
+                </div>
+              </div>
+            </div>
+            <div className="Project2">
+              <h4>My planned roadtrips</h4>
+              <h5>
+                <NavLink to="/NewRoadTripView">Plan more</NavLink>{" "}
+              </h5>
+              <div className="container CardGrid2">
+                <div className="row">
+                  {plannedTrips.length >= 1
+                    ? plannedTrips.map((element) => {
+                        return (
+                          <div className="col-md-6 col-lg-4 mb-4">
+                            <div className="card h-100">
+                              <img
+                                className="crad-img-top"
+                                src={element.image_url}
+                                alt="completed roadtrips"
+                              />
+                              <div className="card-body">
+                                <h5 className="card-title">{element.title}</h5>
+                                <h6 className="card-text">
+                                  {element.countries}
+                                </h6>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })
+                    : null}
+                </div>
+              </div>
             </div>
           </div>
         </div>
