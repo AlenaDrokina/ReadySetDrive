@@ -22,12 +22,14 @@ function ProfileView(props) {
   const [roadtripDataUser, setRoadtripDataUser] = useState({});
   const [completedTrips, setCompletedTrips] = useState({});
   const [plannedTrips, setPlannedTrips] = useState({});
+  const [descrip, setDescrip] = useState("");
 
   let { user_id } = useParams();
 
   useEffect(() => {
     fetchProfile();
     getRoadtripDataUser();
+    addDescrip();
   }, []);
 
   async function fetchProfile() {
@@ -64,6 +66,27 @@ function ProfileView(props) {
   }
   if (!user) {
     return <h2>Loading...</h2>;
+  }
+
+  async function addDescrip(formData) {
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(descrip),
+    };
+
+    try {
+      let response = await fetch(`/users/${user_id}`, options);
+      if (response.ok) {
+        let newDescrip = await response.json();
+        // let roadtrip_id = newRoadtrip.id;
+        setDescrip(newDescrip);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
   }
 
   function handleChange(event) {
