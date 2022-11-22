@@ -42,7 +42,8 @@ function StopsView(props) {
   }
 
   async function getAndSetHome() {
-    let latLng = await getHome(); // returns [lat, lng]
+    // let latLng = await getHome(); // returns [lat, lng]
+    let latLng = [54.52, 15.25]
     setHome(latLng);
   }
 
@@ -129,7 +130,7 @@ function StopsView(props) {
           </div>
 
           <div className="row2">
-            <a type="button" className="btn btn-primary" href="/" role="button">
+            <a type="button" className="btn btn-primary" href="/users/:user_id" role="button">
               {" "}
               No, I'll keep planning later{" "}
             </a>
@@ -147,7 +148,7 @@ function StopsView(props) {
 
         <div className="col">
           <div className="map">
-            {home && <MarkerMap home={home} places={places} zoom={1.5} />}
+            {home && <MarkerMap home={home} places={places} zoom={3.25} />}
           </div>
         </div>
 

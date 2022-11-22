@@ -29,6 +29,8 @@ function MarkerMap(props) {
   //   nameAnchor: [1, -34],
   // });
 
+
+  //adding lines to map
   const polyline = props.places.map((p) => 
     [p.latitude, p.longitude]
   );
