@@ -1,6 +1,5 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
-import { AiOutlineCar } from 'react-icons/fa';
 import { breakAddr } from "../helpers/utils";
 import "./MarkerMap.css";
 // Global Leaflet variable; only necessary for the green marker.
@@ -12,7 +11,8 @@ function MarkerMap(props) {
   // https://github.com/pointhi/leaflet-color-markers
   let greenMarker = new L.icon({
     iconUrl:
-      "https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png",
+          "https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png",
+      // "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
     shadowUrl:
       "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
     iconSize: [25, 41],
@@ -36,7 +36,7 @@ function MarkerMap(props) {
 
    console.log("poly", polyline);
 
-  const lineColor = { color: 'green' }
+  const lineColor = { color: 'blue' }
 
   return (
     <MapContainer

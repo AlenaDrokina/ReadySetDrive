@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 function Navbar(props) {
   let { user_id } = useParams();
   return (
-    <nav className="navbar" className="float-right">
+    <nav className="navbar">
       {/* <h3>
         {" "}
         <HiOutlineMenu />
