@@ -9,6 +9,7 @@ import "./StopsView.css";
 
 import StopsForm from "../components/StopsForm";
 import Api from "../helpers/Api";
+import Local from "../helpers/Local";
 
 function StopsView(props) {
   let { id } = useParams();
@@ -47,35 +48,54 @@ function StopsView(props) {
 
   //add marker to map & add stop to db
   async function addMarkerForAddress(addressObj) {
+
+
+    let uid= await Local.getUser_id()
     // Send a request to OpenCage to geocode 'addr'
     let myresponse = await geocode(addressObj.address);
-    if (myresponse.ok) {
-      if (myresponse.data.latLng) {
-        let d = myresponse.data;
-        let newPlace = {
-          title: addressObj.title,
-          address: addressObj.address,
-          latitude: d.latLng[0],
-          longitude: d.latLng[1],
-          roadtrip_id: id,
-        };
+    
+    console.log("roadtrip_user", id)
+    console.log("uid", uid)
 
-        //add stop to db
-        let response = await Api.addStop(newPlace);
-        if (response.ok) {
-          setPlaces(response.data);
+    //make sure user that is logged in is the same as the user that created the roadtrip
+    if (uid = id) {
+
+      if (myresponse.ok) {
+        if (myresponse.data.latLng) {
+          let d = myresponse.data;
+          let newPlace = {
+            title: addressObj.title,
+            address: addressObj.address,
+            latitude: d.latLng[0],
+            longitude: d.latLng[1],
+            roadtrip_id: id,
+            user_id: uid
+          };
+  
+          //add stop to db
+          let response = await Api.addStop(newPlace);
+          console.log("hi", newPlace)
+          if (response.ok) {
+            setPlaces(response.data);
+          } else {
+            console.log(
+              `Server error: ${response.status} ${response.statusText}`
+            );
+          }
         } else {
-          console.log(
-            `Server error: ${response.status} ${response.statusText}`
-          );
+          console.log("addMarkerForAddress(): no results found");
         }
       } else {
-        console.log("addMarkerForAddress(): no results found");
+        console.log("addMarkerForAddress(): response.error:", myresponse.error);
       }
+
     } else {
-      console.log("addMarkerForAddress(): response.error:", myresponse.error);
+      console.log("you cannot edit this")
     }
-  }
+
+    }
+ 
+  
 
   //MARK TRIP AS COMPLETE
   async function markComplete() {

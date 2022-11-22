@@ -123,7 +123,7 @@ function App() {
     <div className="App">
       <NavLink to="/" className="Logo">
         {" "}
-        <h3> READY SET DRIVE </h3>
+        <h3> READY SET DRIVE! </h3>
         {/* <img src="Logotip.png" alt="logo" /> */}
       </NavLink>
       <Navbar user={user} logoutCb={doLogout} user_id={user_id} />
@@ -172,7 +172,7 @@ function App() {
           path="/stops/:id"
           element={
             <PrivateRoute>
-              <StopsView />
+              <StopsView user={user}/>
             </PrivateRoute>
           }
         />
@@ -183,6 +183,7 @@ function App() {
             <PrivateRoute>
               <NewRoadTripView
                 addRoadtripCb={(formData) => addRoadtrip(formData)}
+                user={user}
               />
             </PrivateRoute>
           }
@@ -194,6 +195,7 @@ function App() {
             <PrivateRoute>
               <PastRoadTripView
                 addRoadtripCb={(formData) => addRoadtrip(formData)}
+                user={user}
               />
             </PrivateRoute>
           }
