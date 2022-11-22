@@ -2,8 +2,9 @@ import { React, useState } from "react";
 import RoadtripCard from "../components/RoadtripCard";
 // import "./HomeView.css";
 import SearchBar from "../components/SearchBar";
+import Favorites from "./Favorites";
 
-function Homeview(props) {
+function HomeView(props) {
   const [filteredCards, setfilteredCards] = useState([]);
   //create a new array by filtering the cards by country
   function filteredData(input) {
@@ -45,10 +46,11 @@ function Homeview(props) {
                   />
                 );
               })}
+          {/* <Favorites makeFav={props.makeFav} /> */}
         </div>
       </div>
     </div>
   );
 }
 
-export default Homeview;
+export default HomeView;

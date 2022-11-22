@@ -8,24 +8,27 @@ import Api from "../helpers/Api";
 
 export default function Favorites(props) {
   const [faved, setFaved] = useState([]);
+  // const [allcards, setAllCards] = useState([]);
   let { user_id } = useParams();
-  //post in db
-
-  // useEffect(() => {
-  //   let user_id = Local.getUser_id();
-  //   fetch(`/favorite_roadtrips/${user_id}`)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setFaved(json);
-  //     })
-  //     .catch((error) => {});
-  // }, []);
-  //   console.log(props.cardLiked);
-  // call in api js and pass roadtrip id user_id
+  let { roadtrip_id } = useParams();
 
   useEffect(() => {
+    // getCurrentRoadtripData();
+    newFav();
     getFav();
   }, []);
+  // function cards(id) {
+  //   let card = props.roadtripData.filter((trip) => trip.id === id);
+  //   setFaved((cards) => [...cards, card[0]]);
+  // }
+  let makeFav = props.makeFav;
+  console.log("heyy", props.cardLiked);
+  // setFaved(props.cardLiked);
+
+  async function newFav() {
+    setFaved(props.cardLiked);
+    console.log("THIS IS FAVED", faved);
+  }
 
   async function getFav() {
     //let id = await Api.getUser(user_id);
@@ -41,6 +44,7 @@ export default function Favorites(props) {
         console.log(response);
         let faved = await response.json();
         setFaved(faved);
+
         console.log(faved);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -49,40 +53,42 @@ export default function Favorites(props) {
       console.log(`Server error: ${err.message}`);
     }
   }
-  console.log("faved", faved);
-
+  // console.log("faved", faved);
   return (
-    <div className="Grid">
-      <div className="col-md-6 col-lg-4 mb-4">
-        {faved.length
-          ? faved.map((card) => (
-              <div key={card.roadtrip_id}>
-                <div className="card">
-                  <img
-                    className="card-img-top"
-                    src={card.roadtrip_id.image_url}
-                    alt="roadtrip"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">
-                      {card.title}{" "}
-                      <i className="title-heart-container">
-                        <AiFillHeart className="icon-unlock" type="button" />
-                      </i>
-                    </h5>
+    <div className="container">
+      <div className="row row-cols-3">
+        <div className="grid">
+          {faved.length
+            ? faved.map((card) => (
+                <div key={card.id} className="">
+                  <div className="card">
+                    <img
+                      className="card-img-top"
+                      src={card.image_url}
+                      alt="roadtrip"
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">
+                        {card.title}{" "}
+                        <i className="title-heart-container">
+                          <AiFillHeart className="icon-unlock" type="button" />
+                        </i>
+                      </h5>
 
-                    <h6 className="card-text">{card.countries}</h6>
-                    <h6 className="card-text">{card.roadtrip_id}</h6>
+                      <h6 className="card-text">{card.countries}</h6>
+                      <h6 className="card-text">{card.roadtrip_id}</h6>
 
-                    <div className="circle-icon-container">
-                      {" "}
-                      <CiCircleMore className="circle-icon" />
+                      <div className="circle-icon-container">
+                        {" "}
+                        <CiCircleMore className="circle-icon" />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
-          : null}
+              ))
+            : null}
+          {!faved.length && <p>Add some Fav's!</p>}
+        </div>
       </div>
     </div>
   );

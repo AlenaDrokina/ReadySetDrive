@@ -18,10 +18,13 @@ function ProfileView(props) {
   const [user, setUser] = useState(null);
   const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   const [errorMsg, setErrorMsg] = useState("");
+  const [descrip, setDescrip] = useState("");
+
   let { user_id } = useParams();
 
   useEffect(() => {
     fetchProfile();
+    addDescrip();
   }, []);
 
   async function fetchProfile() {
@@ -42,6 +45,27 @@ function ProfileView(props) {
     return <h2>Loading...</h2>;
   }
 
+  async function addDescrip(formData) {
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(descrip),
+    };
+
+    try {
+      let response = await fetch(`/users/${user_id}`, options);
+      if (response.ok) {
+        let newDescrip = await response.json();
+        // let roadtrip_id = newRoadtrip.id;
+        setDescrip(newDescrip);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  }
+
   function handleChange(event) {
     let { name, value } = event.target;
     setProfileData((data) => ({ ...data, [name]: value }));
@@ -52,11 +76,11 @@ function ProfileView(props) {
     setProfileData(BLANK_STOP_PROFILE);
   }
   return (
-    <div className="ProfileView">
+    <div>
       <h1>Profile</h1>
-      <div className="box">
-        {!props.user.image_url ||
-          (!props.user.slogan && (
+      <div className="ProfileView">
+        {!props.user.image_url && (
+          <div className="box">
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label">Add Picture Here</label>
@@ -85,43 +109,48 @@ function ProfileView(props) {
                 Submit
               </button>
             </form>
-          ))}
-      </div>
-      <div className="box2">
-        <div className="userInfo">
-          {user.image_url && (
-            <div key={user.image_url}>
-              {/* <img src={user.image_url} alt="User" /> */}
-            </div>
-          )}
-          <br />
-          <div className="name">
-            {" "}
-            <p className="text-left">Hey!! {user.username}</p>
           </div>
-          <div className="email">
-            {" "}
-            <p className="text-left">Email: {user.email}</p>
-          </div>
+        )}
+        {props.user.image_url && (
+          <div className="box2">
+            <div className="userInfo">
+              {user.image_url && (
+                <div key={user.image_url}>
+                  <img src={user.image_url} alt="User" />
+                </div>
+              )}
+              <br />
+              <div className="name">
+                {" "}
+                <p className="text-left">Hey!! {user.username}</p>
+              </div>
+              <div className="email">
+                {" "}
+                <p class="text-left">Email: {user.email}</p>
+              </div>
 
-          <div className="description">
-            {" "}
-            <p className="text-left">
-              Description: <br /> {user.slogan}
-            </p>
+              <div className="description">
+                {" "}
+                <p class="text-left">
+                  Description: <br /> {user.slogan}
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="Project1">
-          <h4>
-            Add a past project <NavLink to="/PastRoadTripView">HERE</NavLink>{" "}
-          </h4>
-          <div className="CardGrid1">Cards</div>
-        </div>
-        <div className="Project2">
-          <h4>
-            Add a new project <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
-          </h4>
-          <div className="CardGrid2">Cards</div>
+        )}
+        <div className="Projects">
+          <div className="Project1">
+            <h4>
+              Add a past project <NavLink to="/PastRoadTripView">HERE</NavLink>{" "}
+            </h4>
+            <div className="CardGrid1">Cards</div>
+          </div>
+          <div className="Project2">
+            <h4>
+              Add a new project <NavLink to="/NewRoadTripView">HERE</NavLink>{" "}
+            </h4>
+            <div className="CardGrid2">Cards</div>
+          </div>
         </div>
       </div>
     </div>
