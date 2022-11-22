@@ -65,6 +65,7 @@ function App() {
     Local.removeUserInfo();
     setUser(null);
     // (NavBar will send user to home page)
+    navigate("/");
   }
 
   useEffect(() => {
@@ -172,7 +173,7 @@ function App() {
           path="/stops/:id"
           element={
             <PrivateRoute>
-              <StopsView user={user}/>
+              <StopsView user={user} />
             </PrivateRoute>
           }
         />

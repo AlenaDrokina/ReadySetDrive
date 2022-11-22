@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterView.css";
+import { AiFillCar } from "react-icons/ai";
+// import { BsFillPersonFill } from "react-icons/ai";
+// import { AiOutlineLock } from "react-icons/ai";
+// import { AiFillLock } from "react-icons/ai";
+// import { AiOutlineMail } from "react-icons/ai";
 
 const RegisterView = (props) => {
   const [username, setUserName] = useState("");
@@ -23,12 +28,9 @@ const RegisterView = (props) => {
     <div className="container-fluid">
       <div className="row main-content bg-success text-center">
         <div className="col-md-4 text-center company__info">
-          <span className="company__logo">
-            <h2>
-              <span className="fa fa-android"></span>
-            </h2>
-          </span>
-          <h4 className="company_title">Set to drive</h4>
+          <i>
+            <AiFillCar className="car-icon" />
+          </i>
         </div>
         <div className="col-md-8 col-xs-12 col-sm-12 signup__form ">
           <div className="container-fluid">
@@ -39,6 +41,9 @@ const RegisterView = (props) => {
             <div className="row">
               <form control="" className="form-group" onSubmit={handleSubmit}>
                 <div className="form-group">
+                  {/* <i>
+                    <AiOutlineMail className="email-icon" />
+                  </i> */}
                   <div className="row">
                     <input
                       type="email"

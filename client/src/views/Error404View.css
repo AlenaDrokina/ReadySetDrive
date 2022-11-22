@@ -103,3 +103,7 @@
   text-transform: uppercase;
   text-decoration: none;
 }
+
+a {
+  padding-right: 10px;
+}
