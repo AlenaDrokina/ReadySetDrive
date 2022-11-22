@@ -40,9 +40,11 @@ router.get("/:user_id", async function (req, res) {
     let result = await db(`SELECT * FROM  roadtrips WHERE user_id=${user_id}`);
     let roadtrip = result.data;
     if (roadtrip.length === 0) {
-      res
-        .status(404)
-        .send({ error: "There are no roadtrips for the requested user" });
+      console.log("Hello");
+      res.send([]);
+      // res
+      //   .status(404)
+      //   .send({ error: "There are no roadtrips for the requested user" });
     } else {
       res.send(roadtrip);
     }
@@ -80,7 +82,7 @@ router.post("/", async function (req, res) {
 
 // DELETE
 
-router.delete("/:roadtrip_id", async (req, res) => {
+router.delete("/delete/:roadtrip_id", async (req, res) => {
   // URL params are available in req.params
   let roadtrip_id = req.params.roadtrip_id;
   try {

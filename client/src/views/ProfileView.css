@@ -57,3 +57,14 @@ h1 {
   border-radius: 2rem;
   box-shadow: 0px 1rem 1.5rem rgba(black, 0.5);
 }
+
+.title-delete-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  font-size: x-large;
+  cursor: pointer;
+}
+

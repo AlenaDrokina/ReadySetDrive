@@ -127,7 +127,7 @@ function App() {
     }
   }
 
-  console.log(cardLiked);
+  // console.log(cardLiked);
 
   return (
     <div className="App">
