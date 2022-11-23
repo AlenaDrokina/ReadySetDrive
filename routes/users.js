@@ -34,4 +34,19 @@ router.get("/:user_id", ensureSameUser, async function (req, res, next) {
   }
 });
 
+router.patch("/:user_id", async function (req, res, next) {
+  let user_id = req.params.user_id;
+  let completed = req.body;
+
+  try {
+    await db(`UPDATE users SET done=${completed.done} WHERE id=${roadtrip_id}`);
+    let completedTrip = await db(
+      `SELECT * FROM roadtrips WHERE id=${roadtrip_id}`
+    );
+    res.status(201).send(completedTrip.data);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 module.exports = router;

@@ -21,6 +21,7 @@ import Error404View from "./views/Error404View";
 import { useParams } from "react-router-dom";
 import "./Logotip.png";
 // import Local from "./helpers/Local";
+//import logo from './components/logo.png'
 
 function App() {
   const [user, setUser] = useState(Local.getUser());
@@ -103,33 +104,40 @@ function App() {
     }
   }
 
-  function makeFav(id) {
+  async function makeFav(id) {
     //let currentLiked = Object.values(props.roadtripData);
-    let currentLiked = roadtripData.filter((trip) => trip.id === id);
-    setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
-    // setCardLiked((cardLiked) => currentLiked);
-    // setCardLiked(currentLiked);
+    // let currentLiked = roadtripData.filter((trip) => trip.id === id);
+    // setCardLiked((cardLiked) => [...cardLiked, currentLiked[0]]);
+    let user_id = await Local.getUser_id();
 
-    // makeFav([...cardLiked, currentLiked]); Can you see me?
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ roadtrip_id: id }),
+    };
+
+    try {
+      let response = await fetch(`/favorite_roadtrips/${user_id}`, options);
+      if (response.ok) {
+        let newLiked = await response.json();
+        setCardLiked(newLiked);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
   }
-  // console.log()
-  // async function fetchRoadtrips() {
-  //   let myresponse = await Api.addFav();
-  //   if (myresponse.ok) {
-  //     setCardLiked(myresponse.data);
-  //   } else {
-  //     console.log("Response not okay.");
-  //   }
-  // }
+
+  console.log(cardLiked);
 
   return (
     <div className="App">
-      <NavLink to="/" className="Logo">
+      {/* <NavLink to="/" className="Logo">
         {" "}
-        <h3> READY SET DRIVE! </h3>
-        {/* <img src="Logotip.png" alt="logo" /> */}
-      </NavLink>
-      <Navbar user={user} logoutCb={doLogout} user_id={user_id} />
+        <img className="logoIcon" src={logo} alt="carlogo"/>
+      </NavLink> */}
+      <Navbar className="navbarright" user={user} logoutCb={doLogout} user_id={user_id} />
 
       <Routes>
         <Route
