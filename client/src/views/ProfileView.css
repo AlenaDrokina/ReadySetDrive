@@ -68,3 +68,15 @@ h1 {
   cursor: pointer;
 }
 
+.modal-body {
+  font-size: large;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.delete-btn {
+  width: 80px;
+}
