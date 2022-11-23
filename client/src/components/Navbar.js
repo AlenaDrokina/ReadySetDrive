@@ -62,7 +62,7 @@ function Navbar(props) {
             </a>
             <a className="dropdown-item">
               {/* Log out user. Then go to home page. */}
-              <Link className="nav-link" to="/" onClick={props.logoutCb}>
+              <Link className="nav-link" to="/logout" onClick={props.logoutCb}>
                 Logout
               </Link>
             </a>
