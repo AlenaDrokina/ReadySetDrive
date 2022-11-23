@@ -24,7 +24,7 @@ function HomeView(props) {
       console.log("Response not okay.");
     }
   }
-  console.log("all", roadtrips)
+
 
   function getCompletedRoadtrips(roadtrips){
     // console.log("roadtrips", roadtrips)   WHY IS COMPLETED ROADTRIPS EMPTY ARRAY?
@@ -32,7 +32,7 @@ function HomeView(props) {
     setCompletedRoadtrips(completedRoadtrips)
     //console.log("compinFUNCTION", completedRoadtrips);
   }
-  console.log("comp", completedRoadtrips);
+
 
   //create a new array by filtering the cards by country
   function filteredData(input) {

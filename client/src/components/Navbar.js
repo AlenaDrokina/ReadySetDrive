@@ -86,7 +86,6 @@ function Navbar(props) {
         )}
       </li>
 
-<<<<<<< HEAD
       {props.user ? (
   
         <div className="dropdown-menu">
@@ -144,9 +143,6 @@ function Navbar(props) {
         </div>
 
       )}
-    </li>
-=======
->>>>>>> main
     </nav>
   );
 }
