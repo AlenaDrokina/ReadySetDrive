@@ -2,3 +2,11 @@
     margin-bottom: 30px;
     margin-top: 50px;
 }
+
+.NewRoadTripView {
+    background: url("https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

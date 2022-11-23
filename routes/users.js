@@ -34,16 +34,18 @@ router.get("/:user_id", ensureSameUser, async function (req, res, next) {
   }
 });
 
+
+//patch users
 router.patch("/:user_id", async function (req, res, next) {
   let user_id = req.params.user_id;
-  let completed = req.body;
+  let { image_url, slogan } = req.body;
 
   try {
-    await db(`UPDATE users SET done=${completed.done} WHERE id=${roadtrip_id}`);
-    let completedTrip = await db(
-      `SELECT * FROM roadtrips WHERE id=${roadtrip_id}`
+    await db(`UPDATE users SET image_url="${image_url}", slogan="${slogan}" WHERE id=${user_id}`);
+    let result = await db(
+      `SELECT * FROM users WHERE id=${user_id}`
     );
-    res.status(201).send(completedTrip.data);
+    res.status(201).send(result.data);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }

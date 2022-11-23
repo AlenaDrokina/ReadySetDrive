@@ -46,7 +46,7 @@ function RoadtripForm(props) {
 
           </div>
           <div className="mb-3">
-              <label className="form-label2">Countries Visited</label>
+              <label className="form-label2">Countries</label>
               <input 
                   type="text"
                   name="countries"

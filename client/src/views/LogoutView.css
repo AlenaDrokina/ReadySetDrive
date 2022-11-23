@@ -7,12 +7,12 @@
     background-color: black;
 }
 
-.LogoutView h5 {
+.LogoutView h1 {
     color: white;
-    font-size: 60px;
+    font-size: 30px;
     position: absolute;
     margin: auto;
-    top: 15vh;
+    top: 20vh;
     bottom: 0;
     left: 0;
     right: 0;
@@ -33,7 +33,7 @@
     font-size: 30px;
     position: absolute;
     margin: auto;
-    top: 35vh;
+    top: 40vh;
     bottom: 0;
     left: 0;
     right: 0;
