@@ -41,20 +41,24 @@ router.post("/:user_id", async (req, res) => {
     console.log(err.message);
   }
 });
-router.delete("/:user_id/:roadtrip_id", async (req, res) => {
+router.delete("/:roadtrip_id", async (req, res) => {
   // URL params are available in req.params
   let roadtrip_id = req.params.roadtrip_id;
+  console.log(roadtrip_id);
   try {
     // get item with id matching req params
     let result = await db(
-      `SELECT * FROM favorite_roadtrips WHERE id = ${roadtrip_id}`
+      `SELECT * FROM favorite_roadtrips WHERE roadtrip_id = ${roadtrip_id}`
     );
+
     // if this returns nothing, id doesn’t exist: throw an error
     if (result.data.length === 0) {
       res.status(404).send({ error: "item not found" });
     } else {
       // delete item with id matching req params
-      await db(`DELETE FROM favorite_roadtrips WHERE id = ${roadtrip_id}`);
+      await db(
+        `DELETE FROM favorite_roadtrips WHERE roadtrip_id = ${roadtrip_id}`
+      );
       // save result to result variable
       let result = await db(`SELECT * FROM favorite_roadtrips`);
       // send result data to client and return server status
