@@ -103,3 +103,7 @@
   text-transform: uppercase;
   text-decoration: none;
 }
+
+.Error404View i {
+  padding-right: 10px;
+}
