@@ -18,16 +18,19 @@ function HomeView(props) {
     let myresponse = await Api.getRoadtrips();
     if (myresponse.ok) {
       setRoadtrips(myresponse.data);
+      //console.log("1", roadtrips);
+      getCompletedRoadtrips(myresponse.data)
     } else {
       console.log("Response not okay.");
     }
   }
   console.log("all", roadtrips)
 
-  function getCompletedRoadtrips(){
+  function getCompletedRoadtrips(roadtrips){
     // console.log("roadtrips", roadtrips)   WHY IS COMPLETED ROADTRIPS EMPTY ARRAY?
     let completedRoadtrips = roadtrips.filter((el) => el.done === 1);
     setCompletedRoadtrips(completedRoadtrips)
+    //console.log("compinFUNCTION", completedRoadtrips);
   }
   console.log("comp", completedRoadtrips);
 
@@ -61,8 +64,8 @@ function HomeView(props) {
                     makeFav={props.makeFav}
                   />
                 );
-              })
-            : completedRoadtrips.map((element) => {
+              }) :
+             completedRoadtrips.map((element) => {
                 return (
                   <RoadtripCard
                     key={element.id}
@@ -79,3 +82,34 @@ function HomeView(props) {
 }
 
 export default HomeView;
+
+
+{/* <div className="Homeview">
+<SearchBar filteredData={filteredData} />
+
+<div className="container">
+  <div className="row">
+    {filteredCards.length >= 1
+      ? filteredCards.map((element) => {
+          return (
+            <RoadtripCard
+              key={element.id}
+              roadtripData={element}
+              makeFav={props.makeFav}
+            />
+          );
+        })
+      : props.roadtripData.map((element) => {
+          return (
+            <RoadtripCard
+              key={element.id}
+              roadtripData={element}
+              makeFav={props.makeFav}
+            />
+          );
+        })}
+    {/* <Favorites makeFav={props.makeFav} /> */}
+//   </div>
+// </div>
+// </div>
+// ); 

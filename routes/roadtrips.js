@@ -14,7 +14,6 @@ router.get("/", async function (req, res) {
 });
 
 // GET by id
-
 router.get("/:roadtrip_id", async function (req, res) {
   let roadtrip_id = req.params.roadtrip_id;
   try {
@@ -31,6 +30,7 @@ router.get("/:roadtrip_id", async function (req, res) {
     res.status(500).send({ error: err.message });
   }
 });
+
 
 // POST
 
