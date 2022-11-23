@@ -1,14 +1,42 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import RoadtripCard from "../components/RoadtripCard";
 // import "./HomeView.css";
 import SearchBar from "../components/SearchBar";
 import Favorites from "./Favorites";
+import Api from "../helpers/Api";
 
 function HomeView(props) {
   const [filteredCards, setfilteredCards] = useState([]);
+  const [completedRoadtrips, setCompletedRoadtrips] =useState([]);
+  const [roadtrips, setRoadtrips] = useState([])
+
+  useEffect(() => {
+    fetchRoadtrips();
+  }, []);
+
+  async function fetchRoadtrips() {
+    let myresponse = await Api.getRoadtrips();
+    if (myresponse.ok) {
+      setRoadtrips(myresponse.data);
+      //console.log("1", roadtrips);
+      getCompletedRoadtrips(myresponse.data)
+    } else {
+      console.log("Response not okay.");
+    }
+  }
+
+
+  function getCompletedRoadtrips(roadtrips){
+    // console.log("roadtrips", roadtrips)   WHY IS COMPLETED ROADTRIPS EMPTY ARRAY?
+    let completedRoadtrips = roadtrips.filter((el) => el.done === 1);
+    setCompletedRoadtrips(completedRoadtrips)
+    //console.log("compinFUNCTION", completedRoadtrips);
+  }
+
+
   //create a new array by filtering the cards by country
   function filteredData(input) {
-    const filterResult = props.roadtripData.filter((el) => {
+    const filterResult = completedRoadtrips.filter((el) => {
       //if no input the return the original
       if (el === "") {
         return el;
@@ -36,8 +64,8 @@ function HomeView(props) {
                     makeFav={props.makeFav}
                   />
                 );
-              })
-            : props.roadtripData.map((element) => {
+              }) :
+             completedRoadtrips.map((element) => {
                 return (
                   <RoadtripCard
                     key={element.id}
