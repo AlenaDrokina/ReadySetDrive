@@ -18,6 +18,7 @@ import PastRoadTripView from "./views/PastRoadTripView";
 import ProfileView from "./views/ProfileView";
 import StopsView from "./views/StopsView";
 import Error404View from "./views/Error404View";
+import LogoutView from "./views/LogoutView";
 import { useParams } from "react-router-dom";
 import "./Logotip.png";
 // import Local from "./helpers/Local";
@@ -65,7 +66,7 @@ function App() {
   function doLogout() {
     Local.removeUserInfo();
     setUser(null);
-    // (NavBar will send user to home page)
+    // navigate("/logout")
   }
 
   useEffect(() => {
@@ -144,6 +145,11 @@ function App() {
           element={<HomeView roadtripData={roadtripData} makeFav={makeFav} />}
         />
         {/* <Route path="/profile/*" element={<ProfileView />} /> */}
+
+        <Route
+          path="/logout"
+          element={<LogoutView />}
+        />
 
         <Route
           path="/users/:user_id"
