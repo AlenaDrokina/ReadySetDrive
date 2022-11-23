@@ -66,6 +66,7 @@ function App() {
     Local.removeUserInfo();
     setUser(null);
     // (NavBar will send user to home page)
+    navigate("/");
   }
 
   useEffect(() => {

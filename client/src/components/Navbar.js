@@ -7,6 +7,7 @@ import logo from "./logo.png";
 
 function Navbar(props) {
   return (
+
     <nav className="navbar navbar-light" color="background-color: #e3f2fd;">
       <NavLink to="/" className="Logo">
         {" "}
@@ -82,6 +83,7 @@ function Navbar(props) {
           </div>
         )}
       </li>
+
     </nav>
   );
 }
