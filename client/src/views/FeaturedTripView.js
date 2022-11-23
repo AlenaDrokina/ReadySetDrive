@@ -33,7 +33,7 @@ function FeaturedTripView(props) {
 
   async function getCurrentRoadtripData() {
     try {
-      let response = await fetch(`/roadtrips/${id}`);
+      let response = await fetch(`/roadtrips/featured/${id}`);
       console.log(response);
       if (response.ok) {
         let currentRoadtripData = await response.json();
