@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginView.css";
+import { AiFillCar } from "react-icons/ai";
 
 function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -34,12 +35,9 @@ function LoginView(props) {
     <div className="container-fluid">
       <div className="row main-content bg-success text-center">
         <div className="col-md-4 text-center company__info">
-          <span className="company__logo">
-            <h2>
-              <span className="fa fa-android"></span>
-            </h2>
-          </span>
-          <h4 className="company_title">Set to drive</h4>
+          <i>
+            <AiFillCar className="car-icon" />
+          </i>
         </div>
         <div className="col-md-8 col-xs-12 col-sm-12 login_form">
           <div className="container-fluid">

@@ -10,10 +10,11 @@ export default function Favorites(props) {
   const [faved, setFaved] = useState([]);
   // const [allcards, setAllCards] = useState([]);
   let { user_id } = useParams();
-  // let { roadtrip_id } = useParams();
+  let { roadtrip_id } = useParams();
 
   useEffect(() => {
     // newFav();
+    handleDelete();
     getFav();
     // addLikedCard();
   }, []);
@@ -69,6 +70,24 @@ export default function Favorites(props) {
       console.log(`Server error: ${err.message}`);
     }
   }
+  async function handleDelete(id) {
+    let options = {
+      method: "DELETE",
+    };
+    try {
+      let response = await fetch(`/favorite_roadtrips/${id}`, options);
+
+      if (response.ok) {
+        let data = await response.json();
+        setFaved(data);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  }
+
   // console.log("faved", faved);
   return (
     <div className="container">
@@ -87,7 +106,11 @@ export default function Favorites(props) {
                       <h5 className="card-title">
                         {card.title}{" "}
                         <i className="title-heart-container">
-                          <AiFillHeart className="icon-unlock" type="button" />
+                          <AiFillHeart
+                            className="icon-unlock"
+                            type="button"
+                            onClick={(id) => handleDelete(card.id)}
+                          />
                         </i>
                       </h5>
 
