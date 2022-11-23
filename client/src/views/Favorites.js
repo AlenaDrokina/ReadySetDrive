@@ -9,12 +9,12 @@ import Api from "../helpers/Api";
 export default function Favorites(props) {
   const [faved, setFaved] = useState([]);
   // const [allcards, setAllCards] = useState([]);
-  let { user_id } = useParams();
+  // let { user_id } = useParams();
   let { roadtrip_id } = useParams();
 
   useEffect(() => {
     // newFav();
-    handleDelete();
+
     getFav();
     // addLikedCard();
   }, []);
@@ -55,7 +55,7 @@ export default function Favorites(props) {
     try {
       let response = await fetch(`/favorite_roadtrips/${id}`);
       console.log(response);
-      console.log(user_id);
+      // console.log(user_id);
 
       if (response.ok) {
         console.log(response);
@@ -71,11 +71,16 @@ export default function Favorites(props) {
     }
   }
   async function handleDelete(id) {
+    let user_id = await Local.getUser_id();
+
     let options = {
       method: "DELETE",
     };
     try {
-      let response = await fetch(`/favorite_roadtrips/${id}`, options);
+      let response = await fetch(
+        `/favorite_roadtrips/${user_id}/${id}`,
+        options
+      );
 
       if (response.ok) {
         let data = await response.json();

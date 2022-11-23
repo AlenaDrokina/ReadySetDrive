@@ -128,7 +128,7 @@ function App() {
     }
   }
 
-  console.log(cardLiked);
+  // console.log(cardLiked);
 
   return (
     <div className="App">
@@ -136,7 +136,12 @@ function App() {
         {" "}
         <img className="logoIcon" src={logo} alt="carlogo"/>
       </NavLink> */}
-      <Navbar className="navbarright" user={user} logoutCb={doLogout} user_id={user_id} />
+      <Navbar
+        className="navbarright"
+        user={user}
+        logoutCb={doLogout}
+        user_id={user_id}
+      />
 
       <Routes>
         <Route

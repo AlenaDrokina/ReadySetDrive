@@ -10,7 +10,7 @@ import "./ProfileView.css";
 // import Api from "../helpers/Api";
 
 const BLANK_STOP_PROFILE = {
-  url: "",
+  image_url: "",
   slogan: "",
 };
 
@@ -18,6 +18,8 @@ function ProfileView(props) {
   const [user, setUser] = useState(null);
   const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   const [errorMsg, setErrorMsg] = useState("");
+  const [image, setImage] = useState("");
+
   const [descrip, setDescrip] = useState("");
 
   let { user_id } = useParams();
@@ -45,19 +47,21 @@ function ProfileView(props) {
     return <h2>Loading...</h2>;
   }
 
-  async function addDescrip(formData) {
+  async function addDescrip(profileData) {
     let options = {
-      method: "POST",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(descrip),
+      body: JSON.stringify({
+        image_url: profileData.image_url,
+        slogan: profileData.slogan,
+      }),
     };
 
     try {
       let response = await fetch(`/users/${user_id}`, options);
       if (response.ok) {
         let newDescrip = await response.json();
-        // let roadtrip_id = newRoadtrip.id;
-        setDescrip(newDescrip);
+        setUser(newDescrip);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -65,6 +69,7 @@ function ProfileView(props) {
       console.log(`Network error: ${err.message}`);
     }
   }
+  // console.log(profileData.image_url);
 
   function handleChange(event) {
     let { name, value } = event.target;
@@ -79,16 +84,16 @@ function ProfileView(props) {
     <div>
       <h1>Profile</h1>
       <div className="ProfileView">
-        {!props.user.image_url && (
+        {!props.user.slogan && (
           <div className="box">
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label">Add Picture Here</label>
                 <input
                   type="text"
-                  name="url"
-                  value={profileData.url}
-                  onChange={handleChange}
+                  name="image_url"
+                  value={profileData.image_url}
+                  onChange={(e) => handleChange(e)}
                   className="form-control"
                   placeholder="Add a pic of you! (url)"
                 />
@@ -99,7 +104,7 @@ function ProfileView(props) {
                   type="text"
                   name="slogan"
                   value={profileData.slogan}
-                  onChange={handleChange}
+                  onChange={(e) => handleChange(e)}
                   className="form-control"
                   placeholder="I like to..."
                   // placeholder="Add a url of a pic of you!"

@@ -41,8 +41,9 @@ router.post("/:user_id", async (req, res) => {
     console.log(err.message);
   }
 });
-router.delete("/:roadtrip_id", async (req, res) => {
+router.delete("/:user_id/:roadtrip_id", async (req, res) => {
   // URL params are available in req.params
+  let user_id = req.params.user_id;
   let roadtrip_id = req.params.roadtrip_id;
   console.log(roadtrip_id);
   try {
@@ -57,10 +58,15 @@ router.delete("/:roadtrip_id", async (req, res) => {
     } else {
       // delete item with id matching req params
       await db(
+        // `DELETE favorite_roadtrips FROM favorite_roadtrips LEFT JOIN roadtrips ON favorite_roadtrips.roadtrip_id = roadtrips.id
+        // WHERE favorite_roadtrips.roadtrip_id = ${roadtrip_id}`
         `DELETE FROM favorite_roadtrips WHERE roadtrip_id = ${roadtrip_id}`
       );
       // save result to result variable
-      let result = await db(`SELECT * FROM favorite_roadtrips`);
+      //`DELETE FROM favorite_roadtrips WHERE roadtrip_id = ${roadtrip_id}`
+      let result = await db(`SELECT roadtrips.*  from roadtrips 
+      LEFT JOIN favorite_roadtrips ON favorite_roadtrips.roadtrip_id = roadtrips.id
+       WHERE favorite_roadtrips.user_id = ${user_id}`);
       // send result data to client and return server status
       res.status(200).send(result.data);
     }
@@ -69,25 +75,5 @@ router.delete("/:roadtrip_id", async (req, res) => {
     res.status(500).send({ error: err.message });
   }
 });
-
-// router.post("/:user_id/:roadtrip_id", async (req, res) => {
-//   let roadtrip_id = req.params.roadtrip_id;
-//   // let user_id = req.locals.user_id;
-//   let user_id = req.params.user_id;
-
-//   let sql = `
-//           INSERT INTO favorite_roadtrips (user_id, roadtrip_id)
-//           VALUES (${user_id}, ${roadtrip_id})
-//       `;
-//   try {
-//     await db(sql);
-//     let result = await db(`SELECT * FROM favorite_roadtrips`);
-//     let favorites = result.data;
-//     res.status(201).send(favorites);
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//     console.log(err.message);
-//   }
-// });
 
 module.exports = router;

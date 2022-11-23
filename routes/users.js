@@ -36,14 +36,15 @@ router.get("/:user_id", ensureSameUser, async function (req, res, next) {
 
 router.patch("/:user_id", async function (req, res, next) {
   let user_id = req.params.user_id;
-  let completed = req.body;
+  let slogan = req.body.slogan;
+  let image_url = req.body.image_url;
 
   try {
-    await db(`UPDATE users SET done=${completed.done} WHERE id=${roadtrip_id}`);
-    let completedTrip = await db(
-      `SELECT * FROM roadtrips WHERE id=${roadtrip_id}`
+    await db(
+      `UPDATE users SET image_url='${image_url}', slogan='${slogan}' WHERE id=${user_id}`
     );
-    res.status(201).send(completedTrip.data);
+    let data = await db(`SELECT * FROM users WHERE id=${user_id}`);
+    res.status(201).send(data.data);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
