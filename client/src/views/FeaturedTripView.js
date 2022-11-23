@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
 import "../components/MarkerMap.css";
 import "./FeaturedTripView.css";
@@ -12,7 +12,7 @@ function FeaturedTripView(props) {
   let { id } = useParams();
 
   let [currentRoadtripData, setCurrentRoadtripData] = useState({});
-  let [currentStops, setCurrentStops] = useState({});
+  let [currentStops, setCurrentStops] = useState([]);
 
   useEffect(() => {
     getCurrentRoadtripData();
@@ -21,7 +21,8 @@ function FeaturedTripView(props) {
 
   let greenMarker = new L.icon({
     iconUrl:
-      "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+      "https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png",
+      // "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
     shadowUrl:
       "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
     iconSize: [25, 41],
@@ -61,6 +62,15 @@ function FeaturedTripView(props) {
     }
   }
 
+  
+
+  
+    //Adding lines to map
+    const polyline = currentStops.map((p) => 
+    [p.latitude, p.longitude]
+  );
+      const lineColor = { color: 'blue' }
+
   return (
     <div className="container">
       <div className="row">
@@ -82,7 +92,7 @@ function FeaturedTripView(props) {
                   <div>
                     <h4>{stop.title}</h4>
                     <h5>{stop.address}</h5>
-                    {console.log("Stop data:", stop)}
+                    {/* {console.log("Stop data:", stop)} */}
                   </div>
                 );
               })}
@@ -95,7 +105,7 @@ function FeaturedTripView(props) {
             <MapContainer
               className="MarkerMap"
               center={[currentStops[0].latitude, currentStops[0].longitude]}
-              zoom={8}
+              zoom={4}
               style={{ height: "500px" }}
             >
               <TileLayer
@@ -113,6 +123,10 @@ function FeaturedTripView(props) {
                   </Marker>
                 );
               })}
+              <Polyline 
+                positions={polyline}
+                pathOptions={lineColor}
+              />
             </MapContainer>
           </div>
         )}
