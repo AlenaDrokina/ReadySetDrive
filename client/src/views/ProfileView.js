@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import NewRoadTripView from "./NewRoadTripView";
 import ProfileCards from "../components/ProfileCards";
+
 import Api from "../helpers/Api";
 import { useParams } from "react-router-dom";
-import { RiDeleteBin5Line } from "react-icons/ri";
+
 // import NewRoadTripView from "./NewRoadTripView";
 // import PastFormView from "./PastFormView";
 import "./ProfileView.css";
@@ -135,7 +136,7 @@ function ProfileView(props) {
   return (
     <div>
       <div className="row">
-        <div className="profile-section col-4">
+        <div className="profile-section col-lg-4 col-md-6">
           <h2>Profile</h2>
           <div className="box">
             {!props.user.image_url ||
@@ -198,64 +199,71 @@ function ProfileView(props) {
             </div>
           </div>
         </div>
-        <div className="roadtrip-section col-8">
-          <h2>Roadtrips</h2>
+        <div className="roadtrip-section col-lg-8 col-md-6">
           <div>
             <h4>My shared roadtrips</h4>
             <h5>
-              <NavLink to="/PastRoadTripView">Add more</NavLink>{" "}
+              <NavLink to="/PastRoadTripView" className="link-add">
+                Add more
+              </NavLink>{" "}
             </h5>
             <div>
-              <div className="row">
-                {completedTrips1.length >= 1
-                  ? completedTrips1.map((element) => {
-                      return (
-                        <ProfileCards
-                          key={element.id}
-                          roadtripData={element}
-                          tripToDeleteCb={setTripToDelete}
-                        />
-                      );
-                    })
-                  : null}
+              <div className="container">
+                <div className="d-flex justify-content-start flex-wrap">
+                  {completedTrips1.length >= 1
+                    ? completedTrips1.map((element) => {
+                        return (
+                          <ProfileCards
+                            key={element.id}
+                            roadtripData={element}
+                            tripToDeleteCb={setTripToDelete}
+                          />
+                        );
+                      })
+                    : null}
+                </div>
               </div>
               {completedTrips2.length >= 1 && (
-                <div className="row">
-                  <div class="accordion" id="accordionExample">
+                <div className="container">
+                  <div className="accordion" id="accordionExample">
                     <div
-                      class="accordion-item"
+                      className="accordion-item"
                       style={{ border: "none", padding: "0px" }}
                     >
                       <div
                         id="collapseOne"
-                        class="accordion-collapse collapse show"
+                        className="accordion-collapse collapse"
                         aria-labelledby="headingOne"
                         data-bs-parent="#accordionExample"
                       >
                         <div
-                          class="accordion-body"
+                          className="accordion-body"
                           style={{ border: "none", padding: "0px" }}
                         >
-                          {completedTrips2.map((element) => {
-                            return (
-                              <ProfileCards
-                                key={element.id}
-                                roadtripData={element}
-                                tripToDeleteCb={setTripToDelete}
-                              />
-                            );
-                          })}
+                          <div
+                            className="d-flex justify-content-start flex-wrap"
+                            style={{ maxWidth: "800px" }}
+                          >
+                            {completedTrips2.map((element) => {
+                              return (
+                                <ProfileCards
+                                  key={element.id}
+                                  roadtripData={element}
+                                  tripToDeleteCb={setTripToDelete}
+                                />
+                              );
+                            })}
+                          </div>
                         </div>
                       </div>
-                      <h2 class="accordion-header" id="headingOne">
-                        <p
+                      <h2 className="accordion-header" id="headingOne">
+                        <button
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseOne"
-                          aria-expanded="true"
+                          aria-expanded="false"
                           aria-controls="collapseOne"
-                        >
-                          Show more
-                        </p>
+                          className="btn acc-btn testToggle collapsed"
+                        ></button>
                       </h2>
                     </div>
                   </div>
@@ -267,37 +275,46 @@ function ProfileView(props) {
           <div>
             <h4>My planned roadtrips</h4>
             <h5>
-              <NavLink to="/NewRoadTripView">Plan more</NavLink>{" "}
+              <NavLink to="/NewRoadTripView" className="link-add">
+                Plan more
+              </NavLink>{" "}
             </h5>
             <div>
-              <div className="row">
-                {plannedTrips1.length >= 1
-                  ? plannedTrips1.map((element) => {
-                      return (
-                        <ProfileCards
-                          key={element.id}
-                          roadtripData={element}
-                          tripToDeleteCb={setTripToDelete}
-                        />
-                      );
-                    })
-                  : null}
-                {plannedTrips2.length >= 1 && (
-                  <div className="row">
-                    <div class="accordion" id="accordionExample">
+              <div className="container">
+                <div className="d-flex justify-content-start flex-wrap">
+                  {plannedTrips1.length >= 1
+                    ? plannedTrips1.map((element) => {
+                        return (
+                          <ProfileCards
+                            key={element.id}
+                            roadtripData={element}
+                            tripToDeleteCb={setTripToDelete}
+                          />
+                        );
+                      })
+                    : null}
+                </div>
+              </div>
+              {plannedTrips2.length >= 1 && (
+                <div className="container">
+                  <div className="accordion" id="accordionTwo">
+                    <div
+                      className="accordion-item"
+                      style={{ border: "none", padding: "0px" }}
+                    >
                       <div
-                        class="accordion-item"
-                        style={{ border: "none", padding: "0px" }}
+                        id="collapseTwo"
+                        className="accordion-collapse collapse"
+                        aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionTwo"
                       >
                         <div
-                          id="collapseOne"
-                          class="accordion-collapse collapse show"
-                          aria-labelledby="headingOne"
-                          data-bs-parent="#accordionExample"
+                          className="accordion-body"
+                          style={{ border: "none", padding: "0px" }}
                         >
                           <div
-                            class="accordion-body"
-                            style={{ border: "none", padding: "0px" }}
+                            className="d-flex justify-content-start flex-wrap"
+                            style={{ maxWidth: "800px" }}
                           >
                             {plannedTrips2.map((element) => {
                               return (
@@ -310,45 +327,44 @@ function ProfileView(props) {
                             })}
                           </div>
                         </div>
-                        <h2 class="accordion-header" id="headingOne">
-                          <p
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne"
-                            aria-expanded="true"
-                            aria-controls="collapseOne"
-                          >
-                            Show more
-                          </p>
-                        </h2>
                       </div>
+                      <h2 className="accordion-header" id="headingTwo">
+                        <button
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseTwo"
+                          aria-expanded="false"
+                          aria-controls="collapseTwo"
+                          className="btn acc-btn testToggleTwo collapsed"
+                        ></button>
+                      </h2>
                     </div>
                   </div>
-                )}
-                <div
-                  class="modal fade"
-                  id="exampleModal"
-                  tabindex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        Do you really want to delete this roadtrip?
-                      </div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn delete-btn"
-                          data-bs-dismiss="modal"
-                          onClick={() => deleteRoadtrip(tripToDelete)}
-                        >
-                          Yes
-                        </button>
-                        <button type="button" className="btn delete-btn">
-                          No
-                        </button>
-                      </div>
+                </div>
+              )}
+              <div
+                className="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-body">
+                      Do you really want to delete this roadtrip?
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn delete-btn"
+                        data-bs-dismiss="modal"
+                        onClick={() => deleteRoadtrip(tripToDelete)}
+                      >
+                        Yes
+                      </button>
+                      <button type="button" className="btn delete-btn">
+                        No
+                      </button>
                     </div>
                   </div>
                 </div>

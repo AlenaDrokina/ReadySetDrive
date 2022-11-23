@@ -80,3 +80,33 @@ h1 {
 .delete-btn {
   width: 80px;
 }
+
+.acc-btn {
+  width: 20%;
+  margin-bottom: 40px;
+}
+
+.link-add {
+  color: #519259;
+}
+
+.link-add:hover {
+  color: black;
+}
+
+
+.testToggle::after {
+content: "Show more";
+}
+
+.testToggle:not(.collapsed)::after {
+  content: "Show less";
+}
+
+.testToggleTwo::after {
+  content: "Show more";
+  }
+  
+  .testToggleTwo:not(.collapsed)::after {
+    content: "Show less";
+  }
