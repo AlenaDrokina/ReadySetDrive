@@ -41,9 +41,6 @@ const RegisterView = (props) => {
             <div className="row">
               <form control="" className="form-group" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  {/* <i>
-                    <AiOutlineMail className="email-icon" />
-                  </i> */}
                   <div className="row">
                     <input
                       type="email"
@@ -99,7 +96,7 @@ const RegisterView = (props) => {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn">
                   Submit
                 </button>
                 <p>{props.registerError}</p>

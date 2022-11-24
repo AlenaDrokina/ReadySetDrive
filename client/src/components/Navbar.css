@@ -15,9 +15,10 @@ li {
 .navbar .btn {
   float: right;
   width: 50px;
-  margin-right:100px;
+  margin-right: 100px;
 }
 
-/* .dropdown-menu {
-  float: right;
-} */
+.dropdown-item:hover {
+  background-color: #519259;
+  color: #fff;
+}
