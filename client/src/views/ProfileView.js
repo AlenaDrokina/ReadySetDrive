@@ -18,9 +18,7 @@ const BLANK_STOP_PROFILE = {
   slogan: "",
 };
 
-
 function ProfileView(props) {
-  
   const [user, setUser] = useState(Local.getUser());
   const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   const [errorMsg, setErrorMsg] = useState("");
@@ -40,17 +38,13 @@ function ProfileView(props) {
     getRoadtripDataUser();
   }, []);
 
-
-
-
   async function fetchProfile() {
     let myresponse = await Api.getUser(user_id);
-    console.log("response", myresponse)
+    console.log("response", myresponse);
     if (myresponse.ok) {
       setUser(myresponse.data);
       setErrorMsg("");
-     // updateProfile(user);
-     
+      // updateProfile(user);
     } else {
       setUser(null);
       let msg = `Error ${myresponse.status}: ${myresponse.error}`;
@@ -85,7 +79,7 @@ function ProfileView(props) {
   async function updateProfile() {
     let options = {
       method: "PATCH",
-      headers: { "Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         image_url: profileData.image_url,
         slogan: profileData.slogan,
@@ -145,70 +139,66 @@ function ProfileView(props) {
       console.log(`Server error: ${err.message}`);
     }
   }
- 
 
   return (
     <div>
       <div className="row">
         <div className="profile-section col-lg-4 col-md-6">
-        <h2>Profile</h2>
-        <div className="box">
-        {((user.slogan && user.image_url) ? (
+          <h2>Profile</h2>
+          <div className="box">
+            {user.slogan && user.image_url ? (
+              <div className="userInfo">
+                <br />
+                <div className="name">
+                  {" "}
+                  <img src={user.image_url} alt="User" />
+                </div>
+                <div className="name">
+                  {" "}
+                  <p className="text-left">Hey {user.username} ! </p>
+                </div>
 
-          <div className="userInfo">              
-            <br />
-            <div className="name">
-              {" "}
-              <img src={user.image_url} alt="User" />
-            </div>
-            <div className="name">
-              {" "}
-              <p className="text-left">Hey {user.username} ! </p>
-            </div>
-
-            <div className="description">
-              {" "}
-              <p class="text-left">
-                Description: <br /> {user.slogan}
-              </p>
-            </div>
-          </div>        
-      
-            ) :
-            (
-
-          <div className="box2">
-            <form onSubmit={handleSubmit} >
-            <div className="mb-3">
-                <label className="form-label">Add a little description!</label>
-                <input
-                  type="text"
-                  name="slogan"
-                  value={profileData.slogan}
-                  onChange={handleChange}
-                  className="form-control"
-                  placeholder="I like to..."
-                />
+                <div className="description">
+                  {" "}
+                  <p class="text-left">
+                    Description: <br /> {user.slogan}
+                  </p>
+                </div>
               </div>
-              <div className="mb-3">
-                <label className="form-label">Add Picture Here</label>
-                <input
-                  type="text"
-                  name="image_url"
-                  value={profileData.image_url}
-                  onChange={handleChange}
-                  className="form-control"
-                  placeholder="Add a pic of you! (url)"
-                />
-              </div>
+            ) : (
+              <div className="box2">
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label className="form-label">
+                      Add a little description!
+                    </label>
+                    <input
+                      type="text"
+                      name="slogan"
+                      value={profileData.slogan}
+                      onChange={handleChange}
+                      className="form-control"
+                      placeholder="I like to..."
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label">Add Picture Here</label>
+                    <input
+                      type="text"
+                      name="image_url"
+                      value={profileData.image_url}
+                      onChange={handleChange}
+                      className="form-control"
+                      placeholder="Add a pic of you! (url)"
+                    />
+                  </div>
 
-             <button className="btn btn-primary"> Submit </button>
-            </form>
+                  <button className="btn"> Submit </button>
+                </form>
+              </div>
+            )}
           </div>
-          
-         ))}
-         </div>
-         </div>
+        </div>
 
         <div className="roadtrip-section col-lg-8 col-md-6">
           <div>
@@ -384,8 +374,7 @@ function ProfileView(props) {
           </div>
         </div>
       </div>
-  </div>
- 
+    </div>
   );
 }
 
