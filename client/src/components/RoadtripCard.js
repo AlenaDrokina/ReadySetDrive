@@ -33,7 +33,7 @@ function RoadtripCard(props) {
     <div className="col-md-6 col-lg-4 mb-4">
       <div className="card h-100">
         <img
-          className="card-img-top"
+          className="card-img-top home-img"
           src={props.roadtripData.image_url}
           alt="roadtrip"
           onClick={changeView}

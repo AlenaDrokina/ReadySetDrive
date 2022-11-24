@@ -23,9 +23,9 @@ function FeaturedTripView(props) {
     iconUrl:
       "https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png",
       // "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-    shadowUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-    iconSize: [25, 41],
+    // shadowUrl:
+    //   "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+    iconSize: [28, 35],
     iconAnchor: [12, 41],
     nameAnchor: [1, -34],
     shadowSize: [41, 41],
@@ -33,7 +33,7 @@ function FeaturedTripView(props) {
 
   async function getCurrentRoadtripData() {
     try {
-      let response = await fetch(`/roadtrips/${id}`);
+      let response = await fetch(`/roadtrips/featured/${id}`);
       console.log(response);
       if (response.ok) {
         let currentRoadtripData = await response.json();
