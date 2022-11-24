@@ -91,13 +91,13 @@ INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
 		   ("Amazing Pizza", "Murcia, Spain", -1.143909, 37.986118, 1),
 		   ("Coffee Shop", "Seville, Spain", -5.984459, 37.389091, 1),
 
+		   ("Beach", "Algarve, Portugal", -7.9308, 37.0180, 2),
+		   ("Marina", "Lagos, Portugal", -8.6730, 37.1028, 2),
+           ("Lighthouse", "Sagres, Portugal", -8.9406, 37.0168, 2),
 		   ("Market", "Lisbon, Portugal", -9.1393, 38.7223, 2),
            ("Cathedral", "Porto, Portugal", -8.6291, 41.1579, 2),
            ("Casa do Raio", "Braga, Portugal", -8.4265, 41.5454, 2),
            ("Trajano Bridge", "Chaves, Portugal", -7.4706, 41.7411, 2),
-           ("Marina", "Lagos, Portugal", -8.6730, 37.1028, 2),
-           ("Beach", "Algarve, Portugal", -7.9308, 37.0180, 2),
-           ("Lighthouse", "Sagres, Portugal", -8.9406, 37.0168, 2),
 		   
 		   ("Four Corners", "San Juan County, New Mexico", -109.0452, 36.9990, 6),
            ("Grand Canyon", "Coconino County, AZ", -112.1401, 36.0544, 6),
@@ -105,7 +105,6 @@ INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
            ("Zoe's Hometown", "San Francisco, CA", -122.4194, 37.7749, 6),
            ("Hollywood Sign", "Los Angeles, CA", -118.2437, 34.0522, 6),
            ("Disneyland", "Anaheim, CA", -117.9220, 33.8111, 6),
-           ("Big Bend National Park", "Brewster County, TX", -103.2502, 29.2498, 6),
 
 		   ("Nature hike", "Allean Forest, Scotland", -3.872422, 56.734922, 7),
 		   ("Nessie", "Loch Ericht, Scotland", -4.358743, 56.832008, 7),
