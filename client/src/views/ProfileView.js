@@ -158,7 +158,9 @@ function ProfileView(props) {
   return (
     <div>
       <h1>Profile</h1>
-      <div className="ProfileView">
+      <div className="row">
+        <div className="profile-section col-lg-4 col-md-6">
+        <div className="ProfileView">
         {((user.slogan && user.image_url) ? (
          <div className="box2">
           <div className="userInfo">
@@ -216,6 +218,7 @@ function ProfileView(props) {
 
              <button onSubmit={handleSubmit} className="btn btn-primary"> Submit </button>
             </form>
+          </div>
           </div>
          ))}
         <div className="roadtrip-section col-lg-8 col-md-6">
@@ -393,6 +396,7 @@ function ProfileView(props) {
         </div>
       </div>
     </div>
+  </div>
   );
 }
 
