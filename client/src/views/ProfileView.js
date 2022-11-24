@@ -362,7 +362,12 @@ function ProfileView(props) {
                       >
                         Yes
                       </button>
-                      <button type="button" className="btn delete-btn">
+                      <button
+                        type="button"
+                        className="btn delete-btn"
+                        data-bs-dismiss="modal"
+                        aria-label="close"
+                      >
                         No
                       </button>
                     </div>
