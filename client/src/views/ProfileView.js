@@ -157,10 +157,10 @@ function ProfileView(props) {
 
   return (
     <div>
-      <h1>Profile</h1>
       <div className="row">
         <div className="profile-section col-lg-4 col-md-6">
-        <div className="ProfileView">
+        <h2>Profile</h2>
+        <div className="box"></div>
         {((user.slogan && user.image_url) ? (
          <div className="box2">
           <div className="userInfo">
@@ -404,68 +404,3 @@ export default ProfileView;
 
 
 
-{/* <div>
-      <div className="row">
-        <div className="profile-section col-lg-4 col-md-6">
-          <h2>Profile</h2>
-          <div className="box">
-            {!props.user.image_url ||
-              (!props.user.slogan && (
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <label className="form-label">Add Picture Here</label>
-                    <input
-                      type="text"
-                      name="url"
-                      value={profileData.url}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="Add a pic of you! (url)"
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">
-                      Add a little description!
-                    </label>
-                    <input
-                      type="text"
-                      name="slogan"
-                      value={profileData.slogan}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="I like to..."
-                      // placeholder="Add a url of a pic of you!"
-                    />
-                  </div>
-                  <button onSubmit={handleSubmit} className="btn btn-primary">
-                    Submit
-                  </button>
-                </form>
-              ))}
-          </div>
-          <div className="box2">
-            <div className="userInfo">
-              {user.image_url && (
-                <div key={user.image_url}>
-                  <img src={user.image_url} alt="User" />
-                </div>
-              )}
-              <br />
-              <div className="name">
-                {" "}
-                <p className="text-left">Hey!! {user.username}</p>
-              </div>
-              <div className="email">
-                {" "}
-                <p class="text-left">Email: {user.email}</p>
-              </div>
-
-              <div className="description">
-                {" "}
-                <p className="text-left">
-                  Description: <br /> {user.slogan}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> */}
