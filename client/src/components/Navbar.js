@@ -9,11 +9,7 @@ import logo from "./logo.png";
 function Navbar(props) {
   //let { user_id } = useParams();
   return (
-<<<<<<< HEAD
-    <nav className="navbar navbar-light" color="background-color: #e3f2fd;">
-=======
     <nav className="navbar">
->>>>>>> main
       <NavLink to="/" className="Logo">
         {" "}
         <img className="logoIcon" src={logo} alt="carlogo" />

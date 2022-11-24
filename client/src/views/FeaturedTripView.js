@@ -68,23 +68,10 @@ function FeaturedTripView(props) {
     }
   }
 
-<<<<<<< HEAD
   //Adding lines to map
   const polyline = currentStops.map((p) => [p.latitude, p.longitude]);
-  const lineColor = { color: "blue" };
-=======
 
-  
-
-  
-    //Adding lines to map
-    const polyline = currentStops.map((p) => 
-    [p.latitude, p.longitude]
-  );
-  
-  const lineColor = { color: "#519251" }
-
->>>>>>> main
+  const lineColor = { color: "#519251" };
 
   return (
     <div className="container">
