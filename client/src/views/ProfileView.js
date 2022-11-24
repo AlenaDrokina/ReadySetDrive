@@ -141,12 +141,11 @@ function ProfileView(props) {
     <div>
       <div className="row">
         <div className="profile-section col-lg-4 col-md-6">
-          <h2>Profile</h2>
           <div className="box">
             {user.slogan && user.image_url ? (
               <div className="userInfo">
                 <br />
-                <div className="name">
+                <div className="image">
                   {" "}
                   <img src={user.image_url} alt="User" />
                 </div>
@@ -154,6 +153,9 @@ function ProfileView(props) {
                   {" "}
                   <p className="text-left">Hey {user.username} ! </p>
                 </div>
+                {/* <div className="email">
+                  <p className="text-left"> {user.email} </p>
+                </div> */}
 
                 <div className="description">
                   {" "}

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
 import "../components/MarkerMap.css";
 import "./FeaturedTripView.css";
@@ -22,7 +28,7 @@ function FeaturedTripView(props) {
   let greenMarker = new L.icon({
     iconUrl:
       "https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png",
-      // "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+    // "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
     // shadowUrl:
     //   "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
     iconSize: [28, 35],
@@ -62,14 +68,9 @@ function FeaturedTripView(props) {
     }
   }
 
-  
-
-  
-    //Adding lines to map
-    const polyline = currentStops.map((p) => 
-    [p.latitude, p.longitude]
-  );
-      const lineColor = { color: 'blue' }
+  //Adding lines to map
+  const polyline = currentStops.map((p) => [p.latitude, p.longitude]);
+  const lineColor = { color: "blue" };
 
   return (
     <div className="container">
@@ -105,7 +106,7 @@ function FeaturedTripView(props) {
             <MapContainer
               className="MarkerMap"
               center={[currentStops[0].latitude, currentStops[0].longitude]}
-              zoom={4}
+              zoom={5}
               style={{ height: "500px" }}
             >
               <TileLayer
@@ -123,10 +124,7 @@ function FeaturedTripView(props) {
                   </Marker>
                 );
               })}
-              <Polyline 
-                positions={polyline}
-                pathOptions={lineColor}
-              />
+              <Polyline positions={polyline} pathOptions={lineColor} />
             </MapContainer>
           </div>
         )}

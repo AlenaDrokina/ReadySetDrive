@@ -111,6 +111,7 @@ function StopsView(props) {
 
   return (
     <div className="StopsView">
+      <h1> Add Your Stops </h1>
       <div className="row mb-5">
         <div className="col">
           <div className="row1">
@@ -125,12 +126,16 @@ function StopsView(props) {
           </div>
 
           <div className="row2">
-            <Link type="button" className="btn btn-primary" to={`/users/${props.user.id}`} role="button">
-              
+            <Link
+              type="button"
+              className="btn btn-primary"
+              to={`/users/${props.user.id}`}
+              role="button"
+            >
               {" "}
               No, I'll keep planning later{" "}
-              </Link>
-
+            </Link>
+            {"   "}
             <button
               type="button"
               className="btn btn-primary"

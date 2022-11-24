@@ -15,17 +15,21 @@
 .StopsView .row2 .btn {
   margin-right: 3px;
   margin-top: 20px;
-  width: 440px;
+  width: 270px;
+  margin-left: 10px;
 }
 
 .StopsView .row2 label {
-  margin-top: 50px;
+  margin-top: 85px;
   font-size: 27px;
   font-family: Arial, Helvetica, Verdana;
 }
+.StopsView h1 {
+  margin-bottom: -30px;
+}
 
 .StopsView .col {
-  margin-top: -20px;
+  margin-top: -25px;
   margin-right: 23px;
 }
 
