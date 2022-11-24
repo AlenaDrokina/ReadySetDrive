@@ -5,11 +5,11 @@
 .box {
   display: grid;
   gap: 40px;
-  grid-template-rows: 450px;
+  grid-template-rows: 470px;
   border-radius: 9%;
   /* background-color: #519259e6; */
-  border: 2px solid #519259a4;
-  background-color: #5192592d;
+  border: 3px solid #51925931;
+  background-color: #c3efca55;
   text-align: center;
   margin-left: 70px;
   margin-right: 20px;
