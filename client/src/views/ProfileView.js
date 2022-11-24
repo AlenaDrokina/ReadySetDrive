@@ -219,7 +219,7 @@ function ProfileView(props) {
              <button onSubmit={handleSubmit} className="btn btn-primary"> Submit </button>
             </form>
           </div>
-          </div>
+          
          ))}
         <div className="roadtrip-section col-lg-8 col-md-6">
           <div>
