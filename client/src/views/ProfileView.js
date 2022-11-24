@@ -102,8 +102,6 @@ function ProfileView(props) {
       if (response.ok) {
         let result = await response.json();
         setUser(result);
-        
-        setUser(user);
         //navigate(`/users/${user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
@@ -121,7 +119,7 @@ function ProfileView(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    //console.log("hello");
+    console.log("hello");
     updateProfile(user);
   }
 
@@ -160,16 +158,16 @@ function ProfileView(props) {
       <div className="row">
         <div className="profile-section col-lg-4 col-md-6">
         <h2>Profile</h2>
-        <div className="box"></div>
+        <div className="box">
         {((user.slogan && user.image_url) ? (
-         <div className="box2">
+
           <div className="userInfo">
             {/* {user && (
                 <div key={user.id}>
                 <img src={user.image_url} alt="User" />
               </div>
               )}   */}
-              <div>
+              
             <br />
             <div className="name">
               {" "}
@@ -187,11 +185,12 @@ function ProfileView(props) {
               </p>
             </div>
           </div>
-          </div>
-        </div>
+          
+        
+      
             ) :
             (
-          <div className="box">
+          <div className="box2">
             <form onSubmit={handleSubmit} >
             <div className="mb-3">
                 <label className="form-label">Add a little description!</label>
@@ -207,7 +206,7 @@ function ProfileView(props) {
               <div className="mb-3">
                 <label className="form-label">Add Picture Here</label>
                 <input
-                  type="url"
+                  type="text"
                   name="image_url"
                   value={user.image_url}
                   onChange={handleChange}
@@ -216,7 +215,7 @@ function ProfileView(props) {
                 />
               </div>
 
-             <button onSubmit={handleSubmit} className="btn btn-primary"> Submit </button>
+             <button className="btn btn-primary"> Submit </button>
             </form>
           </div>
           
@@ -397,10 +396,8 @@ function ProfileView(props) {
       </div>
     </div>
   </div>
+  </div>
   );
 }
 
 export default ProfileView;
-
-
-
