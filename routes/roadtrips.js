@@ -13,8 +13,9 @@ router.get("/", async function (req, res) {
   }
 });
 
-// GET by id
-router.get("/:roadtrip_id", async function (req, res) {
+// GET by roadtrip_id
+
+router.get("/featured/:roadtrip_id", async function (req, res) {
   let roadtrip_id = req.params.roadtrip_id;
   try {
     let result = await db(`SELECT * FROM  roadtrips WHERE id=${roadtrip_id}`);
@@ -31,12 +32,32 @@ router.get("/:roadtrip_id", async function (req, res) {
   }
 });
 
+// GET by user_id
+
+router.get("/:user_id", async function (req, res) {
+  let user_id = req.params.user_id;
+  try {
+    let result = await db(`SELECT * FROM  roadtrips WHERE user_id=${user_id}`);
+    let roadtrip = result.data;
+    if (roadtrip.length === 0) {
+      console.log("Hello");
+      res.send([]);
+      // res
+      //   .status(404)
+      //   .send({ error: "There are no roadtrips for the requested user" });
+    } else {
+      res.send(roadtrip);
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 // POST
 
 router.post("/", async function (req, res) {
   // The request's body is available in req.body
-  let { image_url, title, countries, description, done, user_id } = req.body;   //insert array for stops
+  let { image_url, title, countries, description, done, user_id } = req.body; //insert array for stops
   // sql syntax is tested & correct
   console.log(req.body);
   let sql = `
@@ -46,14 +67,13 @@ router.post("/", async function (req, res) {
 
       `; //1 are the fields and 2 these are the values
 
-
   //constructor of the sql
   try {
     let results = await db(sql); //adds item
-    //foreach stop in array, insert into stops table 
+    //foreach stop in array, insert into stops table
     let result = await db("SELECT * FROM roadtrips"); //get the list of items
     // let newItems = result.data;
-    res.status(201).send(result.data[result.data.length-1]);
+    res.status(201).send(result.data[result.data.length - 1]);
     // send data to client
   } catch (error) {
     res.status(500).send({ error: error.message });
@@ -62,7 +82,7 @@ router.post("/", async function (req, res) {
 
 // DELETE
 
-router.delete("/:roadtrip_id", async (req, res) => {
+router.delete("/delete/:roadtrip_id", async (req, res) => {
   // URL params are available in req.params
   let roadtrip_id = req.params.roadtrip_id;
   try {
@@ -87,15 +107,17 @@ router.delete("/:roadtrip_id", async (req, res) => {
 
 //UPDATE roadtrip as complete
 
-router.patch("/:roadtrip_id/done", async function (req, res, next){
+router.patch("/:roadtrip_id/done", async function (req, res, next) {
   let roadtrip_id = req.params.roadtrip_id;
   let completed = req.body;
-  
-  try{
+
+  try {
     await db(
       `UPDATE roadtrips SET done=${completed.done} WHERE id=${roadtrip_id}`
     );
-    let completedTrip = await db(`SELECT * FROM roadtrips WHERE id=${roadtrip_id}`);
+    let completedTrip = await db(
+      `SELECT * FROM roadtrips WHERE id=${roadtrip_id}`
+    );
     res.status(201).send(completedTrip.data);
   } catch (err) {
     res.status(500).send({ error: err.message });
