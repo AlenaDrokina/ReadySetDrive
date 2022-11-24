@@ -45,7 +45,7 @@ router.patch("/:user_id", async function (req, res, next) {
     let result = await db(
       `SELECT * FROM users WHERE id=${user_id}`
     );
-    res.status(201).send(result.data);
+    res.status(201).send(result.data[0]);
   } catch (err) {
     res.status(500).send({ error: err.message });
   }

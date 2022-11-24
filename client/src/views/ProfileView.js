@@ -13,25 +13,23 @@ import "./ProfileView.css";
 // import { Routes, Route, useParams } from "react-router-dom";
 // import Api from "../helpers/Api";
 
-// const BLANK_STOP_PROFILE = {
-//   // id: user_id,
-//   // username: user.username,
-//   image_url: "",
-//   slogan: "",
-// };
+const BLANK_STOP_PROFILE = {
+  image_url: "",
+  slogan: "",
+};
 
 
 function ProfileView(props) {
   
   const [user, setUser] = useState(Local.getUser());
-  //const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
+  const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   const [errorMsg, setErrorMsg] = useState("");
   const [roadtripDataUser, setRoadtripDataUser] = useState({});
   const [completedTrips1, setCompletedTrips1] = useState({});
   const [completedTrips2, setCompletedTrips2] = useState({});
   const [plannedTrips1, setPlannedTrips1] = useState({});
   const [plannedTrips2, setPlannedTrips2] = useState({});
-  const [descrip, setDescrip] = useState("");
+  //const [descrip, setDescrip] = useState("");
   const [tripToDelete, setTripToDelete] = useState(0);
 
   let { user_id } = useParams();
@@ -40,12 +38,9 @@ function ProfileView(props) {
   useEffect(() => {
     fetchProfile();
     getRoadtripDataUser();
-    //addDescrip();
   }, []);
 
-  // console.log("user", user);
-  // console.log("profileData", profileData);
-  // console.log("descrip", descrip);
+
 
 
   async function fetchProfile() {
@@ -92,8 +87,8 @@ function ProfileView(props) {
       method: "PATCH",
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify({
-        image_url: user.image_url,
-        slogan: user.slogan,
+        image_url: profileData.image_url,
+        slogan: profileData.slogan,
       }),
     };
 
@@ -102,7 +97,6 @@ function ProfileView(props) {
       if (response.ok) {
         let result = await response.json();
         setUser(result);
-        //navigate(`/users/${user.id}`);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -114,13 +108,13 @@ function ProfileView(props) {
 
   function handleChange(event) {
     let { name, value } = event.target;
-    setUser((data) => ({ ...data, [name]: value }));
+    setProfileData((data) => ({ ...data, [name]: value }));
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     console.log("hello");
-    updateProfile(user);
+    updateProfile(profileData);
   }
 
   function getCompletedTrips(roadtrips) {
@@ -156,7 +150,7 @@ function ProfileView(props) {
   return (
     <div>
       <div className="row">
-        <div className="col-lg-4 col-md-6">
+        <div className="profile-section col-lg-4 col-md-6">
         <h2>Profile</h2>
         <div className="box">
         {((user.slogan && user.image_url) ? (
@@ -190,7 +184,7 @@ function ProfileView(props) {
                 <input
                   type="text"
                   name="slogan"
-                  value={user.slogan}
+                  value={profileData.slogan}
                   onChange={handleChange}
                   className="form-control"
                   placeholder="I like to..."
@@ -201,7 +195,7 @@ function ProfileView(props) {
                 <input
                   type="text"
                   name="image_url"
-                  value={user.image_url}
+                  value={profileData.image_url}
                   onChange={handleChange}
                   className="form-control"
                   placeholder="Add a pic of you! (url)"
@@ -216,7 +210,7 @@ function ProfileView(props) {
          </div>
          </div>
 
-        <div className="col-lg-8 col-md-6">
+        <div className="roadtrip-section col-lg-8 col-md-6">
           <div>
             <h4>My shared roadtrips</h4>
             <h5>
