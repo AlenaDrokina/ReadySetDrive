@@ -50,7 +50,7 @@ function StopsForm(props) {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn">
           Add Stop
         </button>
 
