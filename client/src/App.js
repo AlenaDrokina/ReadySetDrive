@@ -137,7 +137,13 @@ function App() {
         {" "}
         <img className="logoIcon" src={logo} alt="carlogo"/>
       </NavLink> */}
-      <Navbar className="navbarright" user={user} logoutCb={doLogout} user_id={user_id} />
+
+      <Navbar
+        className="navbarright"
+        user={user}
+        logoutCb={doLogout}
+        user_id={user_id}
+      />
 
       <Routes>
         <Route
@@ -146,10 +152,7 @@ function App() {
         />
         {/* <Route path="/profile/*" element={<ProfileView />} /> */}
 
-        <Route
-          path="/logout"
-          element={<LogoutView />}
-        />
+        <Route path="/logout" element={<LogoutView />} />
 
         <Route
           path="/users/:user_id"

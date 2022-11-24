@@ -68,9 +68,23 @@ function FeaturedTripView(props) {
     }
   }
 
+<<<<<<< HEAD
   //Adding lines to map
   const polyline = currentStops.map((p) => [p.latitude, p.longitude]);
   const lineColor = { color: "blue" };
+=======
+
+  
+
+  
+    //Adding lines to map
+    const polyline = currentStops.map((p) => 
+    [p.latitude, p.longitude]
+  );
+  
+  const lineColor = { color: "#519251" }
+
+>>>>>>> main
 
   return (
     <div className="container">
@@ -126,7 +140,7 @@ function FeaturedTripView(props) {
             <MapContainer
               className="MarkerMap"
               center={[currentStops[0].latitude, currentStops[0].longitude]}
-              zoom={4}
+              zoom={5}
               style={{ height: "500px" }}
             >
               <TileLayer

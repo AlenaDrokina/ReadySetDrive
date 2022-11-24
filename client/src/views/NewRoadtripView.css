@@ -1,4 +1,33 @@
 .NewRoadTripView h1 {
-    margin-bottom: 30px;
-    margin-top: 50px;
+    margin-bottom: 50px;
+    /* margin-top: 50px; */
+    padding-top: 15px;
 }
+
+.NewRoadTripView .headerbox{
+    /* opacity: .5; */
+    height: 80px;
+    margin-bottom:50px;
+    margin-top:20px;
+    width: 40%;
+    /* background-color: white; */
+    background-color: #f2f2f2bd;
+    border-radius: 10px;
+}
+
+.NewRoadTripView .centerbox {
+    display: flex;
+    justify-content: center;
+}
+
+.NewRoadTripView {
+    background: url("https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixlib=rb-4.0.3&ixid=MnwxM[…]90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 800px;
+    padding-top:20px;
+    justify-content: center;
+}
+

@@ -9,7 +9,11 @@ import logo from "./logo.png";
 function Navbar(props) {
   //let { user_id } = useParams();
   return (
+<<<<<<< HEAD
     <nav className="navbar navbar-light" color="background-color: #e3f2fd;">
+=======
+    <nav className="navbar">
+>>>>>>> main
       <NavLink to="/" className="Logo">
         {" "}
         <img className="logoIcon" src={logo} alt="carlogo" />
@@ -18,7 +22,7 @@ function Navbar(props) {
       <li className="nav-item dropdown">
         <button
           type="button"
-          className="btn btn-primary dropdown-toggle"
+          className="btn dropdown-toggle"
           data-bs-toggle="dropdown"
           id="navbarDropdownMenuLink"
         >
@@ -60,18 +64,18 @@ function Navbar(props) {
               </NavLink>
             </a>
             <a className="dropdown-item">
-              {/* Log out user. Then go to home page. */}
-              <Link className="nav-link" to="/logout" onClick={props.logoutCb}>
-                Logout
-              </Link>
-            </a>
-            <a className="dropdown-item">
               <NavLink
                 style={{ textDecoration: "none", color: "black" }}
                 to={`/favorite_roadtrips/${props.user.id}`}
               >
                 Favorites
               </NavLink>
+            </a>
+            <a className="dropdown-item">
+              {/* Log out user. Then go to home page. */}
+              <Link className="nav-link" to="/logout" onClick={props.logoutCb}>
+                Logout
+              </Link>
             </a>
           </div>
         ) : (
