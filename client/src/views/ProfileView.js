@@ -186,7 +186,6 @@ function ProfileView(props) {
                   <img src={user.image_url} alt="User" />
                 </div>
               )}{" "}
-              */}
               <br />
               <div className="name">
                 {" "}
