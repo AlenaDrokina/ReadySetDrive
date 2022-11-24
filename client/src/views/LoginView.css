@@ -76,7 +76,7 @@ form {
   border-radius: 4px;
 }
 
-.LoginView .btn {
+.btn {
   transition: all 0.5s ease;
   width: 70%;
   border-radius: 30px;

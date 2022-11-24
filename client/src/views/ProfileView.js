@@ -153,10 +153,10 @@ function ProfileView(props) {
                   {" "}
                   <p className="text-left">Hey {user.username} ! </p>
                 </div>
+
                 {/* <div className="email">
                   <p className="text-left"> {user.email} </p>
                 </div> */}
-
                 <div className="description">
                   {" "}
                   <p class="text-left">
@@ -191,8 +191,8 @@ function ProfileView(props) {
                       placeholder="Add a pic of you! (url)"
                     />
                   </div>
+                  <button className="btn"> Submit </button>
 
-                  <button className="btn btn-primary"> Submit </button>
                 </form>
               </div>
             )}

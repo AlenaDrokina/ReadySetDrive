@@ -3,14 +3,13 @@ import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 import { HiOutlineMenu } from "react-icons/hi";
 //import { useParams } from "react-router-dom";
-import logo from './logo.png'
+import logo from "./logo.png";
 //import LogoutView from "./views/LogoutView";
 
 function Navbar(props) {
   //let { user_id } = useParams();
   return (
-
-    <nav className="navbar navbar-light" color="background-color: #e3f2fd;">
+    <nav className="navbar">
       <NavLink to="/" className="Logo">
         {" "}
         <img className="logoIcon" src={logo} alt="carlogo" />
@@ -19,7 +18,7 @@ function Navbar(props) {
       <li className="nav-item dropdown">
         <button
           type="button"
-          className="btn btn-primary dropdown-toggle"
+          className="btn dropdown-toggle"
           data-bs-toggle="dropdown"
           id="navbarDropdownMenuLink"
         >
