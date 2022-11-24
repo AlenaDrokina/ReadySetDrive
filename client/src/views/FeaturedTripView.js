@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
 import { breakAddr } from "../helpers/utils";
 import "../components/MarkerMap.css";
 import "./FeaturedTripView.css";
@@ -22,7 +28,7 @@ function FeaturedTripView(props) {
   let greenMarker = new L.icon({
     iconUrl:
       "https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png",
-      // "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
+    // "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
     // shadowUrl:
     //   "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
     iconSize: [28, 35],
@@ -62,40 +68,55 @@ function FeaturedTripView(props) {
     }
   }
 
-  
-
-  
-    //Adding lines to map
-    const polyline = currentStops.map((p) => 
-    [p.latitude, p.longitude]
-  );
-      const lineColor = { color: 'blue' }
+  //Adding lines to map
+  const polyline = currentStops.map((p) => [p.latitude, p.longitude]);
+  const lineColor = { color: "blue" };
 
   return (
     <div className="container">
       <div className="row">
         <div className="col">
           <h2>{currentRoadtripData.title}</h2>
-          <h3>{currentRoadtripData.countries}</h3>
+          <h4>Countries: {currentRoadtripData.countries}</h4>
           <img
             src={currentRoadtripData.image_url}
             alt="roadtrip"
             className="featured-img"
           />
+          <h5>Description</h5>
           <p>{currentRoadtripData.description}</p>
 
           {currentStops.length > 0 && (
-            <div>
-              <h3>Stops</h3>
-              {currentStops.map((stop) => {
-                return (
-                  <div>
-                    <h4>{stop.title}</h4>
-                    <h5>{stop.address}</h5>
-                    {/* {console.log("Stop data:", stop)} */}
-                  </div>
-                );
-              })}
+            <div className="stops">
+              <h5 className="stop-title">Destinations</h5>
+              <div className="table-responsive card">
+                <table className="table table-st riped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th className="feat-table-head" scope="col">
+                        Stop
+                      </th>
+                      <th className="feat-table-head" scope="col">
+                        Location
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentStops.map((stop) => {
+                      return (
+                        <tr key={stop.id}>
+                          <th className="feat-table-body" scope="row">
+                            <td>{stop.title}</td>
+                          </th>
+                          <th className="feat-table-body" scope="row">
+                            <td>{stop.address}</td>
+                          </th>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </div>
@@ -123,10 +144,7 @@ function FeaturedTripView(props) {
                   </Marker>
                 );
               })}
-              <Polyline 
-                positions={polyline}
-                pathOptions={lineColor}
-              />
+              <Polyline positions={polyline} pathOptions={lineColor} />
             </MapContainer>
           </div>
         )}

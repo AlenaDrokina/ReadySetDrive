@@ -2,4 +2,36 @@
     height: 20rem;
     width: 30rem;
     object-fit: cover;
+    border-radius: 5%;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
+
+.stops {
+    /* background-color: #F4EEA9; */
+    border-radius: 5%;
+    width: 80%;
+}
+
+.stop-title {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.feat-table {
+    border-radius: 5%;
+}
+
+.feat-table-head {
+text-align: left;
+}
+
+.feat-table-body {
+    font-weight: normal;
+}
+
+.featuredtripview .table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: 
+   #519259; 
+ }
