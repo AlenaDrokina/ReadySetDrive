@@ -14,7 +14,7 @@ function SearchBar(props) {
   };
 
   return (
-    <div>
+    <div className="searchbar">
       <div className="container">
         <div className="row height justify-content-center align-items-center">
           <div className="col-md-6">

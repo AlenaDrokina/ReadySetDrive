@@ -46,11 +46,11 @@ CREATE TABLE `favorite_roadtrips` (
 
 ALTER TABLE `roadtrips` ADD CONSTRAINT `roadtrips_fk0` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
-ALTER TABLE `stops` ADD CONSTRAINT `stops_fk0` FOREIGN KEY (`roadtrip_id`) REFERENCES `roadtrips`(`id`);
+ALTER TABLE `stops` ADD CONSTRAINT `stops_fk0` FOREIGN KEY (`roadtrip_id`) REFERENCES `roadtrips`(`id`) ON DELETE CASCADE;
 
 ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk0` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
-ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk1` FOREIGN KEY (`roadtrip_id`) REFERENCES `roadtrips`(`id`);
+ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk1` FOREIGN KEY (`roadtrip_id`) REFERENCES `roadtrips`(`id`) ON DELETE CASCADE;
 
 -- SAMPLE DATA 
 
@@ -78,32 +78,8 @@ INSERT INTO `roadtrips`(image_url, title, countries, description, done, user_id)
 
 
 INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
-    VALUES ("Seville", "Av. Test", -5.984459, 37.389091, 1),
-	 ("Dos Hermanas", "Test", -5.922240, 37.283180, 1),
-	 ("Ronda", "Test", -5.166410, 36.741959,  1),
-	 ("Malaga", "Test", -4.421399, 36.721275, 1),
-	 ("Huelva", "Test", -6.949540, 37.257149, 2),
-	 ("Rota", "Test", -6.358200, 36.616989, 2),
-	  ("Barbate", "Test", -5.9192837, 36.1923983, 2),
-	 ("Tarifa", "Test", -5.6050213, 36.0129082, 2),
-	 ("San Roque", "Test", -5.3844546, 36.2096267, 2),
-	 ("Marbella", "Test", -4.88562, 36.508976, 2),
-	 ("Málaga", "Test", -4.4216366, 36.7213028, 2),
-	  ("Nerja", "Test", -3.8790164, 36.7468565, 2),
-	 ("Jete", "Test", -3.6679211, 36.7974469, 2),
-	 ("Vichy", "Test", 3.4203712, 46.1239268, 3),
-	 ("Lyon", "Test", 4.8320114, 45.7578137, 3),
-	 ("Valence", "Test", 4.8920811, 44.9332277, 3),
-	  ("Nice", "Test", 7.2683912, 43.7009358, 3),
-	 ("Genova", "Test", 8.9338624, 44.40726, 3),
-	 ("La Spezia", "Test", 9.6912326, 44.238366, 3),
-	 ("Stuttgart", "Test", 9.1800132, 48.7784485, 4),
-	 ("Heilbronn", "Test", 9.218655, 49.142291, 4),
-	  ("Landsberg am Lech", "Test", 10.8737728, 48.0514973, 4),
-	 ("Lienz", "Test", 12.7503162, 46.8295861, 4),
-	 ("Villach", "Test", 13.8500268, 46.6167284, 4),
-	 ("Gorizia", "Test", 13.6252288, 45.9441278, 4),
-	 ("Pula", "Test", 13.8455311, 44.8702281, 4);
+    VALUES ("Coffee Shop", "Seville, Spain", -5.984459, 37.389091, 1), 
+		   ("Church", "Lisbon, Portugal", -9.1393, 38.7223, 1);
 
 
 INSERT INTO `favorite_roadtrips` (user_id, roadtrip_id) 

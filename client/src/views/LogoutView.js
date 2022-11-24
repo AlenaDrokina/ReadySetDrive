@@ -6,10 +6,10 @@ function LogoutView() {
   return (
     <div className="LogoutView">
 
-        <h5>
+        <h1>
             Uh-oh...  <br />
-            It seems like your car has <br /> stopped running!  <br />
-        </h5>
+            Your trip has ended!  <br />
+        </h1>
         <a href="/">
           <BsArrowLeftCircle className="arrow-icon" />
           {" "}

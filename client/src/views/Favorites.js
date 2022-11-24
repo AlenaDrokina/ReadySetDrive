@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CiCircleMore } from "react-icons/ci";
 import { AiFillHeart } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Local from "../helpers/Local";
 import "./Favorites.css";
 import Api from "../helpers/Api";
@@ -12,13 +12,21 @@ export default function Favorites(props) {
   let { user_id } = useParams();
   let { roadtrip_id } = useParams();
 
+  // const navigate = useNavigate();
+  // let linkToFeaturedView = `/roadtrip/${props.roadtripData.id}`;
+
+  console.log("roadtripID", props.roadtripData.id)
   useEffect(() => {
     // newFav();
-    handleDelete();
-    getFav();
+    //handleDelete();
+    getFav();    //ATTEMPT TO FIX FEATURED CARD ON CLICK
     // addLikedCard();
   }, []);
   console.log("The liked Cards", props.cardLiked);
+
+  // function changeView() {     //ATTEMPT TO FIX FEATURED CARD ON CLICK
+  //   navigate(linkToFeaturedView);
+  // }
   // let makeFav = props.makeFav;
   // console.log("CardLiked", props.cardLikedCb);
   // setFaved(props.cardLiked);
@@ -101,6 +109,7 @@ export default function Favorites(props) {
                       className="card-img-top"
                       src={card.image_url}
                       alt="roadtrip"
+                      // onClick={changeView}
                     />
                     <div className="card-body">
                       <h5 className="card-title">
