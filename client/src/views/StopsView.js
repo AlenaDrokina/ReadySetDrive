@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
 import MarkerTable from "../components/MarkerTable";
 import MarkerMap from "../components/MarkerMap";
@@ -125,10 +125,11 @@ function StopsView(props) {
           </div>
 
           <div className="row2">
-            <a type="button" className="btn btn-primary" href="/" role="button">
+            <Link type="button" className="btn btn-primary" to={`/users/${props.user.id}`} role="button">
+              
               {" "}
               No, I'll keep planning later{" "}
-            </a>
+              </Link>
 
             <button
               type="button"

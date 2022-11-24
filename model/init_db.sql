@@ -83,8 +83,8 @@ INSERT INTO `roadtrips`(image_url, title, countries, description, done, user_id)
 
 
 INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
-    VALUES ("Sevilla", "Av. la Revoltosa", -5.947020, 37.378690, 1), ("Montequino", "Montequino", -5.922240, 37.343460, 1), ("Carmona", "C. Torre del Oro", -5.640865, 37.472166, 1),
-("Lisbon", "Rua da Bempostinha", -9.138937, 38.722127, 2), ("Cruz Quebrada-Dafundo", "Rua Sacadura Cabral", -9.249342, 38.700966, 2);
+    VALUES ("Coffee Shop", "Seville, Spain", -5.984459, 37.389091, 1), 
+		   ("Church", "Lisbon, Portugal", -9.1393, 38.7223, 1);
 
 
 INSERT INTO `favorite_roadtrips` (user_id, roadtrip_id) 
