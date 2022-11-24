@@ -1,22 +1,35 @@
 .MarkerTable {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 50px;
 }
 
 .MarkerTable table {
-    width: 50%;
+  width: 50%;
 }
 
 tr {
-    text-align: center;
+  text-align: center;
 }
 
 .MarkerTable h2 {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .MarkerTable .btn {
-    background-color: red;
-    border-color: red;
+  font-size: 10px;
+
+  background-color: red;
+  border-color: rgb(255, 255, 255);
+  color: aliceblue;
+  border-radius: 50%;
+  width: 33px;
+  margin-top: 5px;
+}
+.MarkerTable .btn:hover {
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(255, 0, 0);
+  color: rgb(230, 21, 21);
+
+  transition: 0.7s;
 }

@@ -17,6 +17,15 @@
 .car-icon {
   font-size: 8em;
 }
+.car-icon:hover {
+  /* position: absolute; */
+  /* transform: translateX(10px); */
+  animation: roll 3s infinite;
+  transform: rotate(40deg);
+  /* webkit-transform: translateY(-30%); */
+  /* transform: translateY(-30%); */
+}
+
 @media screen and (max-width: 640px) {
   .main-content {
     width: 90%;
@@ -35,6 +44,7 @@
   }
 }
 .row > h2 {
+  margin-top: 16px;
   color: #008080;
 }
 .login_form {

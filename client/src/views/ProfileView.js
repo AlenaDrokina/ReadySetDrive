@@ -10,9 +10,6 @@ import { useParams } from "react-router-dom";
 // import NewRoadTripView from "./NewRoadTripView";
 // import PastFormView from "./PastFormView";
 import "./ProfileView.css";
-// import { Routes, Route, useParams } from "react-router-dom";
-// import Api from "../helpers/Api";
-
 const BLANK_STOP_PROFILE = {
   image_url: "",
   slogan: "",
@@ -144,12 +141,11 @@ function ProfileView(props) {
     <div>
       <div className="row">
         <div className="profile-section col-lg-4 col-md-6">
-          <h2>Profile</h2>
           <div className="box">
             {user.slogan && user.image_url ? (
               <div className="userInfo">
                 <br />
-                <div className="name">
+                <div className="image">
                   {" "}
                   <img src={user.image_url} alt="User" />
                 </div>
@@ -158,6 +154,9 @@ function ProfileView(props) {
                   <p className="text-left">Hey {user.username} ! </p>
                 </div>
 
+                {/* <div className="email">
+                  <p className="text-left"> {user.email} </p>
+                </div> */}
                 <div className="description">
                   {" "}
                   <p class="text-left">
@@ -192,8 +191,8 @@ function ProfileView(props) {
                       placeholder="Add a pic of you! (url)"
                     />
                   </div>
-
                   <button className="btn"> Submit </button>
+
                 </form>
               </div>
             )}

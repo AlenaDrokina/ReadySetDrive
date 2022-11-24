@@ -1,23 +1,27 @@
 .form {
-    position: relative;
-    margin: 30px;
-    display: flex;
-    align-items: center;
-    
+  position: relative;
+  margin: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .form-input {
-    height: 45px;
-    text-indent: 10px;
-    border-radius: 10px;
-    margin-left: 10px;
+  height: 45px;
+  text-indent: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
 }
 
 .search-icon {
-    font-size: x-large;
+  font-size: x-large;
+  color: #519259;
+}
+.form input {
+  border-color: #519259;
+  font-size: x-large;
 }
 
 .searchbar {
-    margin-top: -45px;
-    margin-bottom: 40px;
+  margin-top: -45px;
+  margin-bottom: 40px;
 }
