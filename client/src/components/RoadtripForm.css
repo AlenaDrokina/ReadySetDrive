@@ -1,6 +1,7 @@
 .RoadtripForm form{
-    border-radius: 5px;
-    background-color: #f2f2f2;
+    border-radius: 10px;
+    background-color: #f2f2f2bd;
+    /* opacity: .5; */
     padding: 20px;
     width: 40%;
     display: block;
@@ -17,3 +18,10 @@ h1{
     display: block;
     margin: 0 auto;
 }
+
+.RoadtripForm .form-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
