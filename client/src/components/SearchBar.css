@@ -16,3 +16,8 @@
 .search-icon {
     font-size: x-large;
 }
+
+.searchbar {
+    margin-top: -45px;
+    margin-bottom: 40px;
+}

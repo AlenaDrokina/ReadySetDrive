@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import NewRoadTripView from "./NewRoadTripView";
 import ProfileCards from "../components/ProfileCards";
 
 import Api from "../helpers/Api";
+import Local from "../helpers/Local";
 import { useParams } from "react-router-dom";
 
 // import NewRoadTripView from "./NewRoadTripView";
@@ -13,12 +14,14 @@ import "./ProfileView.css";
 // import Api from "../helpers/Api";
 
 const BLANK_STOP_PROFILE = {
-  url: "",
+  image_url: "",
   slogan: "",
 };
 
+
 function ProfileView(props) {
-  const [user, setUser] = useState(null);
+  
+  const [user, setUser] = useState(Local.getUser());
   const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   const [errorMsg, setErrorMsg] = useState("");
   const [roadtripDataUser, setRoadtripDataUser] = useState({});
@@ -26,22 +29,28 @@ function ProfileView(props) {
   const [completedTrips2, setCompletedTrips2] = useState({});
   const [plannedTrips1, setPlannedTrips1] = useState({});
   const [plannedTrips2, setPlannedTrips2] = useState({});
-  const [descrip, setDescrip] = useState("");
+  //const [descrip, setDescrip] = useState("");
   const [tripToDelete, setTripToDelete] = useState(0);
 
   let { user_id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProfile();
     getRoadtripDataUser();
-    //addDescrip();
   }, []);
+
+
+
 
   async function fetchProfile() {
     let myresponse = await Api.getUser(user_id);
+    console.log("response", myresponse)
     if (myresponse.ok) {
       setUser(myresponse.data);
       setErrorMsg("");
+     // updateProfile(user);
+     
     } else {
       setUser(null);
       let msg = `Error ${myresponse.status}: ${myresponse.error}`;
@@ -73,35 +82,39 @@ function ProfileView(props) {
     return <h2>Loading...</h2>;
   }
 
-  // async function addDescrip(formData) {
-  //   let options = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(descrip),
-  //   };
+  async function updateProfile() {
+    let options = {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({
+        image_url: profileData.image_url,
+        slogan: profileData.slogan,
+      }),
+    };
 
-  //   try {
-  //     let response = await fetch(`/users/${user_id}`, options);
-  //     if (response.ok) {
-  //       let newDescrip = await response.json();
-  //       // let roadtrip_id = newRoadtrip.id;
-  //       setDescrip(newDescrip);
-  //     } else {
-  //       console.log(`Server error: ${response.status} ${response.statusText}`);
-  //     }
-  //   } catch (err) {
-  //     console.log(`Network error: ${err.message}`);
-  //   }
-  // }
+    try {
+      let response = await fetch(`/users/${user_id}`, options);
+      if (response.ok) {
+        let result = await response.json();
+        setUser(result);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  }
+  // console.log("user", user)
 
   function handleChange(event) {
     let { name, value } = event.target;
     setProfileData((data) => ({ ...data, [name]: value }));
   }
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(profileData);
-    setProfileData(BLANK_STOP_PROFILE);
+    console.log("hello");
+    updateProfile(profileData);
   }
 
   function getCompletedTrips(roadtrips) {
@@ -132,73 +145,71 @@ function ProfileView(props) {
       console.log(`Server error: ${err.message}`);
     }
   }
+ 
 
   return (
     <div>
       <div className="row">
         <div className="profile-section col-lg-4 col-md-6">
-          <h2>Profile</h2>
-          <div className="box">
-            {!props.user.image_url ||
-              (!props.user.slogan && (
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <label className="form-label">Add Picture Here</label>
-                    <input
-                      type="text"
-                      name="url"
-                      value={profileData.url}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="Add a pic of you! (url)"
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">
-                      Add a little description!
-                    </label>
-                    <input
-                      type="text"
-                      name="slogan"
-                      value={profileData.slogan}
-                      onChange={handleChange}
-                      className="form-control"
-                      placeholder="I like to..."
-                      // placeholder="Add a url of a pic of you!"
-                    />
-                  </div>
-                  <button onSubmit={handleSubmit} className="btn btn-primary">
-                    Submit
-                  </button>
-                </form>
-              ))}
-          </div>
+        <h2>Profile</h2>
+        <div className="box">
+        {((user.slogan && user.image_url) ? (
+
+          <div className="userInfo">              
+            <br />
+            <div className="name">
+              {" "}
+              <img src={user.image_url} alt="User" />
+            </div>
+            <div className="name">
+              {" "}
+              <p className="text-left">Hey {user.username} ! </p>
+            </div>
+
+            <div className="description">
+              {" "}
+              <p class="text-left">
+                Description: <br /> {user.slogan}
+              </p>
+            </div>
+          </div>        
+      
+            ) :
+            (
+
           <div className="box2">
-            <div className="userInfo">
-              {user.image_url && (
-                <div key={user.image_url}>
-                  <img src={user.image_url} alt="User" />
-                </div>
-              )}
-              <br />
-              <div className="name">
-                {" "}
-                <p className="text-left">Hey!! {user.username}</p>
+            <form onSubmit={handleSubmit} >
+            <div className="mb-3">
+                <label className="form-label">Add a little description!</label>
+                <input
+                  type="text"
+                  name="slogan"
+                  value={profileData.slogan}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="I like to..."
+                />
               </div>
-              <div className="email">
-                {" "}
-                <p class="text-left">Email: {user.email}</p>
+              <div className="mb-3">
+                <label className="form-label">Add Picture Here</label>
+                <input
+                  type="text"
+                  name="image_url"
+                  value={profileData.image_url}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Add a pic of you! (url)"
+                />
               </div>
 
-              <div className="description">
-                {" "}
-                <p className="text-left">
-                  Description: <br /> {user.slogan}
-                </p>
-              </div>
-            </div>
+             <button className="btn btn-primary"> Submit </button>
+            </form>
           </div>
-        </div>
+          
+         ))}
+         </div>
+         </div>
+
         <div className="roadtrip-section col-lg-8 col-md-6">
           <div>
             <h4>My shared roadtrips</h4>
@@ -373,7 +384,8 @@ function ProfileView(props) {
           </div>
         </div>
       </div>
-    </div>
+  </div>
+ 
   );
 }
 
