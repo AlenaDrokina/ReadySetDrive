@@ -30,7 +30,7 @@ function ProfileView(props) {
 
   useEffect(() => {
     fetchProfile(profileData);
-    addDescrip(profileData);
+    // addDescrip(profileData);
   }, []);
 
   async function fetchProfile() {
@@ -69,33 +69,33 @@ function ProfileView(props) {
     return <h2>Loading...</h2>;
   }
 
-  async function addDescrip(profileData) {
-    let options = {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        image_url: profileData.image_url,
-        slogan: profileData.slogan,
-      }),
-    };
+  // async function addDescrip(profileData) {
+  //   let options = {
+  //     method: "PATCH",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       image_url: profileData.image_url,
+  //       slogan: profileData.slogan,
+  //     }),
+  //   };
 
-    try {
-      let response = await fetch(
-        `/users/${user_id}`,
-        options,
-        profileData.image_url,
-        profileData.slogan
-      );
-      if (response.ok) {
-        let newDescrip = await response.json();
-        setProfileData(newDescrip);
-      } else {
-        console.log(`Server error: ${response.status} ${response.statusText}`);
-      }
-    } catch (err) {
-      console.log(`Network error: ${err.message}`);
-    }
-  }
+  //   try {
+  //     let response = await fetch(
+  //       `/users/${user_id}`,
+  //       options,
+  //       profileData.image_url,
+  //       profileData.slogan
+  //     );
+  //     if (response.ok) {
+  //       let newDescrip = await response.json();
+  //       setProfileData(newDescrip);
+  //     } else {
+  //       console.log(`Server error: ${response.status} ${response.statusText}`);
+  //     }
+  //   } catch (err) {
+  //     console.log(`Network error: ${err.message}`);
+  //   }
+  // }
   console.log(profileData);
   // console.log(profileData.image_url);
 
@@ -181,7 +181,7 @@ function ProfileView(props) {
           </div>
           <div className="box2">
             <div className="userInfo">
-              {user.image_url && (
+              {props.user.image_url && (
                 <div key={user.image_url}>
                   <img src={user.image_url} alt="User" />
                 </div>
