@@ -35,7 +35,7 @@ function RoadtripForm(props) {
       {/* <h1>Create Your Roadtrip </h1> */}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-              <label className="form-label1">Title</label>
+              <label className="form-label">Title</label>
               <input 
                   type="text"
                   name="title"
@@ -46,7 +46,7 @@ function RoadtripForm(props) {
 
           </div>
           <div className="mb-3">
-              <label className="form-label2">Countries</label>
+              <label className="form-label">Countries</label>
               <input 
                   type="text"
                   name="countries"
@@ -57,7 +57,7 @@ function RoadtripForm(props) {
           </div>
 
           <div className="mb-3">
-              <label className="form-label3">Description</label>
+              <label className="form-label">Description</label>
                 <textarea
                     type="text"
                     name="description"
