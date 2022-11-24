@@ -69,7 +69,8 @@ function FeaturedTripView(props) {
     const polyline = currentStops.map((p) => 
     [p.latitude, p.longitude]
   );
-      const lineColor = { color: 'blue' }
+  
+  const lineColor = { color: "#519251" }
 
   return (
     <div className="container">

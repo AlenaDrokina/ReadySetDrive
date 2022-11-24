@@ -64,7 +64,7 @@ router.post("/", async function (req, res) {
       INSERT INTO roadtrips (image_url, title, countries, description, done, user_id)
       VALUES ('${image_url}', '${title}', '${countries}', '${description}', ${done}, ${user_id});
       SELECT last_insert_id()
-
+      
       `; //1 are the fields and 2 these are the values
 
   //constructor of the sql
