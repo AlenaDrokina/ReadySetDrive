@@ -156,18 +156,12 @@ function ProfileView(props) {
   return (
     <div>
       <div className="row">
-        <div className="profile-section col-lg-4 col-md-6">
+        <div className="col-lg-4 col-md-6">
         <h2>Profile</h2>
         <div className="box">
         {((user.slogan && user.image_url) ? (
 
-          <div className="userInfo">
-            {/* {user && (
-                <div key={user.id}>
-                <img src={user.image_url} alt="User" />
-              </div>
-              )}   */}
-              
+          <div className="userInfo">              
             <br />
             <div className="name">
               {" "}
@@ -184,12 +178,11 @@ function ProfileView(props) {
                 Description: <br /> {user.slogan}
               </p>
             </div>
-          </div>
-          
-        
+          </div>        
       
             ) :
             (
+
           <div className="box2">
             <form onSubmit={handleSubmit} >
             <div className="mb-3">
@@ -220,7 +213,10 @@ function ProfileView(props) {
           </div>
           
          ))}
-        <div className="roadtrip-section col-lg-8 col-md-6">
+         </div>
+         </div>
+
+        <div className="col-lg-8 col-md-6">
           <div>
             <h4>My shared roadtrips</h4>
             <h5>
@@ -394,9 +390,8 @@ function ProfileView(props) {
           </div>
         </div>
       </div>
-    </div>
   </div>
-  </div>
+ 
   );
 }
 
