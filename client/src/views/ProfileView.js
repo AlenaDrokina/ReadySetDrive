@@ -6,9 +6,6 @@ import { useParams } from "react-router-dom";
 // import NewRoadTripView from "./NewRoadTripView";
 // import PastFormView from "./PastFormView";
 import "./ProfileView.css";
-// import { Routes, Route, useParams } from "react-router-dom";
-// import Api from "../helpers/Api";
-
 const BLANK_STOP_PROFILE = {
   image_url: "",
   slogan: "",
@@ -18,15 +15,13 @@ function ProfileView(props) {
   const [user, setUser] = useState(null);
   const [profileData, setProfileData] = useState(BLANK_STOP_PROFILE);
   const [errorMsg, setErrorMsg] = useState("");
-  const [image, setImage] = useState("");
-
-  const [descrip, setDescrip] = useState("");
+  // const [descrip, setDescrip] = useState("");
 
   let { user_id } = useParams();
 
   useEffect(() => {
-    fetchProfile();
-    addDescrip();
+    fetchProfile(profileData);
+    addDescrip(profileData);
   }, []);
 
   async function fetchProfile() {
@@ -58,10 +53,15 @@ function ProfileView(props) {
     };
 
     try {
-      let response = await fetch(`/users/${user_id}`, options);
+      let response = await fetch(
+        `/users/${user_id}`,
+        options,
+        profileData.image_url,
+        profileData.slogan
+      );
       if (response.ok) {
         let newDescrip = await response.json();
-        setUser(newDescrip);
+        setProfileData(newDescrip);
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -69,6 +69,7 @@ function ProfileView(props) {
       console.log(`Network error: ${err.message}`);
     }
   }
+  console.log(profileData);
   // console.log(profileData.image_url);
 
   function handleChange(event) {
@@ -77,21 +78,23 @@ function ProfileView(props) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(profileData);
-    setProfileData(BLANK_STOP_PROFILE);
+    // console.log(profileData);
+    setProfileData(profileData[0]);
+    console.log("heyyyy");
   }
+
   return (
     <div>
       <h1>Profile</h1>
       <div className="ProfileView">
-        {!props.user.slogan && (
+        {/* {profileData.image_url ? (
           <div className="box">
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label">Add Picture Here</label>
                 <input
                   type="text"
-                  name="image_url"
+                  name="url"
                   value={profileData.image_url}
                   onChange={(e) => handleChange(e)}
                   className="form-control"
@@ -115,34 +118,33 @@ function ProfileView(props) {
               </button>
             </form>
           </div>
-        )}
-        {props.user.image_url && (
-          <div className="box2">
-            <div className="userInfo">
-              {user.image_url && (
-                <div key={user.image_url}>
-                  <img src={user.image_url} alt="User" />
+        ) : ( */}
+        <div className="box2">
+          <div className="userInfo">
+            {/* {user.image_url && (
+                <div key={profileData[0].id}>
+                  <img src={profileData[0].image_url} alt="User" />
                 </div>
-              )}
-              <br />
-              <div className="name">
-                {" "}
-                <p className="text-left">Hey!! {user.username}</p>
-              </div>
-              <div className="email">
-                {" "}
-                <p class="text-left">Email: {user.email}</p>
-              </div>
+              )} */}
+            <br />
+            <div className="name">
+              {" "}
+              <p className="text-left">Hey!! {user.username}</p>
+            </div>
+            <div className="email">
+              {" "}
+              <p class="text-left">Email: {user.email}</p>
+            </div>
 
-              <div className="description">
-                {" "}
-                <p class="text-left">
-                  Description: <br /> {user.slogan}
-                </p>
-              </div>
+            <div className="description">
+              {" "}
+              <p class="text-left">
+                Description: <br /> {user.slogan}
+              </p>
             </div>
           </div>
-        )}
+        </div>
+        {/* )} */}
         <div className="Projects">
           <div className="Project1">
             <h4>
