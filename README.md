@@ -1,4 +1,4 @@
-## Road To Travel
+## Ready Set Drive
 
 # About
 This app is way to share and plan roadtrips with others. You can record your past roadtrips and save them to look back on later. You can also see what roadtrips others have taken to help plan your next journey.

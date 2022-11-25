@@ -55,7 +55,7 @@ ALTER TABLE `favorite_roadtrips` ADD CONSTRAINT `favorite_roadtrips_fk1` FOREIGN
 -- SAMPLE DATA 
 
 INSERT INTO `users`(username, email, password, image_url, slogan)
-    VALUES ("user1", "user1@gmail.com", "$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeFIbf2eX1wOsYywDua3EkaIUcmI_m0To4yA&usqp=CAU", "Hello I am user1"), ("user2", "user2@gmail.com", "$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvkWCPzRPgifs1wrH7MlOpjgVOkC4RJnKlkg&usqp=CAU", "Hello I am user2");
+    VALUES ("user1", "user1@gmail.com", "$2b$12$eFzMWbS9SogNtxkmo3J7aO8FQMFQSKbtpwLMIOVsF6GGKpTQdgq.W", "https://cdn.mos.cms.futurecdn.net/qNugPZLgH8XQSrXfCb63Dd.jpg", "I like to learn and travel."), ("Harry", "user2@gmail.com", "$2b$12$WZcGPyrkCvD5e8m0Qz/nFOdBryUcsp6uDlE2MDo/AjuBhPrQBCfI6", "https://www.elindependiente.com/wp-content/uploads/2019/07/IMG_3083.jpg", "I like stealing my friend's flying car to go on a roadtrip.");
 
 INSERT INTO `roadtrips`(image_url, title, countries, description, done, user_id) 
     VALUES ("https://images.unsplash.com/photo-1509840841025-9088ba78a826?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", "The best trip of my life", "Spain", "I did a roundtrip in Andalucia...", 1, 1), 
