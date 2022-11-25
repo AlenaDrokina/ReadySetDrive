@@ -63,7 +63,7 @@ INSERT INTO `roadtrips`(image_url, title, countries, description, done, user_id)
     ("https://images.unsplash.com/photo-1546512970-372b2be5a667?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bm9ybWFuZHl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "The craziest trip of my life", "France", "I did a roundtrip in Normandy", 0, 2), 
     ("https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cGFyaXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "The most romantic trip of my life", "France", "I did a roundtrip from Paris to Marseille", 1, 2),
 	("https://images.unsplash.com/photo-1608243027404-bf342660e791?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", "Mosell region in autumn", "Germany", "We visited some great castles", 1, 1),
-	("https://images.unsplash.com/photo-1492666673288-3c4b4576ad9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmV3JTIweW9ya3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60", "Two weeks in New York City", "United States", "Amazing food and a lot of culture in the Big Apple", 1, 2),
+	("https://images.unsplash.com/photo-1622583529718-b68ded6804d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", "Three weeks in the US", "United States", "Amazing food and a lot of culture in the States", 1, 2),
 	("https://images.unsplash.com/photo-1505832018823-50331d70d237?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c2NvdGxhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Roadtrip in Scotland", "Scotland", "We saw Nessie", 1, 2), 
 	("https://images.unsplash.com/photo-1601928782843-5373177dbfd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80", "Roadtrip in Northern England", "England", "We drove from York to Liverpool", 1, 2),
 	("https://images.unsplash.com/photo-1594058573823-d8edf1ad3380?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8Y2l0eXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60", "Fastest roadtrip in Amsterdam", "Netherlands", "After hours trying to get through the bike lanes we got to the countryside", 0, 1),
@@ -105,6 +105,7 @@ INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
            ("Zoe's Hometown", "San Francisco, CA", -122.4194, 37.7749, 6),
            ("Hollywood Sign", "Los Angeles, CA", -118.2437, 34.0522, 6),
            ("Disneyland", "Anaheim, CA", -117.9220, 33.8111, 6),
+		   ("Jim's Alma Mater", "Corvallis, Oregon", -123.2794, 44.5638, 6),
 
 		   ("Nature hike", "Allean Forest, Scotland", -3.872422, 56.734922, 7),
 		   ("Nessie", "Loch Ericht, Scotland", -4.358743, 56.832008, 7),
