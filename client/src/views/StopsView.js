@@ -128,7 +128,7 @@ function StopsView(props) {
           <div className="row2">
             <Link
               type="button"
-              className="btn btn-primary"
+              className="btn"
               to={`/users/${props.user.id}`}
               role="button"
             >
@@ -138,7 +138,7 @@ function StopsView(props) {
             {"   "}
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn"
               onClick={() => markComplete()}
             >
               {" "}
