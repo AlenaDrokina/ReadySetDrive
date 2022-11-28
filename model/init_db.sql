@@ -98,6 +98,9 @@ INSERT INTO `stops` (title, address, longitude, latitude, roadtrip_id)
            ("Cathedral", "Porto, Portugal", -8.6291, 41.1579, 2),
            ("Casa do Raio", "Braga, Portugal", -8.4265, 41.5454, 2),
            ("Trajano Bridge", "Chaves, Portugal", -7.4706, 41.7411, 2),
+
+		   ("State de France", "Saint-Denis, France", 2.35802, 48.93577, 3),
+		   ("Cathédrale Sainte-Croix", "Orleans, France", 1.90861, 47.90273, 3),
 		   
 		   ("Four Corners", "San Juan County, New Mexico", -109.0452, 36.9990, 6),
            ("Grand Canyon", "Coconino County, AZ", -112.1401, 36.0544, 6),
