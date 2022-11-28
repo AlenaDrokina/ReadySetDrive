@@ -52,13 +52,10 @@ function StopsView(props) {
     let uid = await Local.getUser_id();
     // Send a request to OpenCage to geocode 'addr'
     let myresponse = await geocode(addressObj.address);
-
     console.log("roadtrip_user", id);
     console.log("uid", uid);
-
     //make sure user that is logged in is the same as the user that created the roadtrip
     // if (uid = id) {     //(not working because don't want it to roadtrip_user id not roadtrip id )
-
     if (myresponse.ok) {
       if (myresponse.data.latLng) {
         let d = myresponse.data;
@@ -70,7 +67,6 @@ function StopsView(props) {
           roadtrip_id: id,
           user_id: uid,
         };
-
         //add stop to db
         let response = await Api.addStop(newPlace);
         console.log("hi", newPlace);
