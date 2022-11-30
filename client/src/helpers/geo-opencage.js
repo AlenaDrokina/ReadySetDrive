@@ -1,13 +1,14 @@
 import opencage from "opencage-api-client";
-
-// const OCD_API_KEY = 45dd8529c59c47a3bfc283b07f3e9673;
-// console.log("key", OCD_API_KEY);
+ 
+const OCD_API_KEY = process.env.REACT_APP_OCD_API_KEY; 
+console.log("key", OCD_API_KEY)
 
 async function geocode(address) {
   //console.log(address)
+
   let geoParams = {
     q: address,
-    key: "45dd8529c59c47a3bfc283b07f3e9673",
+    key: OCD_API_KEY,
     no_annotations: 1,
   };
 
@@ -50,7 +51,7 @@ async function geocode(address) {
 async function revgeocode(latLng) {
   let geoParams = {
     q: latLng.join(","),
-    key: "45dd8529c59c47a3bfc283b07f3e9673",
+    key: OCD_API_KEY,
     no_annotations: 1,
   };
 
